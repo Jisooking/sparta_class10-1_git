@@ -47,6 +47,7 @@ public class Board : MonoBehaviour
         }
     }
 
+    //난이도-쉬움: 6개의 카드
     void MakeEasyBoard()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
@@ -65,6 +66,7 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = arr.Length;
     }
 
+    //난이도-노멀: 8개의 카드
     void MakeNormalBoard()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
@@ -83,20 +85,19 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = arr.Length;
     }
 
+    //난이도-하드: 10개의 카드
     void MakeHardBoard()
     {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14 };
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
 
         arr = arr.OrderBy(x => Random.Range(0f, 14f)).ToArray();
 
         for (int i = 0; i < arr.Length; i++)
         {
-            float x = (i % 5) * 1.4f - 2.1f;
-            float y = (i / 5) * 1.4f - 3.0f;
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 4.0f;
             GameObject go = Instantiate(card, this.transform);
             go.transform.position = new Vector2(x, y);
-            //사이즈 조절이 안 됨 >> 왜? animation 때문에
-            //
             go.GetComponent<Card>().Setting(arr[i]);
         }
 
