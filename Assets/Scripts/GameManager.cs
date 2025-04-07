@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
     public Text timeTxt;
-    float time = 30.0f;
+    float time;
     public int cardCount;
     public GameObject endTxt;
     public AudioSource audioSource;
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
 
         //점수 저장
         if (PlayerPrefs.HasKey(typeKey))
-            score = (score > PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
+            score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
         PlayerPrefs.SetFloat(typeKey, score);
 
         Debug.Log($"{typeKey}: {PlayerPrefs.GetFloat(typeKey)}");
