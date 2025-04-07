@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip clip;
 
+    public AudioClip failClip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if(time > 30.0f)
+        if (time > 30.0f)
         {
             time = 30.0f;
             GameOver();
@@ -41,20 +43,21 @@ public class GameManager : MonoBehaviour
     }
     public void Matched()
     {
-        if(firstCard.idx == secondCard.idx)
-        {   
+        if (firstCard.idx == secondCard.idx)
+        {
             audioSource.PlayOneShot(clip);
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
             cardCount -= 2;
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
                 GameOver();
             }
         }
         else
         {
+            audioSource.PlayOneShot(failClip);
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
