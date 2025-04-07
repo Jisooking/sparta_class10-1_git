@@ -83,20 +83,16 @@ public class GameManager : MonoBehaviour
             case GameLevel.Easy:
                 if (!isEasyCleared)
                 {
-                    isEasyCleared = true;
+                    isNormalCleared = true;
                 }
                 break;
             case GameLevel.Normal:
                 if (!isNormalCleared)
                 {
-                    isNormalCleared = true;
+                    isHardCleard = true;
                 }
                 break;
             case GameLevel.Hard:
-                if (!isHardCleard)
-                {
-                    isHardCleard = true;
-                }    
                 break;
         }
 
