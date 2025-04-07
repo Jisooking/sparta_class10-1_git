@@ -11,9 +11,15 @@ public enum GameLevel
 
 public class GameManager : MonoBehaviour
 {
+    //난이도 해금
     public bool isEasyCleared;
     public bool isNormalCleared;
     public bool isHardCleard;
+
+    //난이도 점수 저장
+    public float easyScore;
+    public float normalScore;
+    public float hardScore;
 
     public static GameManager Instance;
     public Card firstCard;
@@ -77,24 +83,41 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        //스테이지 해금 조건(추후에 횟수 같은 거 추가해서 넣을 수 있음)
+        float score = time;
+        string typeKey = "";
+        //난이도에 따른 해금 조건, 점수 저장
         switch(gameType)
         {
             case GameLevel.Easy:
                 if (!isEasyCleared)
                 {
-                    isNormalCleared = true;
+                    isEasyCleared = true;
                 }
+                //점수
+                typeKey = "EasyScore";
                 break;
             case GameLevel.Normal:
                 if (!isNormalCleared)
                 {
-                    isHardCleard = true;
+                    isNormalCleared = true;
                 }
+                typeKey = "NormalScore";
                 break;
             case GameLevel.Hard:
+                if (!isHardCleard)
+                {
+                    isHardCleard = true;
+                }
+                typeKey = "HardScore";
                 break;
         }
+
+        //점수 저장
+        if (PlayerPrefs.HasKey(typeKey))
+            score = (score > PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
+        PlayerPrefs.SetFloat(typeKey, score);
+
+        Debug.Log($"{typeKey}: {PlayerPrefs.GetFloat(typeKey)}");
 
         endTxt.SetActive(true);
         Time.timeScale = 0.0f;
