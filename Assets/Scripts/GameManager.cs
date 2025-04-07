@@ -12,9 +12,9 @@ public enum GameLevel
 public class GameManager : MonoBehaviour
 {
     //난이도 해금
-    public bool isEasyCleared;
-    public bool isNormalCleared;
-    public bool isHardCleard;
+    //playerpref 사용 고민해 보기(만약 titlescene으로 넘어갔을 때 초기화된다면?)
+    public bool unlockNormal;
+    public bool unlockHard;
 
     //난이도 점수 저장
     public float easyScore;
@@ -89,25 +89,15 @@ public class GameManager : MonoBehaviour
         switch(gameType)
         {
             case GameLevel.Easy:
-                if (!isEasyCleared)
-                {
-                    isEasyCleared = true;
-                }
+                unlockNormal = true;
                 //점수
                 typeKey = "EasyScore";
                 break;
             case GameLevel.Normal:
-                if (!isNormalCleared)
-                {
-                    isNormalCleared = true;
-                }
+                unlockHard = true;
                 typeKey = "NormalScore";
                 break;
             case GameLevel.Hard:
-                if (!isHardCleard)
-                {
-                    isHardCleard = true;
-                }
                 typeKey = "HardScore";
                 break;
         }
