@@ -11,16 +11,17 @@ public class GameManager : MonoBehaviour
     public int cardCount;
     public GameObject endTxt;
     public AudioSource audioSource;
-    public AudioClip clip;
+    public AudioClip clip;  //매칭 성공 사운드
 
-    public AudioClip failClip;
-    public AudioClip hurryUpClip;
-    public AudioClip gameOverClip;
+    public AudioClip failClip;  //매칭 실패 사운드
 
-    public AudioSource bgm;
+    public AudioClip gameOverClip; //게임오버 사운드
+
+    public AudioSource bgm; //배경음악 재생 소스
+
+    public AudioClip hurryUpClip;   //긴박한 배경음악
 
     bool isMusicChanged = false;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if (!isMusicChanged && time > 20.0f) //20초 지나면 긴박한 브금 재생
+        if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
         {
             bgm.Stop();
             bgm.clip = hurryUpClip;

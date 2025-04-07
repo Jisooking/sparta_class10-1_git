@@ -24,7 +24,7 @@ public class CardFlip : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
         anim.SetBool("isOpen", true);
-
+        //카드가 반쯤 뒤집힐때 까지 대기
         yield return new WaitForSeconds(0.5f);
 
         front.SetActive(true);
