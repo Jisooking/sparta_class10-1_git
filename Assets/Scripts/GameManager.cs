@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
     public Text timeTxt;
-    float time = 0.0f;
+    float time = 30.0f;
     public int cardCount;
     public GameObject endTxt;
     public AudioSource audioSource;
@@ -46,16 +46,30 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
+
+        //난이도에 따라 게임 시간 정하기
+        switch(gameType)
+        {
+            case GameLevel.Easy:
+                time = 60.0f;
+                break;
+            case GameLevel.Normal:
+                time = 30.0f;
+                break;
+            case GameLevel.Hard:
+                time = 30.0f;
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if(time > 30.0f)
+        if(time < 0.0f)
         {
-            time = 30.0f;
+            time = 0.0f;
             GameOver();
         }
     }

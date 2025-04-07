@@ -874,9 +874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443818891b72b4d4f9a3ecddc949b2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEasyCleared: 0
-  isNormalCleared: 0
-  isHardCleard: 0
+  unlockNormal: 0
+  unlockHard: 0
+  easyScore: 0
+  normalScore: 0
+  hardScore: 0
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
   timeTxt: {fileID: 1555897325}
@@ -884,7 +886,7 @@ MonoBehaviour:
   endTxt: {fileID: 761040778}
   audioSource: {fileID: 0}
   clip: {fileID: 8300000, guid: de0f107987a8c3f4bbaa98bd4bde5000, type: 3}
-  gameType: 0
+  gameType: 2
 --- !u!4 &1734638038
 Transform:
   m_ObjectHideFlags: 0
