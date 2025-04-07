@@ -1,8 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum GameLevel
+{
+    Easy,
+    Normal,
+    Hard,
+    Hidden,
+}
+
 public class GameManager : MonoBehaviour
 {
+    public bool isEasyCleared;
+    public bool isNormalCleared;
+    public bool isHardCleard;
+
     public static GameManager Instance;
     public Card firstCard;
     public Card secondCard;
@@ -12,6 +24,8 @@ public class GameManager : MonoBehaviour
     public GameObject endTxt;
     public AudioSource audioSource;
     public AudioClip clip;
+
+    public GameLevel gameType;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -63,6 +77,29 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        //스테이지 해금 조건(추후에 횟수 같은 거 추가해서 넣을 수 있음)
+        switch(gameType)
+        {
+            case GameLevel.Easy:
+                if (!isEasyCleared)
+                {
+                    isEasyCleared = true;
+                }
+                break;
+            case GameLevel.Normal:
+                if (!isNormalCleared)
+                {
+                    isNormalCleared = true;
+                }
+                break;
+            case GameLevel.Hard:
+                if (!isHardCleard)
+                {
+                    isHardCleard = true;
+                }    
+                break;
+        }
+
         endTxt.SetActive(true);
         Time.timeScale = 0.0f;
     }
