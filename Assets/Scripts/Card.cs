@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ public class Card : MonoBehaviour
     public Animator anim;
     public AudioClip clip;
     public AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,10 +22,10 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void Setting(int num) 
+    public void Setting(int num)
     {
         idx = num;
         frontimage.sprite = Resources.Load<Sprite>($"rtan{idx}");
@@ -31,11 +34,12 @@ public class Card : MonoBehaviour
     public void OpenCard()
     {
         audioSource.PlayOneShot(clip);
-
         anim.SetBool("isOpen", true);
+
+
         front.SetActive(true);
         back.SetActive(false);
-        if(GameManager.Instance.firstCard == null)
+        if (GameManager.Instance.firstCard == null)
         {
             GameManager.Instance.firstCard = this;
         }
@@ -44,6 +48,7 @@ public class Card : MonoBehaviour
             GameManager.Instance.secondCard = this;
             GameManager.Instance.Matched();
         }
+
     }
     public void CloseCard()
     {
@@ -59,7 +64,6 @@ public class Card : MonoBehaviour
     public void DestroyCard()
     {
         Destroy(gameObject, 0.5f);
-    }    
-
+    }
 
 }
