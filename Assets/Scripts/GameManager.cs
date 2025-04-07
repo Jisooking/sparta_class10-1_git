@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip clip;
 
+    public GameObject SuccessTxt;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if(cardCount == 0)
             {
-                GameOver();
+                GameClear();
             }
         }
         else
@@ -64,6 +66,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         endTxt.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+
+    public void GameClear()
+    {
+        SuccessTxt.SetActive(true);
         Time.timeScale = 0.0f;
     }
 }
