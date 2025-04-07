@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if (time > 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
+        if (!isMusicChanged && time > 20.0f) //20초 지나면 긴박한 브금 재생
         {
             bgm.Stop();
             bgm.clip = hurryUpClip;

@@ -45,7 +45,6 @@ public class NewBoard : MonoBehaviour
         Vector2 row = new Vector2(start.x, target.y);
         float elapsed = 0f;
 
-
         while (elapsed < 1.0f)  //카드를 세로로 펼치기
         {
 
@@ -56,14 +55,12 @@ public class NewBoard : MonoBehaviour
 
         elapsed = 0f;
 
-
         while (elapsed < 1.0f)  //카드를 가로로 펼치기
         {
             transform.position = Vector3.Lerp(row, target, elapsed / 1.0f);
             elapsed += Time.deltaTime;
             yield return null;
         }
-
 
         transform.position = target; // 최종 위치 보정
     }

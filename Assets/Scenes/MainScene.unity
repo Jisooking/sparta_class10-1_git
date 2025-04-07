@@ -310,7 +310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 308537731}
-  - component: {fileID: 308537732}
+  - component: {fileID: 308537734}
   - component: {fileID: 308537733}
   m_Layer: 0
   m_Name: Borad
@@ -334,20 +334,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &308537732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308537729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bec41c004109d4f852ddeb9af8bf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 2418001050820221320, guid: 5d84641fed1efda4caa16b39a38b93c6, type: 3}
-  shuffleClip: {fileID: 8300000, guid: 39b5805f8fcd00d4ba53687a5b66198c, type: 3}
 --- !u!82 &308537733
 AudioSource:
   m_ObjectHideFlags: 0
@@ -445,6 +431,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &308537734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308537729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c57966a4ca0ac4eb0d960ffa8ba804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 6452039712958422334, guid: 627f2ff992a601d45b417408f0c6a7ae, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1665265696
 Transform:
   m_ObjectHideFlags: 0
