@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         //���̵��� ���� ���� �ð� ���ϱ�
-        switch(gameType)
+        switch (gameType)
         {
             case GameLevel.Easy:
                 time = 60.0f;
@@ -78,24 +78,25 @@ public class GameManager : MonoBehaviour
         time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
 
-        if(time < 0.0f)
+        if (time < 0.0f)
         {
             time = 0.0f;
 
-        if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
-        {
-            bgm.Stop();
-            bgm.clip = hurryUpClip;
-            bgm.Play();
-            isMusicChanged = true;
-        }
-        else if (time > 30.0f)
-        {
-            time = 30.0f;
-            bgm.Stop();
-            audioSource.PlayOneShot(gameOverClip);
+            if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
+            {
+                bgm.Stop();
+                bgm.clip = hurryUpClip;
+                bgm.Play();
+                isMusicChanged = true;
+            }
+            else if (time > 30.0f)
+            {
+                time = 30.0f;
+                bgm.Stop();
+                audioSource.PlayOneShot(gameOverClip);
 
-            GameOver();
+                GameOver();
+            }
         }
     }
     public void Matched()
@@ -126,7 +127,7 @@ public class GameManager : MonoBehaviour
         float score = time;
         string typeKey = "";
         //���̵��� ���� �ر� ����, ���� ����
-        switch(gameType)
+        switch (gameType)
         {
             case GameLevel.Easy:
                 unlockNormal = true;
