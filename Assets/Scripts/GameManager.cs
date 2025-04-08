@@ -30,16 +30,9 @@ public class GameManager : MonoBehaviour
     //public bool cardOpening = false;
     public int cardCount;
     public GameObject endTxt;
-    public AudioSource audioSource;
+    
 
-    public AudioClip clip;  //매칭 성공 사운드
-    public AudioClip failClip;  //매칭 실패 사운드
-    public AudioClip gameOverClip; //게임오버 사운드
-    public AudioSource bgm; //배경음악 재생 소스
-    public AudioClip hurryUpClip;   //긴박한 배경음악
-
-    bool isMusicChanged = false;
-
+   
     public GameLevel gameType;
 
     public GameObject SuccessTxt;
@@ -60,7 +53,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -75,21 +68,13 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
+        if (time >= 20.0f )
         {
-            bgm.Stop();
-            bgm.clip = hurryUpClip;
-            bgm.Play();
-            isMusicChanged = true;
+            AudioManager.Instance.StopBGM();
+            AudioManager.Instance.PlayHurryUpBGM();
+            
         }
-        else if (time > 30.0f)
-        {
-            time = 30.0f;
-            bgm.Stop();
-            audioSource.PlayOneShot(gameOverClip);
-
-            GameOver();
-        }
+        
 
     }
 
@@ -118,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx)
         {
-            audioSource.PlayOneShot(clip);
+            AudioManager.Instance.PlayMatchSFX();
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
@@ -130,7 +115,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            audioSource.PlayOneShot(failClip);
+            AudioManager.Instance.PlayFailSFX();
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
@@ -141,6 +126,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlayGameOverSFX();
         float score = time;
         string typeKey = "";
         //���̵��� ���� �ر� ����, ���� ����

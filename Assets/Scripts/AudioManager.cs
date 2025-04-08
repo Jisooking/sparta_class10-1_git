@@ -2,35 +2,53 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
-    public AudioSource audioSource;
-    public AudioClip clip;
+    public static AudioManager Instance;
+
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
+
+    public AudioClip matchClip;
+    public AudioClip failClip;
+    public AudioClip gameOverClip;
+    public AudioClip hurryUpClip;
+    public AudioClip shuffleClip;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
-    void Start()
+    public void PlaySFX(AudioClip clip)
     {
-        audioSource = GetComponent<AudioSource>();
-
-        audioSource.clip = this.clip;
-        audioSource.Play();
+        if (clip != null)
+            sfxSource.PlayOneShot(clip);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayMatchSFX() => PlaySFX(matchClip);
+    public void PlayFailSFX() => PlaySFX(failClip);
+    public void PlayGameOverSFX() => PlaySFX(gameOverClip);
+    public void PlayShuffleSFX() => PlaySFX(shuffleClip);
+
+    public void PlayBGM(AudioClip clip, bool loop = true)
     {
-        
+        bgmSource.clip = clip;
+        bgmSource.loop = loop;
+        bgmSource.Play();
+    }
+
+    public void StopBGM() => bgmSource.Stop();
+
+    public void PlayHurryUpBGM()
+    {
+        PlayBGM(hurryUpClip);
     }
 }
