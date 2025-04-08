@@ -29,9 +29,11 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
     public Text timeTxt;
     float time;
+    //public bool cardOpening = false;
     public int cardCount;
     public GameObject endTxt;
     public AudioSource audioSource;
+
     public AudioClip clip;  //매칭 성공 사운드
 
     public AudioClip failClip;  //매칭 실패 사운드
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
+        //Invoke("SetBoolFalse", 0.5f); // 카드가 뒤집었을 때 마우스 클릭 딜레이
         firstCard = null;
         secondCard = null;
     }
@@ -196,5 +199,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
 
     }
+
+    /*void SetBoolFalse()
+    {
+        cardOpening = false;
+    }*/
 }
 

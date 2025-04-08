@@ -12,6 +12,7 @@ public class Card : MonoBehaviour
     public Animator anim;
     public AudioClip clip;
     public AudioSource audioSource;
+    public bool setOpen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +23,7 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void Setting(int num)
@@ -33,22 +34,24 @@ public class Card : MonoBehaviour
 
     public void OpenCard()
     {
-        audioSource.PlayOneShot(clip);
-        anim.SetBool("isOpen", true);
-
-
-        front.SetActive(true);
-        back.SetActive(false);
-        if (GameManager.Instance.firstCard == null)
         {
-            GameManager.Instance.firstCard = this;
-        }
-        else
-        {
-            GameManager.Instance.secondCard = this;
-            GameManager.Instance.Matched();
-        }
+            audioSource.PlayOneShot(clip);
+            anim.SetBool("isOpen", true);
 
+
+            front.SetActive(true);
+            back.SetActive(false);
+            if (GameManager.Instance.firstCard == null)
+            {
+                GameManager.Instance.firstCard = this;
+            }
+            else
+            {
+                //GameManager.Instance.cardOpening = true;
+                GameManager.Instance.secondCard = this;
+                GameManager.Instance.Matched();
+            }
+        }
     }
     public void CloseCard()
     {
@@ -66,4 +69,18 @@ public class Card : MonoBehaviour
         Destroy(gameObject, 0.5f);
     }
 
+
+    void OpenImage()
+    {
+        if (!setOpen)
+        {
+            front.SetActive(false);
+            back.SetActive(true);
+        }
+        else
+        {
+            front.SetActive(true);
+            back.SetActive(false);
+        }
+    }
 }
