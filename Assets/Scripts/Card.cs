@@ -23,7 +23,6 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (GameManager.Instance.gameType != GameLevel.Hidden)
         {
             return;
