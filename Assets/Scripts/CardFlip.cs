@@ -48,7 +48,7 @@ public class CardFlip : MonoBehaviour
         front.SetActive(true);
         back.SetActive(false);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
 
         if (GameManager.Instance.firstCard != null && GameManager.Instance.secondCard != null)
         {

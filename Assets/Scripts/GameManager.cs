@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+    public Board board;
     float time;
     public float _Time
     {
@@ -84,6 +85,9 @@ public class GameManager : MonoBehaviour
             case GameLevel.Hidden:
                 time = 5.0f;
                 break;
+            case GameLevel.Infinite:
+                time = 60.0f;
+                break;
         }
     }
 
@@ -93,13 +97,31 @@ public class GameManager : MonoBehaviour
         {
             time += 5.0f; //시간 추가
             AudioManager.Instance.PlayMatchSFX();
-            firstCard.DestroyCard();
-            secondCard.DestroyCard();
+            if (Managers.Instance.gameType == GameLevel.Infinite)   //무한 모드는 destroy대신 비활성화
+            {
+                firstCard.gameObject.SetActive(false);
+                secondCard.gameObject.SetActive(false);
+                firstCard.CloseCard();
+                secondCard.CloseCard();
+
+            }
+            else
+            {
+                firstCard.DestroyCard();
+                secondCard.DestroyCard();
+            }
 
             cardCount -= 2;
             if (cardCount == 0)
             {
-                GameClear();
+                if (Managers.Instance.gameType == GameLevel.Infinite)
+                {
+                    board.ShuffleCards();
+                }
+                else
+                {
+                    GameClear();
+                }
             }
         }
         else
@@ -112,7 +134,7 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
 
-        Invoke("SetBoolFalse", 0.5f); // 카드가 뒤집었을 때 마우스 클릭 딜레이
+        SetBoolFalse(); // 카드가 뒤집었을 때 마우스 클릭 딜레이
     }
 
     public void GameOver()
