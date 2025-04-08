@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public GameLevel gameType;
 
+    public GameObject SuccessTxt;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
@@ -99,22 +101,22 @@ public class GameManager : MonoBehaviour
 
 
 
-            if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
-            {
-                bgm.Stop();
-                bgm.clip = hurryUpClip;
-                bgm.Play();
-                isMusicChanged = true;
-            }
-            else if (time > 30.0f)
-            {
-                time = 30.0f;
-                bgm.Stop();
-                audioSource.PlayOneShot(gameOverClip);
-
-                GameOver();
-            }
+        if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
+        {
+            bgm.Stop();
+            bgm.clip = hurryUpClip;
+            bgm.Play();
+            isMusicChanged = true;
         }
+        else if (time > 30.0f)
+        {
+            time = 30.0f;
+            bgm.Stop();
+            audioSource.PlayOneShot(gameOverClip);
+
+            GameOver();
+        }
+
     }
     public void Matched()
     {
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount == 0)
             {
-                GameOver();
+                GameClear();
             }
         }
         else
@@ -170,6 +172,7 @@ public class GameManager : MonoBehaviour
         endTxt.SetActive(true);
         Time.timeScale = 0.0f;
     }
+
     public void LoadEasy()
     {
         GameManager.Instance.gameType = GameLevel.Easy;
@@ -185,6 +188,13 @@ public class GameManager : MonoBehaviour
     {
         GameManager.Instance.gameType = GameLevel.Hard;
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void GameClear()
+    {
+        SuccessTxt.SetActive(true);
+        Time.timeScale = 0.0f;
+
     }
 }
 
