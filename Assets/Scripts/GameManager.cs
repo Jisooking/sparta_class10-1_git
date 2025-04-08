@@ -117,13 +117,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
         Time.timeScale = 0.0f;
         isGameOver = true;
         GameOverEvent.Invoke();
 
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlayGameOverSFX();
+    }
+
+    public void GameClear()
+    {
+        GameClearEvent.Invoke();
+        AudioManager.Instance.StopBGM();
+        Time.timeScale = 0.0f;
+
         float score = time;
         string typeKey = "";
         //
@@ -149,14 +156,6 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey(typeKey))
             score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
         PlayerPrefs.SetFloat(typeKey, score);
-
-    }
-
-    public void GameClear()
-    {
-        GameClearEvent.Invoke();
-        AudioManager.Instance.StopBGM();
-        Time.timeScale = 0.0f;
     }
 
     void SetBoolFalse()

@@ -1493,8 +1493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 0
-  unlockNormal: 1
-  unlockHard: 1
+  unlockNormal: 0
+  unlockHard: 0
 --- !u!1 &979385542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,9 +1684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff71a69196e3e9f4babbd2712d66d868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyButton: {fileID: 731117451}
-  normalButton: {fileID: 2063430063}
-  hardButton: {fileID: 858430019}
 --- !u!1 &1085517792
 GameObject:
   m_ObjectHideFlags: 0
