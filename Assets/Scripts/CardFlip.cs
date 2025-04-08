@@ -17,29 +17,42 @@ public class CardFlip : MonoBehaviour
 
     public void CardClick()
     {
+        if (GameManager.Instance.cardOpening)
+        {
+            return;
+        }
+        if (GameManager.Instance.firstCard != null)
+        {
+            GameManager.Instance.cardOpening = true;
+        }
         StartCoroutine(FlipCard());
     }
 
     IEnumerator FlipCard()
     {
+        if (GameManager.Instance.firstCard == null)
         {
-            audioSource.PlayOneShot(clip);
-            anim.SetBool("isOpen", true);
-            //카드가 반쯤 뒤집힐때 까지 대기
-            yield return new WaitForSeconds(0.5f);
-
-            front.SetActive(true);
-            back.SetActive(false);
-            if (GameManager.Instance.firstCard == null)
-            {
-                GameManager.Instance.firstCard = card;
-            }
-            else
-            {
-                GameManager.Instance.secondCard = card;
-                GameManager.Instance.Matched();
-            }
+            GameManager.Instance.firstCard = card;
         }
+        else
+        {
+            GameManager.Instance.secondCard = card;
 
+        }
+        audioSource.PlayOneShot(clip);
+        anim.SetBool("isOpen", true);
+        //카드가 반쯤 뒤집힐때 까지 대기
+
+        yield return new WaitForSeconds(0.5f);
+
+        front.SetActive(true);
+        back.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (GameManager.Instance.firstCard != null && GameManager.Instance.secondCard != null)
+        {
+            GameManager.Instance.Matched();
+        }
     }
 }

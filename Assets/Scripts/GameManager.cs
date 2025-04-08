@@ -35,9 +35,8 @@ public class GameManager : MonoBehaviour
     //public bool cardOpening = false;
     public int cardCount;
     public GameObject endTxt;
-    
 
-   
+    public bool cardOpening = false;
     public GameLevel gameType;
 
     public GameObject SuccessTxt;
@@ -64,22 +63,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time -= Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
 
-        if (time < 0.0f)
-        {
-            time = 0.0f;
-
-        }
-
-        if (time >= 20.0f )
-        {
-            AudioManager.Instance.StopBGM();
-            AudioManager.Instance.PlayHurryUpBGM();
-            
-        }
-        
 
     }
 
@@ -124,9 +108,11 @@ public class GameManager : MonoBehaviour
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
-        //Invoke("SetBoolFalse", 0.5f); // 카드가 뒤집었을 때 마우스 클릭 딜레이
+
         firstCard = null;
         secondCard = null;
+
+        Invoke("SetBoolFalse", 0.5f); // 카드가 뒤집었을 때 마우스 클릭 딜레이
     }
 
     public void GameOver()
@@ -170,9 +156,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    /*void SetBoolFalse()
+    void SetBoolFalse()
     {
         cardOpening = false;
-    }*/
+    }
 }
 
