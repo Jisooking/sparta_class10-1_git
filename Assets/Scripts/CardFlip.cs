@@ -22,21 +22,23 @@ public class CardFlip : MonoBehaviour
 
     IEnumerator FlipCard()
     {
-        audioSource.PlayOneShot(clip);
-        anim.SetBool("isOpen", true);
-        //카드가 반쯤 뒤집힐때 까지 대기
-        yield return new WaitForSeconds(0.5f);
+        {
+            audioSource.PlayOneShot(clip);
+            anim.SetBool("isOpen", true);
+            //카드가 반쯤 뒤집힐때 까지 대기
+            yield return new WaitForSeconds(0.5f);
 
-        front.SetActive(true);
-        back.SetActive(false);
-        if (GameManager.Instance.firstCard == null)
-        {
-            GameManager.Instance.firstCard = card;
-        }
-        else
-        {
-            GameManager.Instance.secondCard = card;
-            GameManager.Instance.Matched();
+            front.SetActive(true);
+            back.SetActive(false);
+            if (GameManager.Instance.firstCard == null)
+            {
+                GameManager.Instance.firstCard = card;
+            }
+            else
+            {
+                GameManager.Instance.secondCard = card;
+                GameManager.Instance.Matched();
+            }
         }
 
     }
