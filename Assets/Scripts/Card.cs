@@ -27,26 +27,36 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        if (gameObject.transform.position.x <= -2.1f)
+        if (transform.position.x <= -2.1f)
         {
-            if (gameObject.transform.position.y >= 2.1f)
+            if (transform.position.y >= 2.1f)
             {
-                gameObject.transform.position += new Vector3(0.05f, 0f, 0f);
+                transform.position += new Vector3(0.05f, 0f, 0f);
             }
-            gameObject.transform.position += new Vector3(0f, 0.05f, 0f);
+            transform.position += new Vector3(0f, 0.05f, 0f);
         }
-        else if (gameObject.transform.position.y <= -3.5f)
+        else if (transform.position.y <= -3.5f)
         {
-            gameObject.transform.position -= new Vector3(0.05f, 0f, 0f);
+            transform.position -= new Vector3(0.05f, 0f, 0f);
         }
-        else if (gameObject.transform.position.x >= 2.1f)
+        else if (transform.position.x >= 2.1f)
         {
-            gameObject.transform.position -= new Vector3(0f, 0.05f, 0f);
+            transform.position -= new Vector3(0f, 0.05f, 0f);
         }
-        else if (gameObject.transform.position.y >= 2.1f)
+        else if (transform.position.y >= 2.1f)
         {
-            gameObject.transform.position += new Vector3(0.05f, 0f, 0f);
+            transform.position += new Vector3(0.05f, 0f, 0f);
         }
+
+        //초과되는 부분 x, y 고정하기
+        if (transform.position.x <= -2.1f)
+            transform.position = new Vector2(-2.1f, transform.position.y);
+        else if (transform.position.x >= 2.1f)
+            transform.position = new Vector2(2.1f, transform.position.y);
+        else if (transform.position.y <= -3.5f)
+            transform.position = new Vector2(transform.position.x, -3.5f);
+        else if (transform.position.y >= 2.1f)
+            transform.position = new Vector2(transform.position.x, 2.1f);
     }
 
     public void Setting(int num)
