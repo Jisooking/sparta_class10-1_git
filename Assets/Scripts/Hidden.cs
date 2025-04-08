@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Hidden : MonoBehaviour
 {
     float direction = 0.05f;
-    
+
     SpriteRenderer renderer;
 
     void Start()
@@ -16,14 +16,6 @@ public class Hidden : MonoBehaviour
 
     void Update()
     {
-        float x = transform.position.x;
-        float y = transform.position.y;
-        if (x > -2.6f)
-        {
-            transform.position = new Vector2(-0.05f,0);
-        }
-        
-
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -36,9 +28,5 @@ public class Hidden : MonoBehaviour
                 Debug.Log("히든 스테이지로");
             }
         }
-
-        transform.position += Vector3.right * direction;
     }
-
-
 }
