@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
     //playerpref ��� ������ ����(���� titlescene���� �Ѿ�� �� �ʱ�ȭ�ȴٸ�?)
     public bool unlockNormal;
     public bool unlockHard;
-    public Button NormalBtn;
-    public Button HardBtn;
 
     //���̵� ���� ����
     public float easyScore;
@@ -35,13 +33,9 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSource;
 
     public AudioClip clip;  //매칭 성공 사운드
-
     public AudioClip failClip;  //매칭 실패 사운드
-
     public AudioClip gameOverClip; //게임오버 사운드
-
     public AudioSource bgm; //배경음악 재생 소스
-
     public AudioClip hurryUpClip;   //긴박한 배경음악
 
     bool isMusicChanged = false;
@@ -57,36 +51,16 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
     void Start()
     {
-        Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
-
-        //���̵��� ���� ���� �ð� ���ϱ�
-        switch (gameType)
-        {
-            case GameLevel.Easy:
-                time = 60.0f;
-                break;
-            case GameLevel.Normal:
-                time = 30.0f;
-                break;
-            case GameLevel.Hard:
-                time = 30.0f;
-                break;
-        }
-        if (GameManager.Instance.unlockNormal)
-        {
-            NormalBtn.interactable = true;
-        }
-        else { NormalBtn.interactable = false; }
-        if (GameManager.Instance.unlockHard)
-        {
-            HardBtn.interactable = true;
-        }
-        else { HardBtn.interactable = false; }
     }
 
     // Update is called once per frame
@@ -100,8 +74,6 @@ public class GameManager : MonoBehaviour
             time = 0.0f;
 
         }
-
-
 
         if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
         {
@@ -120,6 +92,28 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void SetTime()
+    {
+        Time.timeScale = 1.0f;
+
+        switch (gameType)
+        {
+            case GameLevel.Easy:
+                time = 60.0f;
+                break;
+            case GameLevel.Normal:
+                time = 30.0f;
+                break;
+            case GameLevel.Hard:
+                time = 30.0f;
+                break;
+            case GameLevel.Hidden:
+                time = 30.0f;
+                break;
+        }
+    }
+
     public void Matched()
     {
         if (firstCard.idx == secondCard.idx)
@@ -144,6 +138,7 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
     }
+
     public void GameOver()
     {
         float score = time;
@@ -174,23 +169,6 @@ public class GameManager : MonoBehaviour
 
         endTxt.SetActive(true);
         Time.timeScale = 0.0f;
-    }
-
-    public void LoadEasy()
-    {
-        GameManager.Instance.gameType = GameLevel.Easy;
-        SceneManager.LoadScene("MainScene");
-
-    }
-    public void LoadNormal()
-    {
-        GameManager.Instance.gameType = GameLevel.Normal;
-        SceneManager.LoadScene("MainScene");
-    }
-    public void LoadHard()
-    {
-        GameManager.Instance.gameType = GameLevel.Hard;
-        SceneManager.LoadScene("MainScene");
     }
 
     public void GameClear()
