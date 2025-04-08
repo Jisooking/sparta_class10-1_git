@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public bool isGameOver { get; private set; }
 
-
+    bool isMusicChanged = false;
     private void Awake()
     {
         if (Instance == null)
@@ -45,21 +45,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        /*
+        if (isGameOver)
+        {
+            return;
+        }
         time -= Time.deltaTime;
 
-        if (time < 0.0f)
-        {
-            time = 0.0f;
-            GameOver();
-        }
-
-        if (time >= 20.0f)
+        if (time <= 10.0f && !isMusicChanged)
         {
             AudioManager.Instance.StopBGM();
             AudioManager.Instance.PlayHurryUpBGM();
+            isMusicChanged = true;
+
         }
-        */
+
+        if (time <= 0.0f)
+        {
+            time = 0.0f;
+            GameManager.Instance.GameOver();
+        }
+
+
     }
 
     public void SetTime()
@@ -85,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx)
         {
+            time += 5.0f; //시간 추가
             AudioManager.Instance.PlayMatchSFX();
             firstCard.DestroyCard();
             secondCard.DestroyCard();
