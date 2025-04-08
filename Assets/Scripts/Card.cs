@@ -23,7 +23,30 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.Instance.gameType != GameLevel.Hidden)
+        {
+            return;
+        }
+        if (gameObject.transform.position.x <= -2.1f)
+        {
+            if (gameObject.transform.position.y >= 2.1f)
+            {
+                gameObject.transform.position += new Vector3(0.05f, 0f, 0f);
+            }
+            gameObject.transform.position += new Vector3(0f, 0.05f, 0f);
+        }
+        else if (gameObject.transform.position.y <= -3.5f)
+        {
+            gameObject.transform.position -= new Vector3(0.05f, 0f, 0f);
+        }
+        else if (gameObject.transform.position.x >= 2.1f)
+        {
+            gameObject.transform.position -= new Vector3(0f, 0.05f, 0f);
+        }
+        else if (gameObject.transform.position.y >= 2.1f)
+        {
+            gameObject.transform.position += new Vector3(0.05f, 0f, 0f);
+        }
     }
 
     public void Setting(int num)

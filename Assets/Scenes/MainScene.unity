@@ -698,9 +698,8 @@ GameObject:
   - component: {fileID: 308537731}
   - component: {fileID: 308537730}
   - component: {fileID: 308537733}
-  - component: {fileID: 308537734}
   m_Layer: 0
-  m_Name: Borad
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -713,12 +712,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308537729}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70c57966a4ca0ac4eb0d960ffa8ba804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 6452039712958422334, guid: 627f2ff992a601d45b417408f0c6a7ae, type: 3}
+  card: {fileID: 2418001050820221320, guid: 5d84641fed1efda4caa16b39a38b93c6, type: 3}
 --- !u!4 &308537731
 Transform:
   m_ObjectHideFlags: 0
@@ -831,19 +830,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &308537734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308537729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bec41c004109d4f852ddeb9af8bf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 2418001050820221320, guid: 5d84641fed1efda4caa16b39a38b93c6, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,8 +2500,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockNormal: 0
   unlockHard: 0
-  NormalBtn: {fileID: 0}
-  HardBtn: {fileID: 0}
   easyScore: 0
   normalScore: 0
   hardScore: 0
@@ -2530,7 +2514,7 @@ MonoBehaviour:
   gameOverClip: {fileID: 0}
   bgm: {fileID: 0}
   hurryUpClip: {fileID: 0}
-  gameType: 0
+  gameType: 3
   SuccessTxt: {fileID: 1473113230}
 --- !u!4 &1734638038
 Transform:
