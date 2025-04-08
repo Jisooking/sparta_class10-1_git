@@ -7,17 +7,17 @@ public class Board : MonoBehaviour
     public GameObject card;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        //¿ø·¡ ÄÚµå
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
         /*
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
 
         arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
 
-        for(int i = 0; i <16; i++)
+        for (int i = 0; i < 16; i++)
         {
-            float x = (i % 4) * 1.4f -2.1f;
+            float x = (i % 4) * 1.4f - 2.1f;
             float y = (i / 4) * 1.4f - 3.0f;
             GameObject go = Instantiate(card, this.transform);
             go.transform.position = new Vector2(x, y);
@@ -27,7 +27,7 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = arr.Length;
         */
 
-        //³­ÀÌµµ¿¡ µû¸¥ º¸µå »ý¼º
+        //ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         InitBoard(GameManager.Instance.gameType);
     }
 
@@ -47,9 +47,10 @@ public class Board : MonoBehaviour
         }
     }
 
-    //³­ÀÌµµ-½¬¿ò: 6°³ÀÇ Ä«µå
+    //ï¿½ï¿½ï¿½Ìµï¿½-ï¿½ï¿½ï¿½ï¿½: 6ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
     void MakeEasyBoard()
     {
+
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
 
         arr = arr.OrderBy(x => Random.Range(0f, 5f)).ToArray();
@@ -66,7 +67,7 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = arr.Length;
     }
 
-    //³­ÀÌµµ-³ë¸Ö: 8°³ÀÇ Ä«µå
+    //ï¿½ï¿½ï¿½Ìµï¿½-ï¿½ï¿½ï¿½: 8ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
     void MakeNormalBoard()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
@@ -85,7 +86,7 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = arr.Length;
     }
 
-    //³­ÀÌµµ-ÇÏµå: 10°³ÀÇ Ä«µå
+    //ï¿½ï¿½ï¿½Ìµï¿½-ï¿½Ïµï¿½: 10ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
     void MakeHardBoard()
     {
         int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
@@ -102,5 +103,6 @@ public class Board : MonoBehaviour
         }
 
         GameManager.Instance.cardCount = arr.Length;
+
     }
 }

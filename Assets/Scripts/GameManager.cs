@@ -11,12 +11,12 @@ public enum GameLevel
 
 public class GameManager : MonoBehaviour
 {
-    //³­ÀÌµµ ÇØ±İ
-    //playerpref »ç¿ë °í¹ÎÇØ º¸±â(¸¸¾à titlesceneÀ¸·Î ³Ñ¾î°¬À» ¶§ ÃÊ±âÈ­µÈ´Ù¸é?)
+    //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ø±ï¿½
+    //playerpref ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ titlesceneï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¬ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½È´Ù¸ï¿½?)
     public bool unlockNormal;
     public bool unlockHard;
 
-    //³­ÀÌµµ Á¡¼ö ÀúÀå
+    //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float easyScore;
     public float normalScore;
     public float hardScore;
@@ -29,7 +29,17 @@ public class GameManager : MonoBehaviour
     public int cardCount;
     public GameObject endTxt;
     public AudioSource audioSource;
-    public AudioClip clip;
+    public AudioClip clip;  //ë§¤ì¹­ ì„±ê³µ ì‚¬ìš´ë“œ
+
+    public AudioClip failClip;  //ë§¤ì¹­ ì‹¤íŒ¨ ì‚¬ìš´ë“œ
+
+    public AudioClip gameOverClip; //ê²Œì„ì˜¤ë²„ ì‚¬ìš´ë“œ
+
+    public AudioSource bgm; //ë°°ê²½ìŒì•… ì¬ìƒ ì†ŒìŠ¤
+
+    public AudioClip hurryUpClip;   //ê¸´ë°•í•œ ë°°ê²½ìŒì•…
+
+    bool isMusicChanged = false;
 
     public GameLevel gameType;
 
@@ -37,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -47,7 +57,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
 
-        //³­ÀÌµµ¿¡ µû¶ó °ÔÀÓ ½Ã°£ Á¤ÇÏ±â
+        //ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
         switch(gameType)
         {
             case GameLevel.Easy:
@@ -67,28 +77,44 @@ public class GameManager : MonoBehaviour
     {
         time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
+
         if(time < 0.0f)
         {
             time = 0.0f;
+
+        if (time >= 20.0f && !isMusicChanged) //20ì´ˆ ì§€ë‚˜ë©´ ê¸´ë°•í•œ ë¸Œê¸ˆ ì¬ìƒ
+        {
+            bgm.Stop();
+            bgm.clip = hurryUpClip;
+            bgm.Play();
+            isMusicChanged = true;
+        }
+        else if (time > 30.0f)
+        {
+            time = 30.0f;
+            bgm.Stop();
+            audioSource.PlayOneShot(gameOverClip);
+
             GameOver();
         }
     }
     public void Matched()
     {
-        if(firstCard.idx == secondCard.idx)
-        {   
+        if (firstCard.idx == secondCard.idx)
+        {
             audioSource.PlayOneShot(clip);
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
             cardCount -= 2;
-            if(cardCount == 0)
+            if (cardCount == 0)
             {
                 GameOver();
             }
         }
         else
         {
+            audioSource.PlayOneShot(failClip);
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
@@ -99,12 +125,12 @@ public class GameManager : MonoBehaviour
     {
         float score = time;
         string typeKey = "";
-        //³­ÀÌµµ¿¡ µû¸¥ ÇØ±İ Á¶°Ç, Á¡¼ö ÀúÀå
+        //ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø±ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch(gameType)
         {
             case GameLevel.Easy:
                 unlockNormal = true;
-                //Á¡¼ö
+                //ï¿½ï¿½ï¿½ï¿½
                 typeKey = "EasyScore";
                 break;
             case GameLevel.Normal:
@@ -116,7 +142,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        //Á¡¼ö ÀúÀå
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (PlayerPrefs.HasKey(typeKey))
             score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
         PlayerPrefs.SetFloat(typeKey, score);
