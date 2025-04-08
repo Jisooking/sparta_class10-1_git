@@ -93,6 +93,11 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
+        if (firstCard == null || secondCard == null)
+        {
+            return;
+        }
+        cardOpening = true;
         if (firstCard.idx == secondCard.idx)
         {
             time += 5.0f; //시간 추가
@@ -133,8 +138,7 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
-
-        SetBoolFalse(); // 카드가 뒤집었을 때 마우스 클릭 딜레이
+        cardOpening = false;
     }
 
     public void GameOver()
@@ -181,6 +185,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
     }
 
+    public bool CanSelectCard()
+    {
+        return !cardOpening && secondCard == null;
+    }
     void SetBoolFalse()
     {
         cardOpening = false;
