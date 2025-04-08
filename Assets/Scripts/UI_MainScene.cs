@@ -27,7 +27,7 @@ public class UI_MainScene : MonoBehaviour
 
     void PopupGameClear()
     {
-        EndPanel.SetActive(true);
+        SuccessPanel.SetActive(true);
     }
 
 
