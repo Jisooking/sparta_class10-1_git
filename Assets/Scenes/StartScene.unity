@@ -635,6 +635,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameLevelTitle: {fileID: 988971860}
   ui_ScorePopup: {fileID: 1987889668}
+  easyButton: {fileID: 731117451}
+  normalButton: {fileID: 2063430063}
+  hardButton: {fileID: 858430019}
 --- !u!1 &550519532
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,8 +958,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988971865}
-        m_TargetAssemblyTypeName: GameLevelTitle, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickEasyButton
         m_Mode: 1
         m_Arguments:
@@ -1246,8 +1249,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988971865}
-        m_TargetAssemblyTypeName: GameLevelTitle, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickHardButton
         m_Mode: 1
         m_Arguments:
@@ -1490,8 +1493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 0
-  unlockNormal: 0
-  unlockHard: 0
+  unlockNormal: 1
+  unlockHard: 1
 --- !u!1 &979385542
 GameObject:
   m_ObjectHideFlags: 0
@@ -3096,8 +3099,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988971865}
-        m_TargetAssemblyTypeName: GameLevelTitle, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickNormalButton
         m_Mode: 1
         m_Arguments:
