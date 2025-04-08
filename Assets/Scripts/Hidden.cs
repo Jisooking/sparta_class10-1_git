@@ -16,18 +16,15 @@ public class Hidden : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x > 2.6f) // 왼쪽으로 이동 
+        float x = transform.position.x;
+        float y = transform.position.y;
+        if (x > -2.6f)
         {
-            renderer.flipX = true;
-            direction = -0.05f;
+            transform.position = new Vector2(-0.05f,0);
         }
-        if (transform.position.x < -2.6f) // 오른쪽으로 이동
-        {
-            renderer.flipX = false;
-            direction = 0.05f;
-        }
+        
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
