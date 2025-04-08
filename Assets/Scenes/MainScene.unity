@@ -2530,7 +2530,7 @@ MonoBehaviour:
   gameOverClip: {fileID: 0}
   bgm: {fileID: 0}
   hurryUpClip: {fileID: 0}
-  gameType: 0
+  gameType: 3
   SuccessTxt: {fileID: 1473113230}
 --- !u!4 &1734638038
 Transform:

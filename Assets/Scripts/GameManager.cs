@@ -76,6 +76,10 @@ public class GameManager : MonoBehaviour
             case GameLevel.Hard:
                 time = 30.0f;
                 break;
+            case GameLevel.Hidden:
+                time = 30.0f;
+                break;
+
         }
         if (GameManager.Instance.unlockNormal)
         {
@@ -199,7 +203,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0.0f;
 
     }
-
+  
     /*void SetBoolFalse()
     {
         cardOpening = false;
