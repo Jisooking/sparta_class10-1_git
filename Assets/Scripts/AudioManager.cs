@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -50,5 +52,17 @@ public class AudioManager : MonoBehaviour
     public void PlayHurryUpBGM()
     {
         PlayBGM(hurryUpClip);
+    }
+
+    public void PlayShuffleSound()
+    {
+        PlaySFX(shuffleClip);
+        StartCoroutine(PlayClipDelayed(shuffleClip, 0.6f));
+    }
+
+    IEnumerator PlayClipDelayed(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlaySFX(clip);
     }
 }

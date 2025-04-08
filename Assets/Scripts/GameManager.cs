@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public bool cardOpening = false;
 
+    public bool isGameOver { get; private set; }
 
 
     private void Awake()
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        /*
         time -= Time.deltaTime;
 
         if (time < 0.0f)
@@ -52,15 +54,16 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if (time >= 20.0f )
+        if (time >= 20.0f)
         {
             AudioManager.Instance.StopBGM();
             AudioManager.Instance.PlayHurryUpBGM();
         }
+        */
     }
 
     public void SetTime()
-    { 
+    {
         switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
@@ -107,6 +110,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+
+        Time.timeScale = 0.0f;
+        isGameOver = true;
         GameOverEvent.Invoke();
 
         AudioManager.Instance.StopBGM();
@@ -137,13 +143,12 @@ public class GameManager : MonoBehaviour
             score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
         PlayerPrefs.SetFloat(typeKey, score);
 
-        Time.timeScale = 0.0f;
     }
 
     public void GameClear()
     {
         GameClearEvent.Invoke();
-
+        AudioManager.Instance.StopBGM();
         Time.timeScale = 0.0f;
     }
 
