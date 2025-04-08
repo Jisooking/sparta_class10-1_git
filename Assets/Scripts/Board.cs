@@ -51,6 +51,9 @@ public class Board : MonoBehaviour
             case GameLevel.Hidden:
                 MakeHiddenBoard();
                 break;
+            case GameLevel.Infinite:
+                MakeInfiniteBoard();
+                break;
         }
     }
 
@@ -162,6 +165,31 @@ public class Board : MonoBehaviour
 
     }
 
+    void MakeInfiniteBoard()
+    {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        cards = new GameObject[arr.Length];
+        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            //float x = (i % 4) * 1.4f - 2.1f;
+            //float y = (i / 4) * 1.4f - 3.0f;
+            cards[i] = Instantiate(card, this.transform);
+            //go.transform.position = new Vector2(x, y);
+            cards[i].GetComponent<Card>().Setting(arr[i]);
+        }
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
+        }
+        GameManager.Instance.cardCount = arr.Length;
+    }
+
 
 
     IEnumerator MoveRoutine(Transform transform, Vector2 target)
@@ -190,5 +218,24 @@ public class Board : MonoBehaviour
 
         transform.position = target; // 최종 위치 보정
 
+    }
+
+    public void ShuffleCards()
+    {
+        for (int i = 0; i < cards.Length; i++) //배열의 순서를 무작위로 변경
+        {
+            int rnd = Random.Range(i, cards.Length);
+            GameObject temp = cards[i];
+            cards[i] = cards[rnd];
+            cards[rnd] = temp;
+        }
+
+        for (int i = 0; i < cards.Length; i++)
+        {
+            card.transform.position = transform.position;
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
+        }
     }
 }

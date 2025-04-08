@@ -6,6 +6,7 @@ public enum GameLevel
     Normal,
     Hard,
     Hidden,
+    Infinite,
 }
 
 public class Managers : MonoBehaviour

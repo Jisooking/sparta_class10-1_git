@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+    public Board board;
     float time;
     public float _Time
     {
@@ -84,6 +85,9 @@ public class GameManager : MonoBehaviour
             case GameLevel.Hidden:
                 time = 5.0f;
                 break;
+            case GameLevel.Infinite:
+                time = 60.0f;
+                break;
         }
     }
 
@@ -99,7 +103,14 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount == 0)
             {
-                GameClear();
+                if (Managers.Instance.gameType == GameLevel.Infinite)
+                {
+                    board.ShuffleCards();
+                }
+                else
+                {
+                    GameClear();
+                }
             }
         }
         else
