@@ -911,7 +911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1665265696
 Transform:
   m_ObjectHideFlags: 0
@@ -972,6 +972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443818891b72b4d4f9a3ecddc949b2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unlockNormal: 0
+  unlockHard: 0
+  easyScore: 0
+  normalScore: 0
+  hardScore: 0
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
   timeTxt: {fileID: 1555897325}
@@ -979,10 +984,14 @@ MonoBehaviour:
   endTxt: {fileID: 761040778}
   audioSource: {fileID: 0}
   clip: {fileID: 8300000, guid: de0f107987a8c3f4bbaa98bd4bde5000, type: 3}
+
+  gameType: 2
+
   failClip: {fileID: 8300000, guid: 3c037856d16e4424f94792d9ac3d15d8, type: 3}
   hurryUpClip: {fileID: 8300000, guid: fff3ddfb471a8a74b91a6097962c5221, type: 3}
   gameOverClip: {fileID: 8300000, guid: 29bfa6d22fa63e54694065edc6c0589b, type: 3}
   bgm: {fileID: 1738791075}
+
 --- !u!4 &1734638038
 Transform:
   m_ObjectHideFlags: 0
