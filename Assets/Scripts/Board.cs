@@ -232,7 +232,8 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < cards.Length; i++)
         {
-            card.transform.position = transform.position;
+            cards[i].gameObject.SetActive(true);
+            cards[i].transform.position = transform.position;
             float x = (i % 4) * 1.4f - 2.1f;
             float y = (i / 4) * 1.4f - 3.0f;
             StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));

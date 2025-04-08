@@ -97,8 +97,19 @@ public class GameManager : MonoBehaviour
         {
             time += 5.0f; //시간 추가
             AudioManager.Instance.PlayMatchSFX();
-            firstCard.DestroyCard();
-            secondCard.DestroyCard();
+            if (Managers.Instance.gameType == GameLevel.Infinite)   //무한 모드는 destroy대신 비활성화
+            {
+                firstCard.gameObject.SetActive(false);
+                secondCard.gameObject.SetActive(false);
+                firstCard.CloseCard();
+                secondCard.CloseCard();
+
+            }
+            else
+            {
+                firstCard.DestroyCard();
+                secondCard.DestroyCard();
+            }
 
             cardCount -= 2;
             if (cardCount == 0)
