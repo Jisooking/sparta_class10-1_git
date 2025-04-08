@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
     public Text timeTxt;
     float time;
+    public float _Time
+    {
+        get { return time; }
+        set { time = value; }
+    }
     //public bool cardOpening = false;
     public int cardCount;
     public GameObject endTxt;
