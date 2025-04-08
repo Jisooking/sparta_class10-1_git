@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         firstCard = null;
         secondCard = null;
 
-        Invoke("SetBoolFalse", 0.5f); // 카드가 뒤집었을 때 마우스 클릭 딜레이
+        SetBoolFalse(); // 카드가 뒤집었을 때 마우스 클릭 딜레이
     }
 
     public void GameOver()
