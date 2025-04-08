@@ -23,10 +23,12 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.gameType != GameLevel.Hidden)
+        if (Managers.Instance.gameType != GameLevel.Hidden)
         {
             return;
         }
+        
+        //외곽에 있는 카드들 시계 방향으로 이동
         if (transform.position.x <= -2.1f)
         {
             if (transform.position.y >= 2.1f)

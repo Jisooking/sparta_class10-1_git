@@ -32,7 +32,7 @@ public class Board : MonoBehaviour
         */
 
         //���̵��� ���� ���� ����
-        InitBoard(GameManager.Instance.gameType);
+        InitBoard(Managers.Instance.gameType);
     }
 
     void InitBoard(GameLevel type)
@@ -166,7 +166,7 @@ public class Board : MonoBehaviour
 
     IEnumerator MoveRoutine(Transform transform, Vector2 target)
     {
-        AudioManager.Instance.PlayShuffleSFX();
+        AudioManager.Instance.PlayShuffleSound();
         Vector2 start = transform.position;
         Vector2 line = new Vector2(start.x, target.y); //카드를 세로로 먼저 펼치기 위한 좌표
         float elapsed = 0f; // Lerp 메서드를 위한 보간 계수
@@ -189,5 +189,6 @@ public class Board : MonoBehaviour
         }
 
         transform.position = target; // 최종 위치 보정
+
     }
 }

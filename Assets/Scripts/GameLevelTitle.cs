@@ -11,7 +11,7 @@ public class GameLevelTitle : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (GameManager.Instance.unlockNormal)
+        if (Managers.Instance.unlockNormal)
         {
             normalButton.interactable = true;
         }
@@ -19,7 +19,7 @@ public class GameLevelTitle : MonoBehaviour
         { 
             normalButton.interactable = false;
         }
-        if (GameManager.Instance.unlockHard)
+        if (Managers.Instance.unlockHard)
         {
             hardButton.interactable = true;
         }
@@ -31,21 +31,23 @@ public class GameLevelTitle : MonoBehaviour
 
     public void OnClickEasyButton()
     {
-        GameManager.Instance.gameType = GameLevel.Easy;
-        GameManager.Instance.SetTime();
-        SceneManager.LoadScene("MainScene");
+        Managers.Instance.gameType = GameLevel.Easy;
+        LoadMainScene();
 
     }
     public void OnClickNormalButton()
     {
-        GameManager.Instance.gameType = GameLevel.Normal;
-        GameManager.Instance.SetTime();
-        SceneManager.LoadScene("MainScene");
+        Managers.Instance.gameType = GameLevel.Normal;
+        LoadMainScene();
     }
     public void OnClickHardButton()
     {
-        GameManager.Instance.gameType = GameLevel.Hard;
-        GameManager.Instance.SetTime();
+        Managers.Instance.gameType = GameLevel.Hard;
+        LoadMainScene();
+    }
+
+    void LoadMainScene()
+    {
         SceneManager.LoadScene("MainScene");
     }
 }
