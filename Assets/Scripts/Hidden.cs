@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hidden : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class Hidden : MonoBehaviour
 
             if (hit.collider != null)
             {
+                GameManager.Instance.gameType = GameLevel.Hidden;
+                GameManager.Instance.SetTime();
+                SceneManager.LoadScene("MainScene");
                 Debug.Log("히든 스테이지로");
             }
         }

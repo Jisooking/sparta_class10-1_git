@@ -544,9 +544,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988971862}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadEasy
+      - m_Target: {fileID: 988971865}
+        m_TargetAssemblyTypeName: GameLevelTitle, Assembly-CSharp
+        m_MethodName: OnClickEasyButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -677,9 +677,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988971862}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadHard
+      - m_Target: {fileID: 988971865}
+        m_TargetAssemblyTypeName: GameLevelTitle, Assembly-CSharp
+        m_MethodName: OnClickHardButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 988971861}
   - component: {fileID: 988971864}
   - component: {fileID: 988971863}
-  - component: {fileID: 988971862}
+  - component: {fileID: 988971865}
   m_Layer: 5
   m_Name: GameLevelTitle
   m_TagString: Untagged
@@ -1029,38 +1029,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &988971862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988971860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443818891b72b4d4f9a3ecddc949b2fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlockNormal: 0
-  unlockHard: 0
-  NormalBtn: {fileID: 2063430063}
-  HardBtn: {fileID: 858430019}
-  easyScore: 0
-  normalScore: 0
-  hardScore: 0
-  firstCard: {fileID: 0}
-  secondCard: {fileID: 0}
-  timeTxt: {fileID: 0}
-  cardCount: 0
-  endTxt: {fileID: 0}
-  audioSource: {fileID: 0}
-  clip: {fileID: 0}
-  failClip: {fileID: 0}
-  gameOverClip: {fileID: 0}
-  bgm: {fileID: 0}
-  hurryUpClip: {fileID: 0}
-  gameType: 2
-  SuccessTxt: {fileID: 0}
 --- !u!114 &988971863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1067,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988971860}
   m_CullTransparentMesh: 1
+--- !u!114 &988971865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988971860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff71a69196e3e9f4babbd2712d66d868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  easyButton: {fileID: 731117451}
+  normalButton: {fileID: 2063430063}
+  hardButton: {fileID: 858430019}
 --- !u!1 &1012140782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,8 +1113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockNormal: 0
   unlockHard: 0
-  NormalBtn: {fileID: 2063430063}
-  HardBtn: {fileID: 858430019}
   easyScore: 0
   normalScore: 0
   hardScore: 0
@@ -1914,9 +1895,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 988971862}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadNormal
+      - m_Target: {fileID: 988971865}
+        m_TargetAssemblyTypeName: GameLevelTitle, Assembly-CSharp
+        m_MethodName: OnClickNormalButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
