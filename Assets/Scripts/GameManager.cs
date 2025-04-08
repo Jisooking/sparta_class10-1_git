@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GameLevel
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     //playerpref ��� ������ ����(���� titlescene���� �Ѿ�� �� �ʱ�ȭ�ȴٸ�?)
     public bool unlockNormal;
     public bool unlockHard;
+    public Button NormalBtn;
+    public Button HardBtn;
 
     //���̵� ���� ����
     public float easyScore;
@@ -70,6 +73,16 @@ public class GameManager : MonoBehaviour
                 time = 30.0f;
                 break;
         }
+        if (GameManager.Instance.unlockNormal)
+        {
+            NormalBtn.interactable = true;
+        }
+        else { NormalBtn.interactable = false; }
+        if (GameManager.Instance.unlockHard)
+        {
+            HardBtn.interactable = true;
+        }
+        else { HardBtn.interactable = false; }
     }
 
     // Update is called once per frame
@@ -81,6 +94,10 @@ public class GameManager : MonoBehaviour
         if (time < 0.0f)
         {
             time = 0.0f;
+
+        }
+
+
 
             if (time >= 20.0f && !isMusicChanged) //20초 지나면 긴박한 브금 재생
             {
@@ -152,6 +169,22 @@ public class GameManager : MonoBehaviour
 
         endTxt.SetActive(true);
         Time.timeScale = 0.0f;
+    }
+    public void LoadEasy()
+    {
+        GameManager.Instance.gameType = GameLevel.Easy;
+        SceneManager.LoadScene("MainScene");
+
+    }
+    public void LoadNormal()
+    {
+        GameManager.Instance.gameType = GameLevel.Normal;
+        SceneManager.LoadScene("MainScene");
+    }
+    public void LoadHard()
+    {
+        GameManager.Instance.gameType = GameLevel.Hard;
+        SceneManager.LoadScene("MainScene");
     }
 }
 
