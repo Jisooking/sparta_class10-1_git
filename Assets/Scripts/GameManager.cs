@@ -1,93 +1,65 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public enum GameLevel
-{
-    Easy,
-    Normal,
-    Hard,
-    Hidden,
-}
-
 public class GameManager : MonoBehaviour
 {
-    //���̵� �ر�
-    //playerpref ��� ������ ����(���� titlescene���� �Ѿ�� �� �ʱ�ȭ�ȴٸ�?)
-    public bool unlockNormal;
-    public bool unlockHard;
-
-    //���̵� ���� ����
-    public float easyScore;
-    public float normalScore;
-    public float hardScore;
-
     public static GameManager Instance;
+
+    public event Action GameOverEvent;
+    public event Action GameClearEvent;
+
     public Card firstCard;
     public Card secondCard;
-    public Text timeTxt;
+
     float time;
     public float _Time
     {
         get { return time; }
         set { time = value; }
     }
+
     //public bool cardOpening = false;
     public int cardCount;
-    public GameObject endTxt;
-    
 
-   
-    public GameLevel gameType;
-
-    public GameObject SuccessTxt;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    void Start()
-    {
-        Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        Time.timeScale = 1.0f;
+        Application.targetFrameRate = 60;
+
+        SetTime();
+    }
+
     void Update()
     {
         time -= Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
 
         if (time < 0.0f)
         {
             time = 0.0f;
-
+            GameOver();
         }
 
         if (time >= 20.0f )
         {
             AudioManager.Instance.StopBGM();
             AudioManager.Instance.PlayHurryUpBGM();
-            
         }
-        
-
     }
 
     public void SetTime()
-    {
-        Time.timeScale = 1.0f;
-
-        switch (gameType)
+    { 
+        switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
                 time = 60.0f;
@@ -99,7 +71,7 @@ public class GameManager : MonoBehaviour
                 time = 30.0f;
                 break;
             case GameLevel.Hidden:
-                time = 30.0f;
+                time = 5.0f;
                 break;
         }
     }
@@ -131,43 +103,44 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameOverEvent.Invoke();
+
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlayGameOverSFX();
         float score = time;
         string typeKey = "";
-        //���̵��� ���� �ر� ����, ���� ����
-        switch (gameType)
+        //
+        switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
-                unlockNormal = true;
-                //����
+                Managers.Instance.unlockNormal = true;
                 typeKey = "EasyScore";
                 break;
             case GameLevel.Normal:
-                unlockHard = true;
+                Managers.Instance.unlockHard = true;
                 typeKey = "NormalScore";
                 break;
             case GameLevel.Hard:
                 typeKey = "HardScore";
                 break;
+            case GameLevel.Hidden:
+                typeKey = "HiddenScore";
+                break;
         }
 
-        //���� ����
+        //
         if (PlayerPrefs.HasKey(typeKey))
             score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
         PlayerPrefs.SetFloat(typeKey, score);
 
-        Debug.Log($"{typeKey}: {PlayerPrefs.GetFloat(typeKey)}");
-
-        endTxt.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
     public void GameClear()
     {
-        SuccessTxt.SetActive(true);
-        Time.timeScale = 0.0f;
+        GameClearEvent.Invoke();
 
+        Time.timeScale = 0.0f;
     }
 
     /*void SetBoolFalse()

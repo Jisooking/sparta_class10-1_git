@@ -34,8 +34,7 @@ public class Hidden : MonoBehaviour
 
             if (hit.collider != null)
             {
-                GameManager.Instance.gameType = GameLevel.Hidden;
-                GameManager.Instance.SetTime();
+                Managers.Instance.gameType = GameLevel.Hidden;
                 SceneManager.LoadScene("MainScene");
                 Debug.Log("히든 스테이지로");
             }

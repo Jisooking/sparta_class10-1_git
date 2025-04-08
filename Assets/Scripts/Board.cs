@@ -32,7 +32,7 @@ public class Board : MonoBehaviour
         */
 
         //���̵��� ���� ���� ����
-        InitBoard(GameManager.Instance.gameType);
+        InitBoard(Managers.Instance.gameType);
     }
 
     void InitBoard(GameLevel type)
