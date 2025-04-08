@@ -302,6 +302,7 @@ MonoBehaviour:
   anim: {fileID: 4844360028638133105}
   clip: {fileID: 8300000, guid: 2f283003bd8a4604a97cffd5a1c186a7, type: 3}
   audioSource: {fileID: 0}
+  setOpen: 1
 --- !u!82 &2840862155555093179
 AudioSource:
   m_ObjectHideFlags: 0
