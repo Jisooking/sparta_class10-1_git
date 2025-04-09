@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cd52b19978dce46996850702cdbae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameLevelTitle: {fileID: 0}
+  GameLevelTitle: {fileID: 1405975285}
   ui_ScorePopup: {fileID: 1987889668}
   ui_SpecialModePopup: {fileID: 34480221}
   easyButton: {fileID: 731117451}
@@ -1239,7 +1239,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: PopupSpeicalMode
+        m_MethodName: LoadSpeicalLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1458,8 +1458,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1405975286}
-        m_TargetAssemblyTypeName: UI_GameLevel, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickEasyButton
         m_Mode: 1
         m_Arguments:
@@ -1749,8 +1749,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1405975286}
-        m_TargetAssemblyTypeName: UI_GameLevel, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickHardButton
         m_Mode: 1
         m_Arguments:
@@ -1884,7 +1884,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: PopupGameMode
+        m_MethodName: LoadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3255,7 +3255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1405975286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4271,8 +4271,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1405975286}
-        m_TargetAssemblyTypeName: UI_GameLevel, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickNormalButton
         m_Mode: 1
         m_Arguments:
