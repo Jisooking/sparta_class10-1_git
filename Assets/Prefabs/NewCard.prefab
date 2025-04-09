@@ -296,13 +296,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frontimage: {fileID: 5365066326550063166}
+  backImage: {fileID: 2325445081663752851}
+  levelSprites:
+  - {fileID: 444649932226640094, guid: a7f93ea8d026f64419df98f8df25321e, type: 3}
+  - {fileID: 478557711087274373, guid: 2085f184f3368f44a846e256bc7d6cfe, type: 3}
+  - {fileID: 1440944390162896202, guid: 2c425c168d5648446aa214ad632ecee9, type: 3}
   front: {fileID: 8593255945837408113}
   back: {fileID: 1025781643356930802}
   idx: 0
   anim: {fileID: 4844360028638133105}
   clip: {fileID: 8300000, guid: 2f283003bd8a4604a97cffd5a1c186a7, type: 3}
   audioSource: {fileID: 0}
-  setOpen: 0
 --- !u!82 &2840862155555093179
 AudioSource:
   m_ObjectHideFlags: 0
