@@ -296,7 +296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &34480222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,7 +3369,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: PopupScore
+        m_MethodName: OnClickScoreButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3641,6 +3641,7 @@ GameObject:
   - component: {fileID: 1301472891}
   - component: {fileID: 1301472890}
   - component: {fileID: 1301472892}
+  - component: {fileID: 1301472893}
   m_Layer: 5
   m_Name: RtanImage
   m_TagString: Hidden
@@ -3717,6 +3718,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cab9e9b877e9144b83216cfcc2ca301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1301472893
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301472888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 432c1e525b272924cad98ae17e33a9ca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1336282862
 GameObject:
   m_ObjectHideFlags: 0
