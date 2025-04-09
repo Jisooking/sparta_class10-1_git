@@ -1682,6 +1682,7 @@ GameObject:
   - component: {fileID: 694295710}
   - component: {fileID: 694295712}
   - component: {fileID: 694295711}
+  - component: {fileID: 694295713}
   m_Layer: 5
   m_Name: FlipperImage
   m_TagString: Untagged
@@ -1746,6 +1747,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694295709}
   m_CullTransparentMesh: 1
+--- !u!114 &694295713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694295709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681b3651f6d0b8f43b83e1f33d8ae8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &731117449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +3640,7 @@ GameObject:
   - component: {fileID: 1301472889}
   - component: {fileID: 1301472891}
   - component: {fileID: 1301472890}
+  - component: {fileID: 1301472892}
   m_Layer: 5
   m_Name: RtanImage
   m_TagString: Untagged
@@ -3691,6 +3705,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301472888}
   m_CullTransparentMesh: 1
+--- !u!114 &1301472892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301472888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cab9e9b877e9144b83216cfcc2ca301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1336282862
 GameObject:
   m_ObjectHideFlags: 0
