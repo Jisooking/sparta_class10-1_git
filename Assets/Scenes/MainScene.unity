@@ -2097,7 +2097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cdba110241ceb468cae1336d3475c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameType: 3
+  gameType: 4
   unlockNormal: 0
   unlockHard: 0
 --- !u!4 &1341458321
@@ -2774,6 +2774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
+  board: {fileID: 308537730}
   cardCount: 0
   cardOpening: 0
 --- !u!4 &1734638038
@@ -3602,7 +3603,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.064
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

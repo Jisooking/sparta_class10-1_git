@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+    public Board board;
     float time;
     public float _Time
     {
@@ -84,35 +86,59 @@ public class GameManager : MonoBehaviour
             case GameLevel.Hidden:
                 time = 5.0f;
                 break;
+            case GameLevel.Infinite:
+                time = 60.0f;
+                break;
+            case GameLevel.Zombie:
+                time = 60.0f;
+                break;
         }
     }
 
     public void Matched()
     {
-        if (firstCard.idx == secondCard.idx)
+        if (firstCard == null || secondCard == null)
+        {
+            return;
+        }
+        cardOpening = true;
+        if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
             time += 5.0f; //시간 추가
             AudioManager.Instance.PlayMatchSFX();
+
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
             cardCount -= 2;
-            if (cardCount == 0)
+            if (cardCount == 0) //카드 매칭 전부 성공
             {
-                GameClear();
+                if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
+                {
+                    StartCoroutine(WaitAndShuffle()); //카드 재배치
+                }
+                else
+                {
+                    GameClear();
+                }
             }
         }
-        else
+        else    //매칭 실패
         {
             AudioManager.Instance.PlayFailSFX();
             firstCard.CloseCard();
             secondCard.CloseCard();
+            if (Managers.Instance.gameType == GameLevel.Zombie) //좀비 모드인 경우
+            {
+                StartCoroutine(WaitAndActivate());  //카드 전부 활성화
+                time -= 5.0f; //시간 감소
+            }
+
         }
 
         firstCard = null;
         secondCard = null;
-
-        Invoke("SetBoolFalse", 0.5f); // 카드가 뒤집었을 때 마우스 클릭 딜레이
+        cardOpening = false;
     }
 
     public void GameOver()
@@ -158,9 +184,20 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat(typeKey, score);
     }
 
-    void SetBoolFalse()
+    public bool CanSelectCard()
     {
-        cardOpening = false;
+        return !cardOpening && secondCard == null;
+    }
+
+    IEnumerator WaitAndShuffle()
+    {
+        yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
+        board.ShuffleCards();
+    }
+    IEnumerator WaitAndActivate()
+    {
+        yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
+        board.ActivateCards();
     }
 }
 

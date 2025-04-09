@@ -51,6 +51,13 @@ public class Board : MonoBehaviour
             case GameLevel.Hidden:
                 MakeHiddenBoard();
                 break;
+            case GameLevel.Infinite:
+                MakeInfiniteBoard();
+                break;
+            case GameLevel.Zombie:
+                MakeZombieBoard();
+                break;
+
         }
     }
 
@@ -145,10 +152,7 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < arr.Length; i++)
         {
-            //float x = (i % 4) * 1.4f - 2.1f;
-            //float y = (i / 4) * 1.4f - 3.0f;
             cards[i] = Instantiate(card, this.transform);
-            //go.transform.position = new Vector2(x, y);
             cards[i].GetComponent<Card>().Setting(arr[i]);
         }
 
@@ -161,6 +165,79 @@ public class Board : MonoBehaviour
         GameManager.Instance.cardCount = arr.Length;
 
     }
+
+    void MakeInfiniteBoard()
+    {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        cards = new GameObject[arr.Length];
+        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            cards[i] = Instantiate(card, this.transform);
+            cards[i].GetComponent<Card>().Setting(arr[i]);
+        }
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
+        }
+        GameManager.Instance.cardCount = arr.Length;
+    }
+    void MakeZombieBoard()
+    {
+        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        cards = new GameObject[arr.Length];
+        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            cards[i] = Instantiate(card, this.transform);
+            cards[i].GetComponent<Card>().Setting(arr[i]);
+        }
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
+        }
+        GameManager.Instance.cardCount = arr.Length;
+    }
+
+
+    public void ShuffleCards() //카드 재배치, 무한 모드에서 사용
+    {
+        for (int i = 0; i < cards.Length; i++) //배열의 순서를 무작위로 변경
+        {
+            int rnd = Random.Range(i, cards.Length);
+            GameObject temp = cards[i];
+            cards[i] = cards[rnd];
+            cards[rnd] = temp;
+        }
+
+        for (int i = 0; i < cards.Length; i++)
+        {
+            cards[i].gameObject.SetActive(true);
+            cards[i].transform.position = transform.position;
+            float x = (i % 4) * 1.4f - 2.1f;
+            float y = (i / 4) * 1.4f - 3.0f;
+            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
+        }
+    }
+
+    public void ActivateCards() //카드 전부 활성화, 좀비 모드에서 사용
+    {
+        foreach (GameObject card in cards)
+        {
+            card.SetActive(true);
+        }
+    }
+
 
 
 

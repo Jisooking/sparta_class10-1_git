@@ -12,12 +12,18 @@ public class Card : MonoBehaviour
     public Animator anim;
     public AudioClip clip;
     public AudioSource audioSource;
-    public bool setOpen;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    void OnEnable()
+    {
+        front.SetActive(false);
+        back.SetActive(true);
     }
 
     // Update is called once per frame
@@ -27,8 +33,8 @@ public class Card : MonoBehaviour
         {
             return;
         }
-        
-        //¿Ü°û¿¡ ÀÖ´Â Ä«µåµé ½Ã°è ¹æÇâÀ¸·Î ÀÌµ¿
+
+        //ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Ä«ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         if (transform.position.x <= -2.1f)
         {
             if (transform.position.y >= 2.1f)
@@ -50,7 +56,7 @@ public class Card : MonoBehaviour
             transform.position += new Vector3(0.05f, 0f, 0f);
         }
 
-        //ÃÊ°úµÇ´Â ºÎºĞ x, y °íÁ¤ÇÏ±â
+        //ï¿½Ê°ï¿½ï¿½Ç´ï¿½ ï¿½Îºï¿½ x, y ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
         if (transform.position.x <= -2.1f)
             transform.position = new Vector2(-2.1f, transform.position.y);
         else if (transform.position.x >= 2.1f)
@@ -67,30 +73,24 @@ public class Card : MonoBehaviour
         frontimage.sprite = Resources.Load<Sprite>($"1jo{idx}");
     }
 
-    public void OpenCard()
-    {
-        {
-            audioSource.PlayOneShot(clip);
-            anim.SetBool("isOpen", true);
-
-
-            front.SetActive(true);
-            back.SetActive(false);
-            if (GameManager.Instance.firstCard == null)
-            {
-                GameManager.Instance.firstCard = this;
-            }
-            else
-            {
-                //GameManager.Instance.cardOpening = true;
-                GameManager.Instance.secondCard = this;
-                GameManager.Instance.Matched();
-            }
-        }
-    }
     public void CloseCard()
     {
         Invoke("CloseCardInvoke", 0.5f);
+    }
+
+    public void DestroyCard()
+    {
+        //ë¬´í•œ ëª¨ë“œë‚˜ ì¢€ë¹„ëª¨ë“œì˜ ê²½ìš°, ì¹´ë“œ ì¬í™œìš© ìœ„í•´ ë¹„í™œì„±í™”
+        if (Managers.Instance.gameType == GameLevel.Infinite
+           || Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            Invoke("DisableCardInvoke", 0.5f);
+
+        }
+        else
+        {
+            Destroy(gameObject, 0.5f);
+        }
     }
 
     public void CloseCardInvoke()
@@ -99,23 +99,11 @@ public class Card : MonoBehaviour
         front.SetActive(false);
         back.SetActive(true);
     }
-    public void DestroyCard()
+    public void DisableCardInvoke()
     {
-        Destroy(gameObject, 0.5f);
+        gameObject.SetActive(false);
+        front.SetActive(false);
+        back.SetActive(true);
     }
 
-
-    void OpenImage()
-    {
-        if (!setOpen)
-        {
-            front.SetActive(false);
-            back.SetActive(true);
-        }
-        else
-        {
-            front.SetActive(true);
-            back.SetActive(false);
-        }
-    }
 }
