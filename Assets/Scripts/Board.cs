@@ -11,6 +11,10 @@ public class Board : MonoBehaviour
     private GameObject[] cards; //카드를 배열을 통해 관리
 
 
+    private float xDistance = 2.1f;
+    private float yDistance = 3.0f;
+
+
     void Start()
     {   //일반 모드에서는 바로 카드 배치
         if (Managers.Instance.gameType == GameLevel.Easy ||
@@ -31,13 +35,15 @@ public class Board : MonoBehaviour
                 MakeBoard(16);
                 break;
             case GameLevel.Hard:
+                yDistance += 0.5f;
                 MakeBoard(20);
                 break;
             case GameLevel.Hidden:
+                yDistance += 0.5f;
                 MakeBoard(20);
                 break;
             case GameLevel.Infinite:
-                MakeBoard(16);
+                MakeBoard(4);
                 break;
             case GameLevel.Zombie:
                 MakeBoard(16);
@@ -65,8 +71,8 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < arr.Length; i++)
         {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
+            float x = (i % 4) * 1.4f - xDistance;
+            float y = (i / 4) * 1.4f - yDistance;
             StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
         }
 
@@ -89,10 +95,11 @@ public class Board : MonoBehaviour
         {
             cards[i].gameObject.SetActive(true);
             cards[i].transform.position = transform.position;
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
+            float x = (i % 4) * 1.4f - xDistance;
+            float y = (i / 4) * 1.4f - yDistance;
             StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
         }
+        GameManager.Instance.cardCount = cards.Length;
     }
 
     public void ActivateCards() //카드 전부 활성화, 좀비 모드에서 사용
@@ -102,8 +109,6 @@ public class Board : MonoBehaviour
             card.SetActive(true);
         }
     }
-
-
 
 
     IEnumerator MoveRoutine(Transform transform, Vector2 target)

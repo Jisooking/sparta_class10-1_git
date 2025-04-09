@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
                 time = 30.0f;
                 break;
             case GameLevel.Hidden:
-                time = 5.0f;
+                time = 60.0f;
                 break;
             case GameLevel.Infinite:
                 time = 60.0f;
@@ -143,6 +143,12 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
     }
+
+    public void GameStop()
+    {
+        isGameOver = true;
+    }
+
     public void GameOver()
     {
         Time.timeScale = 0.0f;
