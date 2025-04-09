@@ -10,11 +10,16 @@ public class Board : MonoBehaviour
 
     private GameObject[] cards; //카드를 배열을 통해 관리
 
-    private void Start()
-    {
-        InitBoard();
-    }
 
+    void Start()
+    {   //일반 모드에서는 바로 카드 배치
+        if (Managers.Instance.gameType == GameLevel.Easy ||
+          Managers.Instance.gameType == GameLevel.Normal ||
+          Managers.Instance.gameType == GameLevel.Hard)
+        {
+            InitBoard();
+        }
+    }
     public void InitBoard()
     {
         switch (Managers.Instance.gameType)
@@ -37,10 +42,8 @@ public class Board : MonoBehaviour
             case GameLevel.Zombie:
                 MakeBoard(16);
                 break;
-
         }
     }
-
 
     void MakeBoard(int boardSize)
     {
