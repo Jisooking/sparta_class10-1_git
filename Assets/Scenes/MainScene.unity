@@ -393,6 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTxt: {fileID: 1555897325}
   roundTxt: {fileID: 584417021}
+  plusTimeText: {fileID: 1101603863}
   ui_SuccessPopup: {fileID: 1933762064}
   ui_FailPopup: {fileID: 595988472}
   ui_DescriptionPopup: {fileID: 1297314352}
@@ -3274,7 +3275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1101603861
 RectTransform:
   m_ObjectHideFlags: 0

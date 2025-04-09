@@ -390,7 +390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 34480221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ed4b969d7a4594eb204a4848f8628a, type: 3}
+  m_Script: {fileID: 11500000, guid: f5c6eb82b85a0314f8cfd13d1ab1b35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ZombieButton: {fileID: 1336282864}
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cd52b19978dce46996850702cdbae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui_GameModePopup: {fileID: 0}
+  ui_GameModePopup: {fileID: 1405975285}
   ui_ScorePopup: {fileID: 1987889668}
   ui_SpecialModePopup: {fileID: 34480221}
 --- !u!1 &212175906
@@ -1623,7 +1623,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: LoadSpeicalLevel
+        m_MethodName: OnClickSpecialModeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3022,7 +3022,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34480226}
-        m_TargetAssemblyTypeName: UI_SpecialMode, Assembly-CSharp
+        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickInfiniteButton
         m_Mode: 1
         m_Arguments:
@@ -3776,7 +3776,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34480226}
-        m_TargetAssemblyTypeName: UI_SpecialMode, Assembly-CSharp
+        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickZombieButton
         m_Mode: 1
         m_Arguments:
@@ -4008,7 +4008,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1405975285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8e8c1b6c312254d985ed1148db07ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 990363a8c67907847be9f694b39ce215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   easyButton: {fileID: 731117451}
