@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
         time -= Time.deltaTime;
 
-        if (time <= 10.0f && !isMusicChanged)
+        if (time <= 9.0f && !isMusicChanged)
         {
             AudioManager.Instance.StopBGM();
             AudioManager.Instance.PlayHurryUpBGM();
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
                 time = 60.0f;
                 break;
             case GameLevel.Zombie:
-                time = 60.0f;
+                time = 10.0f;
                 break;
         }
     }
