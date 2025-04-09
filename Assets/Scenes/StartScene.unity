@@ -1623,7 +1623,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: LoadSpeicalLevel
+        m_MethodName: OnClickSpecialModeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 694295713}
   m_Layer: 5
   m_Name: FlipperImage
-  m_TagString: Untagged
+  m_TagString: Hidden
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3034,8 +3034,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 203150813}
-        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
+      - m_Target: {fileID: 34480226}
+        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickInfiniteButton
         m_Mode: 1
         m_Arguments:
@@ -3643,7 +3643,7 @@ GameObject:
   - component: {fileID: 1301472892}
   m_Layer: 5
   m_Name: RtanImage
-  m_TagString: Untagged
+  m_TagString: Hidden
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3801,8 +3801,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 203150813}
-        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
+      - m_Target: {fileID: 34480226}
+        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickZombieButton
         m_Mode: 1
         m_Arguments:
