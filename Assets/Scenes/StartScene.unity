@@ -2399,8 +2399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 0
-  unlockNormal: 0
-  unlockHard: 0
+  unlockNormal: 1
+  unlockHard: 1
 --- !u!1 &970937331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,7 +4017,6 @@ GameObject:
   - component: {fileID: 1405975289}
   - component: {fileID: 1405975288}
   - component: {fileID: 1405975287}
-  - component: {fileID: 1405975286}
   - component: {fileID: 1405975291}
   m_Layer: 5
   m_Name: UI_GameModePopup
@@ -4026,18 +4025,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1405975286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1405975285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce8e8c1b6c312254d985ed1148db07ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1405975287
 MonoBehaviour:
   m_ObjectHideFlags: 0
