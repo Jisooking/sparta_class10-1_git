@@ -15,6 +15,7 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_FailPopup;
     public GameObject ui_DescriptionPopup;
     public GameObject ui_PausePopup;
+    public GameObject ui_InfiniteModeClearPopup;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class UI_MainScene : MonoBehaviour
 
         ui_DescriptionPopup.SetActive(true);
         ui_PausePopup.SetActive(false);
+        ui_InfiniteModeClearPopup.SetActive(false);
 
         if (Managers.Instance.gameType == GameLevel.Zombie)
             ui_Hp.SetActive(true);
@@ -47,7 +49,14 @@ public class UI_MainScene : MonoBehaviour
 
     void PopupGameOver()
     {
-        ui_FailPopup.SetActive(true);
+        if (Managers.Instance.gameType == GameLevel.Infinite)
+        {
+            ui_InfiniteModeClearPopup.SetActive(true);
+        }
+        else
+        {
+            ui_FailPopup.SetActive(true);
+        }
     }
 
     void PopupGameClear()
