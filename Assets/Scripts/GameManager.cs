@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public Board board;
     float time;
     int round;
-    public static float maxtime = 0f;
+    public float maxtime = 0f;
 
     public float _Time
     {

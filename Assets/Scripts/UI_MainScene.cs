@@ -42,15 +42,15 @@ public class UI_MainScene : MonoBehaviour
                 timeSlider.value = 0f;
             }
         }
-
+    }
         void Update()
         {
             timeTxt.text = GameManager.Instance._Time.ToString("N2");
-            roundTxt.text = GameManager.Instance._Round.ToString();
+            //roundTxt.text = GameManager.Instance._Round.ToString();
 
-            if (timeSlider != null && GameManager.maxtime > 0)
+            if (timeSlider != null && GameManager.Instance.maxtime > 0)
             {
-                float ratio = 1f - (GameManager.time / GameManager.maxtime);
+                float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
                 timeSlider.value = Mathf.Clamp01(ratio);
             }
         }
@@ -67,7 +67,7 @@ public class UI_MainScene : MonoBehaviour
 
         void PopupRound()
         {
-            roundTxt.gameObject.SetActive(true);
+            //roundTxt.gameObject.SetActive(true);
         }
 
         void PopupPlusTime()
@@ -75,5 +75,5 @@ public class UI_MainScene : MonoBehaviour
             plusTimeText.gameObject.SetActive(false);
             plusTimeText.gameObject.SetActive(true);
         }
-    }
-}
+ }
+
