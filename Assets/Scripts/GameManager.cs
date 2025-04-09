@@ -180,16 +180,6 @@ public class GameManager : MonoBehaviour
     {
         return !cardOpening && secondCard == null;
     }
-    void SetBoolFalse()
-    {
-        cardOpening = false;
-    }
-
-    void DisableCardInvoke()
-    {
-        firstCard.gameObject.SetActive(false);
-        secondCard.gameObject.SetActive(false);
-    }
 
     IEnumerator WaitAndShuffle()
     {
