@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -102,26 +103,16 @@ public class GameManager : MonoBehaviour
         {
             time += 5.0f; //시간 추가
             AudioManager.Instance.PlayMatchSFX();
-            if (Managers.Instance.gameType == GameLevel.Infinite)   //무한 모드는 destroy대신 비활성화
-            {
-                firstCard.gameObject.SetActive(false);
-                secondCard.gameObject.SetActive(false);
-                firstCard.CloseCard();
-                secondCard.CloseCard();
 
-            }
-            else
-            {
-                firstCard.DestroyCard();
-                secondCard.DestroyCard();
-            }
+            firstCard.DestroyCard();
+            secondCard.DestroyCard();
 
             cardCount -= 2;
             if (cardCount == 0)
             {
                 if (Managers.Instance.gameType == GameLevel.Infinite)
                 {
-                    board.ShuffleCards();
+                    StartCoroutine(WaitAndShuffle());
                 }
                 else
                 {
@@ -188,9 +179,11 @@ public class GameManager : MonoBehaviour
     {
         return !cardOpening && secondCard == null;
     }
-    void SetBoolFalse()
+
+    IEnumerator WaitAndShuffle()
     {
-        cardOpening = false;
+        yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
+        board.ShuffleCards();
     }
 }
 
