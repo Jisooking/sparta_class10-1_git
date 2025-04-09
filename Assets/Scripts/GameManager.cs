@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int zombieCount;
+
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         round = 1;
         SetTime();
+        Init();
     }
 
     void Update()
@@ -64,6 +67,16 @@ public class GameManager : MonoBehaviour
             return;
         }
         time -= Time.deltaTime * timeScale;
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            if (zombieCount == 0)
+            {
+                GameOver();
+            }
+            return;
+        }
+
+        time -= Time.deltaTime;
 
         if (time <= 10.0f && !isMusicChanged)
         {
@@ -76,22 +89,22 @@ public class GameManager : MonoBehaviour
         if (time <= 0.0f)
         {
             time = 0.0f;
-            GameManager.Instance.GameOver();
+            GameOver();
         }
     }
 
-    public void SetTime()
+    public void Init()
     {
         switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
-                time = 60.0f;
+                time = 40.0f;
                 break;
             case GameLevel.Normal:
-                time = 30.0f;
+                time = 60.0f;
                 break;
             case GameLevel.Hard:
-                time = 30.0f;
+                time = 90.0f;
                 break;
             case GameLevel.Hidden:
                 time = 60.0f;
@@ -100,7 +113,7 @@ public class GameManager : MonoBehaviour
                 time = 60.0f;
                 break;
             case GameLevel.Zombie:
-                time = 60.0f;
+                zombieCount = 7;
                 break;
         }
     }
@@ -120,7 +133,6 @@ public class GameManager : MonoBehaviour
                 CardMatchEvent.Invoke();
             }
             AudioManager.Instance.PlayMatchSFX();
-
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
@@ -200,6 +212,12 @@ public class GameManager : MonoBehaviour
                 break;
             case GameLevel.Hidden:
                 typeKey = "HiddenScore";
+                break;
+            case GameLevel.Infinite:
+                typeKey = "InfiniteScore";
+                break;
+            case GameLevel.Zombie:
+                typeKey = "ZombieScore";
                 break;
         }
 
