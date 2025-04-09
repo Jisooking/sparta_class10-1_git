@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     public Text timeTxt;
-    public Text zombieCountText;
 
     public GameObject ui_Hp;
     public Text roundTxt;
@@ -29,29 +28,64 @@ public class UI_MainScene : MonoBehaviour
         ui_DescriptionPopup.SetActive(true);
         ui_PausePopup.SetActive(false);
 
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-            ui_Hp.SetActive(true);
-
-        if (Managers.Instance.gameType == GameLevel.Infinite)
+        switch (Managers.Instance.gameType)
         {
-            PopupRound();
-            if (timeSlider != null)
-            {
-                timeSlider.minValue = 0f;
-                timeSlider.maxValue = 1f;
-                timeSlider.value = 0f;
-            }
+            case GameLevel.Hidden:
+                if (timeSlider != null)
+                {
+                    timeSlider.minValue = 0f;
+                    timeSlider.maxValue = 1f;
+                    timeSlider.value = 0f;
+                    timeSlider.gameObject.SetActive(true);
+                }
+                break;
+            case GameLevel.Infinite:
+                PopupRound();
+                break;
+            case GameLevel.Zombie:
+                timeTxt.gameObject.SetActive(false);
+                ui_Hp.SetActive(true);
+                break;
+            default:
+                if (timeSlider != null)
+                {
+                    timeSlider.minValue = 0f;
+                    timeSlider.maxValue = 1f;
+                    timeSlider.value = 0f;
+                    timeSlider.gameObject.SetActive(true);
+                }
+                break;
         }
     }
     void Update()
     {
-        timeTxt.text = GameManager.Instance._Time.ToString("N2");
-        //roundTxt.text = GameManager.Instance._Round.ToString();
 
-        if (timeSlider != null && GameManager.Instance.maxtime > 0)
+        switch (Managers.Instance.gameType)
         {
-            float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
-            timeSlider.value = Mathf.Clamp01(ratio);
+            case GameLevel.Hidden:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+
+                if (timeSlider != null && GameManager.Instance.maxtime > 0)
+                {
+                    float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
+                    timeSlider.value = Mathf.Clamp01(ratio);
+                }
+                break;
+            case GameLevel.Infinite:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+                roundTxt.text = GameManager.Instance._Round.ToString();
+                break;
+            case GameLevel.Zombie:
+                break;
+            default:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+
+                if (timeSlider != null && GameManager.Instance.maxtime > 0)
+                {
+                    float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
+                    timeSlider.value = Mathf.Clamp01(ratio);
+                }
+                break;
         }
     }
 
@@ -67,13 +101,18 @@ public class UI_MainScene : MonoBehaviour
 
     void PopupRound()
     {
-        //roundTxt.gameObject.SetActive(true);
+        roundTxt.gameObject.SetActive(true);
     }
 
     void PopupPlusTime()
     {
         plusTimeText.gameObject.SetActive(false);
         plusTimeText.gameObject.SetActive(true);
+    }
+
+    public void OnClickPauseButton()
+    {
+        ui_PausePopup.SetActive(true);
     }
 }
 
