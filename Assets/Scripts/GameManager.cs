@@ -84,13 +84,13 @@ public class GameManager : MonoBehaviour
         switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
-                time = 60.0f;
+                time = 40.0f;
                 break;
             case GameLevel.Normal:
-                time = 30.0f;
+                time = 60.0f;
                 break;
             case GameLevel.Hard:
-                time = 30.0f;
+                time = 90.0f;
                 break;
             case GameLevel.Hidden:
                 time = 60.0f;
@@ -120,9 +120,11 @@ public class GameManager : MonoBehaviour
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
+            if(Managers.Instance.gameType == GameLevel.Infinite) 
+            {
             time += 5.0f; //시간 추가
+            }
             AudioManager.Instance.PlayMatchSFX();
-
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
