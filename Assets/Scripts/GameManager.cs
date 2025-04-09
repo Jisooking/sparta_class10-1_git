@@ -184,6 +184,12 @@ public class GameManager : MonoBehaviour
             case GameLevel.Hidden:
                 typeKey = "HiddenScore";
                 break;
+            case GameLevel.Infinite:
+                typeKey = "InfiniteScore";
+                break;
+            case GameLevel.Zombie:
+                typeKey = "ZombieScore";
+                break;
         }
 
         //
