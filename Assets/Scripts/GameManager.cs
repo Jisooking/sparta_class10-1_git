@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public event Action ZombieCountChanged;
     public int zombieCount;
 
     void Start()
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
                 time = 60.0f;
                 break;
             case GameLevel.Zombie:
-                zombieCount = 7;
+                zombieCount = 8;
                 break;
         }
     }
@@ -114,7 +115,8 @@ public class GameManager : MonoBehaviour
         //zombie card count --
         if (Managers.Instance.gameType == GameLevel.Zombie)
         {
-            zombieCount--; 
+            zombieCount--;
+            ZombieCountChanged.Invoke();
         }
 
         cardOpening = true;
