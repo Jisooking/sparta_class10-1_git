@@ -67,7 +67,6 @@ public class Board : MonoBehaviour
     }
 
 
-
     public void ShuffleCards() //카드 재배치, 무한 모드에서 사용
     {
         for (int i = 0; i < cards.Length; i++) //배열의 순서를 무작위로 변경
