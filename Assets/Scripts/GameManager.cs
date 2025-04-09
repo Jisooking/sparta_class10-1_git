@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         Application.targetFrameRate = 60;
-
+        isGameOver = true;
         SetTime();
     }
 
@@ -66,8 +66,6 @@ public class GameManager : MonoBehaviour
             time = 0.0f;
             GameManager.Instance.GameOver();
         }
-
-
     }
 
     public void SetTime()
@@ -141,6 +139,10 @@ public class GameManager : MonoBehaviour
         cardOpening = false;
     }
 
+    public void GameStart()
+    {
+        isGameOver = false;
+    }
     public void GameOver()
     {
         Time.timeScale = 0.0f;
