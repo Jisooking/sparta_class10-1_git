@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public int cardCount;
 
+    private float timeScale = 1.0f;
+
     public bool cardOpening = false;
 
     public bool isGameOver { get; private set; }
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        timeScale = 1.0f;
         Application.targetFrameRate = 60;
         isGameOver = true;
         SetTime();
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        time -= Time.deltaTime;
+        time -= Time.deltaTime * timeScale;
 
         if (time <= 10.0f && !isMusicChanged)
         {
@@ -114,6 +117,7 @@ public class GameManager : MonoBehaviour
                 if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
                 {
                     StartCoroutine(WaitAndShuffle()); //카드 재배치
+                    timeScale *= 1.5f;  //시간 점점 빠르게
                 }
                 else
                 {

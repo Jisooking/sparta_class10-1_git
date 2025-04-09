@@ -296,7 +296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &34480222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 34480221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c6eb82b85a0314f8cfd13d1ab1b35e, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ed4b969d7a4594eb204a4848f8628a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ZombieButton: {fileID: 1336282864}
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cd52b19978dce46996850702cdbae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui_GameModePopup: {fileID: 1405975285}
+  GameLevelTitle: {fileID: 1405975285}
   ui_ScorePopup: {fileID: 1987889668}
   ui_SpecialModePopup: {fileID: 34480221}
 --- !u!1 &212175906
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.5
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &212175910
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1002,8 +1002,6 @@ GameObject:
   - component: {fileID: 316756738}
   - component: {fileID: 316756740}
   - component: {fileID: 316756739}
-  - component: {fileID: 316756742}
-  - component: {fileID: 316756741}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1068,40 +1066,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316756737}
   m_CullTransparentMesh: 1
---- !u!114 &316756741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316756737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &316756742
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316756737}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &453001395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,8 +1156,6 @@ GameObject:
   - component: {fileID: 489964758}
   - component: {fileID: 489964760}
   - component: {fileID: 489964759}
-  - component: {fileID: 489964761}
-  - component: {fileID: 489964762}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1258,40 +1220,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489964757}
   m_CullTransparentMesh: 1
---- !u!95 &489964761
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489964757}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &489964762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489964757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &550519532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1623,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: OnClickSpecialModeButton
+        m_MethodName: LoadSpeicalLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1754,10 +1682,9 @@ GameObject:
   - component: {fileID: 694295710}
   - component: {fileID: 694295712}
   - component: {fileID: 694295711}
-  - component: {fileID: 694295713}
   m_Layer: 5
   m_Name: FlipperImage
-  m_TagString: Hidden
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1819,18 +1746,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694295709}
   m_CullTransparentMesh: 1
---- !u!114 &694295713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694295709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681b3651f6d0b8f43b83e1f33d8ae8c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &731117449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,7 +1783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 130, y: -265}
+  m_AnchoredPosition: {x: 130, y: -300}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &731117451
@@ -1915,20 +1830,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1595054151}
-        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
-        m_MethodName: ImageFlip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1405975291}
-        m_TargetAssemblyTypeName: UI_GameModePopup, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickEasyButton
         m_Mode: 1
         m_Arguments:
@@ -2208,7 +2111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 130, y: -715}
+  m_AnchoredPosition: {x: 130, y: -750}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &858430019
@@ -2255,20 +2158,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 489964762}
-        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
-        m_MethodName: ImageFlip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1405975291}
-        m_TargetAssemblyTypeName: UI_GameModePopup, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickHardButton
         m_Mode: 1
         m_Arguments:
@@ -2402,7 +2293,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: OnClickGameModeButton
+        m_MethodName: LoadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2495,8 +2386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 0
-  unlockNormal: 1
-  unlockHard: 1
+  unlockNormal: 0
+  unlockHard: 0
 --- !u!1 &970937331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,7 +2814,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -110}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1093035903
 MonoBehaviour:
@@ -3131,20 +3022,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 34480226}
-        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
+        m_TargetAssemblyTypeName: UI_SpecialMode, Assembly-CSharp
         m_MethodName: OnClickInfiniteButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1906683245}
-        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
-        m_MethodName: ImageFlip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3204,7 +3083,7 @@ GameObject:
   - component: {fileID: 1198399948}
   m_Layer: 5
   m_Name: Hidden
-  m_TagString: Hidden
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3249,8 +3128,6 @@ GameObject:
   - component: {fileID: 1207149287}
   - component: {fileID: 1207149289}
   - component: {fileID: 1207149288}
-  - component: {fileID: 1207149290}
-  - component: {fileID: 1207149291}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -3315,40 +3192,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207149286}
   m_CullTransparentMesh: 1
---- !u!95 &1207149290
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207149286}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1207149291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207149286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1209714179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3384,7 +3227,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -110}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1209714181
 MonoBehaviour:
@@ -3513,7 +3356,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: OnClickScoreButton
+        m_MethodName: PopupScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3784,11 +3627,9 @@ GameObject:
   - component: {fileID: 1301472889}
   - component: {fileID: 1301472891}
   - component: {fileID: 1301472890}
-  - component: {fileID: 1301472892}
-  - component: {fileID: 1301472893}
   m_Layer: 5
   m_Name: RtanImage
-  m_TagString: Hidden
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3850,40 +3691,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301472888}
   m_CullTransparentMesh: 1
---- !u!114 &1301472892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301472888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cab9e9b877e9144b83216cfcc2ca301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &1301472893
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301472888}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 432c1e525b272924cad98ae17e33a9ca, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1336282862
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,20 +3775,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 316756741}
-        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
-        m_MethodName: ImageFlip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 34480226}
-        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
+        m_TargetAssemblyTypeName: UI_SpecialMode, Assembly-CSharp
         m_MethodName: OnClickZombieButton
         m_Mode: 1
         m_Arguments:
@@ -4197,13 +3992,13 @@ GameObject:
   - component: {fileID: 1405975288}
   - component: {fileID: 1405975287}
   - component: {fileID: 1405975286}
-  - component: {fileID: 1405975291}
   m_Layer: 5
   m_Name: UI_GameModePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 0
   m_IsActive: 0
 --- !u!114 &1405975286
 MonoBehaviour:
@@ -4217,6 +4012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8e8c1b6c312254d985ed1148db07ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  easyButton: {fileID: 731117451}
+  normalButton: {fileID: 2063430063}
+  hardButton: {fileID: 858430019}
 --- !u!114 &1405975287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4301,21 +4099,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1405975291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1405975285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 990363a8c67907847be9f694b39ce215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  easyButton: {fileID: 731117451}
-  normalButton: {fileID: 2063430063}
-  hardButton: {fileID: 858430019}
 --- !u!1 &1502956212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,8 +4432,6 @@ GameObject:
   - component: {fileID: 1595054147}
   - component: {fileID: 1595054149}
   - component: {fileID: 1595054148}
-  - component: {fileID: 1595054150}
-  - component: {fileID: 1595054151}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -4715,40 +4496,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595054146}
   m_CullTransparentMesh: 1
---- !u!95 &1595054150
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595054146}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1595054151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595054146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1607767384
 GameObject:
   m_ObjectHideFlags: 0
@@ -5097,8 +4844,6 @@ GameObject:
   - component: {fileID: 1906683242}
   - component: {fileID: 1906683244}
   - component: {fileID: 1906683243}
-  - component: {fileID: 1906683246}
-  - component: {fileID: 1906683245}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5163,40 +4908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906683241}
   m_CullTransparentMesh: 1
---- !u!114 &1906683245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906683241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &1906683246
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906683241}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1987889668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5457,20 +5168,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1207149291}
-        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
-        m_MethodName: ImageFlip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1405975291}
-        m_TargetAssemblyTypeName: UI_GameModePopup, Assembly-CSharp
+      - m_Target: {fileID: 203150813}
+        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
         m_MethodName: OnClickNormalButton
         m_Mode: 1
         m_Arguments:
@@ -5537,7 +5236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 130, y: -490}
+  m_AnchoredPosition: {x: 130, y: -525}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1660057539 &9223372036854775807
