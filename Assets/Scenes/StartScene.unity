@@ -296,7 +296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &34480222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,8 +395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ed4b969d7a4594eb204a4848f8628a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZombieButton: {fileID: 1336282864}
-  InfiniteButton: {fileID: 1181307167}
 --- !u!1 &52867383
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,9 +752,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cd52b19978dce46996850702cdbae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ui_GameModePopup: {fileID: 1405975285}
+  GameLevelTitle: {fileID: 0}
   ui_ScorePopup: {fileID: 1987889668}
   ui_SpecialModePopup: {fileID: 34480221}
+  easyButton: {fileID: 731117451}
+  normalButton: {fileID: 2063430063}
+  hardButton: {fileID: 858430019}
+  SpecialLevelTitle: {fileID: 34480221}
+  ZombieButton: {fileID: 1336282864}
+  InfiniteButton: {fileID: 1181307167}
 --- !u!1 &212175906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,7 +3255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1405975286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3264,9 +3268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8e8c1b6c312254d985ed1148db07ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyButton: {fileID: 731117451}
-  normalButton: {fileID: 2063430063}
-  hardButton: {fileID: 858430019}
 --- !u!114 &1405975287
 MonoBehaviour:
   m_ObjectHideFlags: 0
