@@ -143,6 +143,12 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
     }
+
+    public void GameStop()
+    {
+        isGameOver = true;
+    }
+
     public void GameOver()
     {
         Time.timeScale = 0.0f;
