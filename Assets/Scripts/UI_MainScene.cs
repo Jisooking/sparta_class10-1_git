@@ -65,4 +65,9 @@ public class UI_MainScene : MonoBehaviour
         plusTimeText.gameObject.SetActive(false);
         plusTimeText.gameObject.SetActive(true);
     }
+
+    public void OnClickPauseButton()
+    {
+        ui_PausePopup.SetActive(true);
+    }
 }
