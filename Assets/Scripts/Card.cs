@@ -14,6 +14,7 @@ public class Card : MonoBehaviour
     public Animator anim;
     public AudioClip clip;
     public AudioSource audioSource;
+    private bool hasShownZombieCard = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,9 +28,10 @@ public class Card : MonoBehaviour
         front.SetActive(false);
         back.SetActive(true);
         // 좀비 모드일 경우 카드 자동 공개 루틴 실행
-        if (Managers.Instance.gameType == GameLevel.Zombie)
+        if (Managers.Instance.gameType == GameLevel.Zombie && !hasShownZombieCard)
         {
             StartCoroutine(ShowAndHideZombieCard());
+            hasShownZombieCard = true;
         }
     }
 
