@@ -4,11 +4,11 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     public Text timeTxt;
+    public Text roundTxt;
 
     public GameObject ui_SuccessPopup;
     public GameObject ui_FailPopup;
     public GameObject ui_DescriptionPopup;
-    public GameObject ui_PausePopup;
 
     private void Start()
     {
@@ -17,15 +17,18 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.GameClearEvent -= PopupGameClear;
         GameManager.Instance.GameClearEvent += PopupGameClear;
 
-        ui_SuccessPopup.SetActive(false);
-        ui_FailPopup.SetActive(false);
         ui_DescriptionPopup.SetActive(true);
-        ui_PausePopup.SetActive(false);
+
+        if (Managers.Instance.gameType == GameLevel.Infinite)
+        {
+            PopupRound();
+        }
     }
 
     void Update()
     {
         timeTxt.text = GameManager.Instance._Time.ToString("N2");
+        roundTxt.text = GameManager.Instance._Round.ToString();
     }
 
     void PopupGameOver()
@@ -38,9 +41,8 @@ public class UI_MainScene : MonoBehaviour
         ui_SuccessPopup.SetActive(true);
     }
 
-    public void OnClickPauseButton()
+    void PopupRound()
     {
-        GameManager.Instance.GameStop();
-        ui_PausePopup.SetActive(true);
+        roundTxt.gameObject.SetActive(true);
     }
 }

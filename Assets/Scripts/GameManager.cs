@@ -16,10 +16,17 @@ public class GameManager : MonoBehaviour
 
     public Board board;
     float time;
+    int round;
     public float _Time
     {
         get { return time; }
         set { time = value; }
+    }
+
+    public int _Round
+    {
+        get { return round; }
+        set { round = value; }
     }
 
     public int cardCount;
@@ -45,6 +52,7 @@ public class GameManager : MonoBehaviour
         timeScale = 1.0f;
         Application.targetFrameRate = 60;
         isGameOver = true;
+        round = 1;
         SetTime();
     }
 
@@ -117,7 +125,7 @@ public class GameManager : MonoBehaviour
                 if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
                 {
                     StartCoroutine(WaitAndShuffle()); //카드 재배치
-                    timeScale *= 1.5f;  //시간 점점 빠르게
+
                 }
                 else
                 {
@@ -205,6 +213,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
         board.ShuffleCards();
+        round += 1; // 라운드 + 1
+        timeScale *= 1.5f;  //시간 점점 빠르게
     }
     IEnumerator WaitAndActivate()
     {
