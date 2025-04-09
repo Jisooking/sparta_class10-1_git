@@ -16,6 +16,8 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_DescriptionPopup;
     public GameObject ui_PausePopup;
 
+    public Slider timeSlider;
+
     private void Start()
     {
         GameManager.Instance.GameOverEvent -= PopupGameOver;
@@ -33,20 +35,24 @@ public class UI_MainScene : MonoBehaviour
         if (Managers.Instance.gameType == GameLevel.Infinite)
         {
             PopupRound();
+            if (timeSlider != null)
+            {
+                timeSlider.minValue = 0f;
+                timeSlider.maxValue = 1f;
+                timeSlider.value = 0f;
+            }
         }
-
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-            timeTxt.GetComponent<UI_Disable>().DisableUI();
     }
-
     void Update()
     {
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-        {
-            return;
-        }
         timeTxt.text = GameManager.Instance._Time.ToString("N2");
-        roundTxt.text = GameManager.Instance._Round.ToString();
+        //roundTxt.text = GameManager.Instance._Round.ToString();
+
+        if (timeSlider != null && GameManager.Instance.maxtime > 0)
+        {
+            float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
+            timeSlider.value = Mathf.Clamp01(ratio);
+        }
     }
 
     void PopupGameOver()
@@ -59,19 +65,15 @@ public class UI_MainScene : MonoBehaviour
         ui_SuccessPopup.SetActive(true);
     }
 
-    void PopupRound() //무한모드 - 라운드 표시
+    void PopupRound()
     {
-        roundTxt.gameObject.SetActive(true);
+        //roundTxt.gameObject.SetActive(true);
     }
 
-    void PopupPlusTime() //무한 모드 - 시간 추가 표시
+    void PopupPlusTime()
     {
         plusTimeText.gameObject.SetActive(false);
         plusTimeText.gameObject.SetActive(true);
     }
-
-    public void OnClickPauseButton()
-    {
-        ui_PausePopup.SetActive(true);
-    }
 }
+

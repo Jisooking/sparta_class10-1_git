@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Board board;
     float time;
     int round;
+    public float maxtime = 0f;
+
     public float _Time
     {
         get { return time; }
@@ -88,21 +90,28 @@ public class GameManager : MonoBehaviour
         {
             case GameLevel.Easy:
                 time = 40.0f;
+                maxtime = 40.0f;
                 break;
             case GameLevel.Normal:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Hard:
                 time = 90.0f;
+                maxtime = 90.0f;
                 break;
             case GameLevel.Hidden:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Infinite:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Zombie:
                 zombieCount = 8;
+                time = 60.0f;
+                maxtime = 60.0f;
                 break;
         }
     }
