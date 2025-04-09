@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     public Text timeTxt;
+    public Text zombieCountText;
 
     public GameObject ui_SuccessPopup;
     public GameObject ui_FailPopup;
@@ -26,6 +27,7 @@ public class UI_MainScene : MonoBehaviour
     void Update()
     {
         timeTxt.text = GameManager.Instance._Time.ToString("N2");
+        zombieCountText.text = GameManager.Instance.zombieCount.ToString();
     }
 
     void PopupGameOver()

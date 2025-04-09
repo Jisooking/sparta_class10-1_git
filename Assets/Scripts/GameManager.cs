@@ -37,12 +37,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int zombieCount;
+
     void Start()
     {
         Time.timeScale = 1.0f;
         Application.targetFrameRate = 60;
         isGameOver = true;
-        SetTime();
+        Init();
     }
 
     void Update()
@@ -51,6 +53,15 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            if (zombieCount == 0)
+            {
+                GameOver();
+            }
+            return;
+        }
+
         time -= Time.deltaTime;
 
         if (time <= 10.0f && !isMusicChanged)
@@ -64,11 +75,11 @@ public class GameManager : MonoBehaviour
         if (time <= 0.0f)
         {
             time = 0.0f;
-            GameManager.Instance.GameOver();
+            GameOver();
         }
     }
 
-    public void SetTime()
+    public void Init()
     {
         switch (Managers.Instance.gameType)
         {
@@ -88,7 +99,7 @@ public class GameManager : MonoBehaviour
                 time = 60.0f;
                 break;
             case GameLevel.Zombie:
-                time = 60.0f;
+                zombieCount = 7;
                 break;
         }
     }
@@ -99,6 +110,13 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        //zombie card count --
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            zombieCount--; 
+        }
+
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
