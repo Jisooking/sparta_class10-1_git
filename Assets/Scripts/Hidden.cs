@@ -1,21 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 public class Hidden : MonoBehaviour
 {
+<<<<<<< HEAD
     float direction = 0.05f;
 
     SpriteRenderer renderer;
 
     void Start()
+=======
+    void GotoHiddenStage()
+>>>>>>> juho_branch
     {
-        Application.targetFrameRate = 60;
-        renderer = GetComponent<SpriteRenderer>();
 
+        Debug.Log("히든 스테이지로 이동합니다!");
+        Managers.Instance.gameType = GameLevel.Hidden;
+        LoadMainScene();
     }
 
-    void Update()
+    void LoadMainScene()
     {
+<<<<<<< HEAD
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -29,4 +36,9 @@ public class Hidden : MonoBehaviour
             }
         }
     }
+=======
+        SceneManager.LoadScene("MainScene");
+    }
+
+>>>>>>> juho_branch
 }
