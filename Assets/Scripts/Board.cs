@@ -32,12 +32,13 @@ public class Board : MonoBehaviour
         */
 
         //���̵��� ���� ���� ����
-        InitBoard(Managers.Instance.gameType);
+        //InitBoard(Managers.Instance.gameType);
     }
 
-    void InitBoard(GameLevel type)
+
+    public void InitBoard()
     {
-        switch (type)
+        switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
                 MakeBoard(12);
@@ -87,6 +88,7 @@ public class Board : MonoBehaviour
         }
 
         GameManager.Instance.cardCount = arr.Length;
+        Invoke("StartGame", 1.9f);
     }
 
 
@@ -146,4 +148,10 @@ public class Board : MonoBehaviour
         transform.position = target; // 최종 위치 보정
 
     }
+
+    void StartGame()
+    {
+        GameManager.Instance.GameStart();
+    }
+
 }
