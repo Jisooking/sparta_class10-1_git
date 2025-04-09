@@ -10,6 +10,8 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_DescriptionPopup;
     public GameObject ui_PausePopup;
 
+    public Slider timeSlider;
+
     private void Start()
     {
         GameManager.Instance.GameOverEvent -= PopupGameOver;
@@ -21,11 +23,24 @@ public class UI_MainScene : MonoBehaviour
         ui_FailPopup.SetActive(false);
         ui_DescriptionPopup.SetActive(true);
         ui_PausePopup.SetActive(false);
+
+        if (timeSlider != null)
+        {
+            timeSlider.minValue = 0f;
+            timeSlider.maxValue = 1f;
+            timeSlider.value = 0f;
+        }
     }
 
     void Update()
     {
         timeTxt.text = GameManager.Instance._Time.ToString("N2");
+
+        if (timeSlider != null && GameManager.maxtime > 0)
+        {
+            float ratio = 1f - (GameManager.time / GameManager.maxtime);
+            timeSlider.value = Mathf.Clamp01(ratio);
+        }
     }
 
     void PopupGameOver()

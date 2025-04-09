@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Board board;
-    float time;
+    public static float time = 0f;
+    public static float maxtime = 0f;
+
     public float _Time
     {
         get { return time; }
@@ -74,21 +76,27 @@ public class GameManager : MonoBehaviour
         {
             case GameLevel.Easy:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Normal:
                 time = 30.0f;
+                maxtime = 30.0f;
                 break;
             case GameLevel.Hard:
                 time = 30.0f;
+                maxtime = 30.0f;
                 break;
             case GameLevel.Hidden:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Infinite:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Zombie:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
         }
     }
