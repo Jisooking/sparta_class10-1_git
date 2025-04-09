@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public event Action ZombieCountChanged;
     public int zombieCount;
 
     void Start()
@@ -56,7 +57,6 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         isGameOver = true;
         round = 1;
-        SetTime();
         Init();
     }
 
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
                 time = 60.0f;
                 break;
             case GameLevel.Zombie:
-                zombieCount = 7;
+                zombieCount = 8;
                 break;
         }
     }
@@ -124,6 +124,14 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        //zombie card count --
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            zombieCount--;
+            ZombieCountChanged.Invoke();
+        }
+
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {

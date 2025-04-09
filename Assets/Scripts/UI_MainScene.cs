@@ -4,6 +4,9 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     public Text timeTxt;
+    public Text zombieCountText;
+
+    public GameObject ui_Hp;
     public Text roundTxt;
 
     public Text plusTimeText;
@@ -11,6 +14,7 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_SuccessPopup;
     public GameObject ui_FailPopup;
     public GameObject ui_DescriptionPopup;
+    public GameObject ui_PausePopup;
 
     private void Start()
     {
@@ -21,6 +25,10 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.CardMatchEvent += PopupPlusTime;
 
         ui_DescriptionPopup.SetActive(true);
+        ui_PausePopup.SetActive(false);
+
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+            ui_Hp.SetActive(true);
 
         if (Managers.Instance.gameType == GameLevel.Infinite)
         {
