@@ -7,6 +7,9 @@ public class UI_MainScene : MonoBehaviour
     public Text zombieCountText;
 
     public GameObject ui_Hp;
+    public Text roundTxt;
+
+    public Text plusTimeText;
 
     public GameObject ui_SuccessPopup;
     public GameObject ui_FailPopup;
@@ -19,23 +22,24 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.GameOverEvent += PopupGameOver;
         GameManager.Instance.GameClearEvent -= PopupGameClear;
         GameManager.Instance.GameClearEvent += PopupGameClear;
+        GameManager.Instance.CardMatchEvent += PopupPlusTime;
 
-        ui_SuccessPopup.SetActive(false);
-        ui_FailPopup.SetActive(false);
         ui_DescriptionPopup.SetActive(true);
         ui_PausePopup.SetActive(false);
 
         if (Managers.Instance.gameType == GameLevel.Zombie)
             ui_Hp.SetActive(true);
+
+        if (Managers.Instance.gameType == GameLevel.Infinite)
+        {
+            PopupRound();
+        }
     }
 
     void Update()
     {
-        if(Managers.Instance.gameType == GameLevel.Zombie)
-            timeTxt.GetComponent<UI_Disable>().DisableUI();
-        else
-            timeTxt.text = GameManager.Instance._Time.ToString("N2");
-        zombieCountText.text = GameManager.Instance.zombieCount.ToString();
+        timeTxt.text = GameManager.Instance._Time.ToString("N2");
+        roundTxt.text = GameManager.Instance._Round.ToString();
     }
 
     void PopupGameOver()
@@ -48,9 +52,14 @@ public class UI_MainScene : MonoBehaviour
         ui_SuccessPopup.SetActive(true);
     }
 
-    public void OnClickPauseButton()
+    void PopupRound()
     {
-        GameManager.Instance.GameStop();
-        ui_PausePopup.SetActive(true);
+        roundTxt.gameObject.SetActive(true);
+    }
+
+    void PopupPlusTime()
+    {
+        plusTimeText.gameObject.SetActive(false);
+        plusTimeText.gameObject.SetActive(true);
     }
 }

@@ -10,19 +10,29 @@ public class GameManager : MonoBehaviour
 
     public event Action GameOverEvent;
     public event Action GameClearEvent;
+    public event Action CardMatchEvent;
 
     public Card firstCard;
     public Card secondCard;
 
     public Board board;
     float time;
+    int round;
     public float _Time
     {
         get { return time; }
         set { time = value; }
     }
 
+    public int _Round
+    {
+        get { return round; }
+        set { round = value; }
+    }
+
     public int cardCount;
+
+    private float timeScale = 1.0f;
 
     public bool cardOpening = false;
 
@@ -43,8 +53,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        timeScale = 1.0f;
         Application.targetFrameRate = 60;
         isGameOver = true;
+        round = 1;
         Init();
     }
 
@@ -54,6 +66,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        time -= Time.deltaTime * timeScale;
         if (Managers.Instance.gameType == GameLevel.Zombie)
         {
             if (zombieCount == 0)
@@ -112,19 +125,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        //zombie card count --
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-        {
-            zombieCount--;
-            ZombieCountChanged.Invoke();
-        }
-
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
-            if(Managers.Instance.gameType == GameLevel.Infinite) 
+            if (Managers.Instance.gameType == GameLevel.Infinite)
             {
-            time += 5.0f; //시간 추가
+                time += 5.0f; //시간 추가
+                CardMatchEvent.Invoke();
             }
             AudioManager.Instance.PlayMatchSFX();
             firstCard.DestroyCard();
@@ -136,6 +143,7 @@ public class GameManager : MonoBehaviour
                 if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
                 {
                     StartCoroutine(WaitAndShuffle()); //카드 재배치
+
                 }
                 else
                 {
@@ -150,10 +158,10 @@ public class GameManager : MonoBehaviour
             secondCard.CloseCard();
             if (Managers.Instance.gameType == GameLevel.Zombie) //좀비 모드인 경우
             {
+                zombieCount--;
+                ZombieCountChanged.Invoke();
                 StartCoroutine(WaitAndActivate());  //카드 전부 활성화
-                time -= 5.0f; //시간 감소
             }
-
         }
 
         firstCard = null;
@@ -229,6 +237,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
         board.ShuffleCards();
+        round += 1; // 라운드 + 1
+        timeScale *= 1.5f;  //시간 점점 빠르게
     }
     IEnumerator WaitAndActivate()
     {
