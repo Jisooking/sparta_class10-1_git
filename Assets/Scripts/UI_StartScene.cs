@@ -13,6 +13,7 @@ public class UI_StartScene : MonoBehaviour
         ui_GameModePopup.SetActive(false);
         ui_ScorePopup.SetActive(false);
         ui_SpecialModePopup.SetActive(false);
+        Time.timeScale = 1.0f;
     }
 
     public void OnClickGameModeButton()

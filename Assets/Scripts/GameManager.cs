@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-
     public event Action ZombieCountChanged;
     public int zombieCount;
 
@@ -115,18 +114,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        //zombie card count --
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-        {
-            zombieCount--;
-            ZombieCountChanged.Invoke();
-            if (zombieCount == 0)
-            {
-                GameOver();
-            }
-            return;
-        }
-
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
@@ -159,10 +146,16 @@ public class GameManager : MonoBehaviour
             secondCard.CloseCard();
             if (Managers.Instance.gameType == GameLevel.Zombie) //좀비 모드인 경우
             {
-                StartCoroutine(WaitAndActivate());  //카드 전부 활성화
-                time -= 5.0f; //시간 감소
-            }
+                zombieCount--;
+                ZombieCountChanged.Invoke();
+                if (zombieCount == 0)
+                {
+                    GameOver();
+                    return;
+                }
 
+                StartCoroutine(WaitAndActivate());  //카드 전부 활성화
+            }
         }
 
         firstCard = null;
@@ -205,7 +198,7 @@ public class GameManager : MonoBehaviour
 
         float score = time;
         string typeKey = "";
-        //
+
         switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
@@ -230,7 +223,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        //
         if (PlayerPrefs.HasKey(typeKey))
         {
             if (typeKey == "ZombieScore")
