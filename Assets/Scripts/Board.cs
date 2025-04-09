@@ -57,7 +57,6 @@ public class Board : MonoBehaviour
             case GameLevel.Zombie:
                 MakeBoard(16);
                 break;
-
         }
     }
 
@@ -76,10 +75,7 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < arr.Length; i++)
         {
-            //float x = (i % 4) * 1.4f - 2.1f;
-            //float y = (i / 4) * 1.4f - 3.0f;
             cards[i] = Instantiate(card, this.transform);
-            //go.transform.position = new Vector2(x, y);
             cards[i].GetComponent<Card>().Setting(arr[i]);
         }
 
