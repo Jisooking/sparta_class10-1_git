@@ -11,10 +11,8 @@ public class UI_StartScene : MonoBehaviour
     public Button easyButton;
     public Button normalButton;
     public Button hardButton;
-
-    public Button zombieButton;
-    public Button infinitiButton;
-
+    public Button ZombieButton;
+    public Button InfiniteButton;
 
     void Start()
     {
@@ -72,17 +70,17 @@ public class UI_StartScene : MonoBehaviour
         Managers.Instance.gameType = GameLevel.Hard;
         LoadMainScene();
     }
-
-    public void OnclickZombieButton()
+    public void OnClickZombieButton()
     {
-        Debug.Log("좀비모드 입장");
+        Managers.Instance.gameType = GameLevel.Zombie;
+        LoadMainScene();
     }
-
-    public void OnclickInfinitiButton()
+    public void OnClickInfiniteButton()
     {
-        Debug.Log("무한모드 입장");
-    }
+        Managers.Instance.gameType = GameLevel.Infinite;
+        LoadMainScene();
 
+    }
     void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");

@@ -7,7 +7,6 @@ public enum GameLevel
     Hard,
     Hidden,
     Infinite,
-
     Zombie,
 }
 
