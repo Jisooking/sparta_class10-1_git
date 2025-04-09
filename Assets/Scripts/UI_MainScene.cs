@@ -4,12 +4,10 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     public Text timeTxt;
-    public GameObject EndPanel;
-    public GameObject SuccessPanel;
 
-    public GameObject hiddenPanel;
-    public GameObject infinitePanel;
-    public GameObject zombiePanel;
+    public GameObject ui_SuccessPopup;
+    public GameObject ui_FailPopup;
+    public GameObject ui_DescriptionPopup;
 
     private void Start()
     {
@@ -18,19 +16,7 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.GameClearEvent -= PopupGameClear;
         GameManager.Instance.GameClearEvent += PopupGameClear;
 
-        //특별 모드의 경우, 설명 패널 팝업
-        if (Managers.Instance.gameType == GameLevel.Hidden)
-        {
-            hiddenPanel.SetActive(true);
-        }
-        else if (Managers.Instance.gameType == GameLevel.Infinite)
-        {
-            infinitePanel.SetActive(true);
-        }
-        else if (Managers.Instance.gameType == GameLevel.Zombie)
-        {
-            zombiePanel.SetActive(true);
-        }
+        ui_DescriptionPopup.SetActive(true);
     }
 
     void Update()
@@ -40,27 +26,11 @@ public class UI_MainScene : MonoBehaviour
 
     void PopupGameOver()
     {
-        EndPanel.SetActive(true);
+        ui_FailPopup.SetActive(true);
     }
 
     void PopupGameClear()
     {
-        SuccessPanel.SetActive(true);
-    }
-
-
-    public void OnClickRetryButton()
-    {
-        SceneManager.LoadScene("MainScene");
-    }
-
-    public void OnClickMainButton()
-    {
-        SceneManager.LoadScene("StartScene");
-    }
-
-    public void OnClickExitButton()
-    {
-        UnityEditor.EditorApplication.isPlaying = false;
+        ui_SuccessPopup.SetActive(true);
     }
 }
