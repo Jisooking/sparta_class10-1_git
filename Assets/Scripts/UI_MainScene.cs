@@ -16,6 +16,8 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_DescriptionPopup;
     public GameObject ui_PausePopup;
 
+    public Slider timeSlider;
+
     private void Start()
     {
         GameManager.Instance.GameOverEvent -= PopupGameOver;
@@ -33,33 +35,45 @@ public class UI_MainScene : MonoBehaviour
         if (Managers.Instance.gameType == GameLevel.Infinite)
         {
             PopupRound();
+            if (timeSlider != null)
+            {
+                timeSlider.minValue = 0f;
+                timeSlider.maxValue = 1f;
+                timeSlider.value = 0f;
+            }
         }
-    }
 
-    void Update()
-    {
-        timeTxt.text = GameManager.Instance._Time.ToString("N2");
-        roundTxt.text = GameManager.Instance._Round.ToString();
-    }
+        void Update()
+        {
+            timeTxt.text = GameManager.Instance._Time.ToString("N2");
+            roundTxt.text = GameManager.Instance._Round.ToString();
 
-    void PopupGameOver()
-    {
-        ui_FailPopup.SetActive(true);
-    }
+            if (timeSlider != null && GameManager.maxtime > 0)
+            {
+                float ratio = 1f - (GameManager.time / GameManager.maxtime);
+                timeSlider.value = Mathf.Clamp01(ratio);
+            }
+        }
 
-    void PopupGameClear()
-    {
-        ui_SuccessPopup.SetActive(true);
-    }
+        void PopupGameOver()
+        {
+            ui_FailPopup.SetActive(true);
+        }
 
-    void PopupRound()
-    {
-        roundTxt.gameObject.SetActive(true);
-    }
+        void PopupGameClear()
+        {
+            ui_SuccessPopup.SetActive(true);
+        }
 
-    void PopupPlusTime()
-    {
-        plusTimeText.gameObject.SetActive(false);
-        plusTimeText.gameObject.SetActive(true);
+        void PopupRound()
+        {
+            roundTxt.gameObject.SetActive(true);
+        }
+
+        void PopupPlusTime()
+        {
+            plusTimeText.gameObject.SetActive(false);
+            plusTimeText.gameObject.SetActive(true);
+        }
     }
 }
