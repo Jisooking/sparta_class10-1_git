@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public int cardCount;
 
-    private float timeScale = 1.0f;
+    private float timeScale = 1.0f; //시간 가속 - 무한 모드에서 사용
 
     public bool cardOpening = false;
 
@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
         board.ShuffleCards();
         round += 1; // 라운드 + 1
-        timeScale *= 1.5f;  //시간 점점 빠르게
+        timeScale *= 1.2f;  //시간 점점 빠르게
     }
     IEnumerator WaitAndActivate()
     {
