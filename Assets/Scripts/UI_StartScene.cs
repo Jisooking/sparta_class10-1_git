@@ -6,24 +6,20 @@ public class UI_StartScene : MonoBehaviour
 {
     public GameObject GameLevelTitle;
     public GameObject ui_ScorePopup;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
     public GameObject ui_SpecialModePopup;
 
-=======
 
     public Button easyButton;
     public Button normalButton;
     public Button hardButton;
-=======
+
     public GameObject SpecialLevelTitle;
 
-    public Button easyButton;
-    public Button normalButton;
-    public Button hardButton;
     public Button ZombieButton;
     public Button InfiniteButton;
->>>>>>> parent of 9beb8db (Merge branch 'Develop' into juho_branch)
+
 
     void Start()
     {
@@ -44,10 +40,6 @@ public class UI_StartScene : MonoBehaviour
             hardButton.interactable = false;
         }
     }
-<<<<<<< HEAD
->>>>>>> parent of 2daeabb (Feat feat 스페셜 모드 선택 UI > 연결)
-=======
->>>>>>> parent of 9beb8db (Merge branch 'Develop' into juho_branch)
 
     public void Retry()
     {
@@ -64,20 +56,14 @@ public class UI_StartScene : MonoBehaviour
         ui_ScorePopup.SetActive(true);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public void PopupSpeicalMode()
-=======
+
+
     public void LoadSpeicalLevel()
->>>>>>> parent of 9beb8db (Merge branch 'Develop' into juho_branch)
     {
         SpecialLevelTitle.SetActive(true);
     }
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 9beb8db (Merge branch 'Develop' into juho_branch)
+
     public void OnClickEasyButton()
     {
         Managers.Instance.gameType = GameLevel.Easy;
@@ -94,9 +80,7 @@ public class UI_StartScene : MonoBehaviour
         Managers.Instance.gameType = GameLevel.Hard;
         LoadMainScene();
     }
-<<<<<<< HEAD
 
-=======
     public void OnClickZombieButton()
     {
         Managers.Instance.gameType = GameLevel.Zombie;
@@ -108,13 +92,10 @@ public class UI_StartScene : MonoBehaviour
         LoadMainScene();
 
     }
->>>>>>> parent of 9beb8db (Merge branch 'Develop' into juho_branch)
+
     void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
     }
-<<<<<<< HEAD
->>>>>>> parent of 2daeabb (Feat feat 스페셜 모드 선택 UI > 연결)
-=======
->>>>>>> parent of 9beb8db (Merge branch 'Develop' into juho_branch)
+
 }
