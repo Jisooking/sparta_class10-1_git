@@ -135,7 +135,7 @@ public class Board : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
+        
         transform.position = target; // 최종 위치 보정
 
     }
