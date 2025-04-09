@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
             case GameLevel.Infinite:
                 time = 60.0f;
                 break;
+            case GameLevel.Zombie:
+                time = 60.0f;
+                break;
         }
     }
 
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         cardOpening = true;
-        if (firstCard.idx == secondCard.idx)
+        if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
             time += 5.0f; //시간 추가
             AudioManager.Instance.PlayMatchSFX();
@@ -108,11 +111,11 @@ public class GameManager : MonoBehaviour
             secondCard.DestroyCard();
 
             cardCount -= 2;
-            if (cardCount == 0)
+            if (cardCount == 0) //카드 매칭 전부 성공
             {
-                if (Managers.Instance.gameType == GameLevel.Infinite)
+                if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
                 {
-                    StartCoroutine(WaitAndShuffle());
+                    StartCoroutine(WaitAndShuffle()); //카드 재배치
                 }
                 else
                 {
@@ -120,11 +123,17 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        else
+        else    //매칭 실패
         {
             AudioManager.Instance.PlayFailSFX();
             firstCard.CloseCard();
             secondCard.CloseCard();
+            if (Managers.Instance.gameType == GameLevel.Zombie) //좀비 모드인 경우
+            {
+                StartCoroutine(WaitAndActivate());  //카드 전부 활성화
+                time -= 5.0f; //시간 감소
+            }
+
         }
 
         firstCard = null;
@@ -184,6 +193,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
         board.ShuffleCards();
+    }
+    IEnumerator WaitAndActivate()
+    {
+        yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
+        board.ActivateCards();
     }
 }
 
