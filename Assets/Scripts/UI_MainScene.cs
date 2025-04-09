@@ -52,12 +52,12 @@ public class UI_MainScene : MonoBehaviour
         ui_SuccessPopup.SetActive(true);
     }
 
-    void PopupRound()
+    void PopupRound() //무한모드 - 라운드 표시
     {
         roundTxt.gameObject.SetActive(true);
     }
 
-    void PopupPlusTime()
+    void PopupPlusTime() //무한 모드 - 시간 추가 표시
     {
         plusTimeText.gameObject.SetActive(false);
         plusTimeText.gameObject.SetActive(true);
