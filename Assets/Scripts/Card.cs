@@ -12,7 +12,7 @@ public class Card : MonoBehaviour
     public Animator anim;
     public AudioClip clip;
     public AudioSource audioSource;
-    public bool setOpen;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -93,29 +93,29 @@ public class Card : MonoBehaviour
         Invoke("CloseCardInvoke", 0.5f);
     }
 
+    public void DestroyCard()
+    {
+        if (Managers.Instance.gameType != GameLevel.Infinite)
+        {
+            Destroy(gameObject, 0.5f);
+        }
+        else
+        {
+            Invoke("DisableCardInvoke", 0.5f);
+        }
+    }
+
     public void CloseCardInvoke()
     {
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
     }
-    public void DestroyCard()
+    public void DisableCardInvoke()
     {
-        Destroy(gameObject, 0.5f);
+        gameObject.SetActive(false);
+        front.SetActive(false);
+        back.SetActive(true);
     }
 
-
-    void OpenImage()
-    {
-        if (!setOpen)
-        {
-            front.SetActive(false);
-            back.SetActive(true);
-        }
-        else
-        {
-            front.SetActive(true);
-            back.SetActive(false);
-        }
-    }
 }
