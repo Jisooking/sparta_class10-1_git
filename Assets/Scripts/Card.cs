@@ -6,6 +6,8 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public SpriteRenderer frontimage;
+    public SpriteRenderer backImage;
+    public Sprite[] levelSprites;
     public GameObject front;
     public GameObject back;
     public int idx = 0;
@@ -29,6 +31,7 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Managers.Instance.gameType != GameLevel.Hidden)
         {
             return;
@@ -71,8 +74,8 @@ public class Card : MonoBehaviour
     {
         idx = num;
         frontimage.sprite = Resources.Load<Sprite>($"1jo{idx}");
+        SetLevelImage(Managers.Instance.gameType);
     }
-
     public void CloseCard()
     {
         Invoke("CloseCardInvoke", 0.5f);
@@ -106,4 +109,11 @@ public class Card : MonoBehaviour
         back.SetActive(true);
     }
 
+    public void SetLevelImage(GameLevel level)
+    {
+        if ((int)level < levelSprites.Length)
+        {
+            backImage.sprite = levelSprites[(int)level];
+        }
+    }
 }

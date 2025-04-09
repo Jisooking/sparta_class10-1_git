@@ -50,4 +50,8 @@ public class UI_GameModePopup : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void OnClickBackButton()
+    {
+        gameObject.SetActive(false);
+    }
 }

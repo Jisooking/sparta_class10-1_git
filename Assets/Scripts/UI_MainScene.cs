@@ -8,6 +8,7 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_SuccessPopup;
     public GameObject ui_FailPopup;
     public GameObject ui_DescriptionPopup;
+    public GameObject ui_PausePopup;
 
     private void Start()
     {
@@ -16,7 +17,10 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.GameClearEvent -= PopupGameClear;
         GameManager.Instance.GameClearEvent += PopupGameClear;
 
+        ui_SuccessPopup.SetActive(false);
+        ui_FailPopup.SetActive(false);
         ui_DescriptionPopup.SetActive(true);
+        ui_PausePopup.SetActive(false);
     }
 
     void Update()
@@ -32,5 +36,11 @@ public class UI_MainScene : MonoBehaviour
     void PopupGameClear()
     {
         ui_SuccessPopup.SetActive(true);
+    }
+
+    public void OnClickPauseButton()
+    {
+        GameManager.Instance.GameStop();
+        ui_PausePopup.SetActive(true);
     }
 }
