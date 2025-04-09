@@ -296,7 +296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &34480222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,6 +1002,8 @@ GameObject:
   - component: {fileID: 316756738}
   - component: {fileID: 316756740}
   - component: {fileID: 316756739}
+  - component: {fileID: 316756742}
+  - component: {fileID: 316756741}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1066,6 +1068,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316756737}
   m_CullTransparentMesh: 1
+--- !u!114 &316756741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316756737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &316756742
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316756737}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &453001395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,6 +1193,7 @@ GameObject:
   - component: {fileID: 489964760}
   - component: {fileID: 489964759}
   - component: {fileID: 489964761}
+  - component: {fileID: 489964762}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1243,6 +1280,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &489964762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489964757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &550519532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1915,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1595054151}
+        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
+        m_MethodName: ImageFlip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1405975291}
         m_TargetAssemblyTypeName: UI_GameModePopup, Assembly-CSharp
         m_MethodName: OnClickEasyButton
@@ -2194,6 +2255,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 489964762}
+        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
+        m_MethodName: ImageFlip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1405975291}
         m_TargetAssemblyTypeName: UI_GameModePopup, Assembly-CSharp
         m_MethodName: OnClickHardButton
@@ -2422,8 +2495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameType: 0
-  unlockNormal: 0
-  unlockHard: 0
+  unlockNormal: 1
+  unlockHard: 1
 --- !u!1 &970937331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,6 +3142,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1906683245}
+        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
+        m_MethodName: ImageFlip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1181307168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3165,6 +3250,7 @@ GameObject:
   - component: {fileID: 1207149289}
   - component: {fileID: 1207149288}
   - component: {fileID: 1207149290}
+  - component: {fileID: 1207149291}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -3251,6 +3337,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1207149291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207149286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1209714179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,6 +3968,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 316756741}
+        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
+        m_MethodName: ImageFlip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 34480226}
         m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickZombieButton
@@ -4094,7 +4204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1405975286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4540,6 +4650,7 @@ GameObject:
   - component: {fileID: 1595054149}
   - component: {fileID: 1595054148}
   - component: {fileID: 1595054150}
+  - component: {fileID: 1595054151}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -4626,6 +4737,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1595054151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595054146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1607767384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4974,6 +5097,8 @@ GameObject:
   - component: {fileID: 1906683242}
   - component: {fileID: 1906683244}
   - component: {fileID: 1906683243}
+  - component: {fileID: 1906683246}
+  - component: {fileID: 1906683245}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -5038,6 +5163,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906683241}
   m_CullTransparentMesh: 1
+--- !u!114 &1906683245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906683241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dfce710804b8a54a8c098606a75f9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1906683246
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906683241}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e565d1b50a4f884fae21768b5afb3a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1987889668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5298,6 +5457,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1207149291}
+        m_TargetAssemblyTypeName: UI_ImageFlip, Assembly-CSharp
+        m_MethodName: ImageFlip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1405975291}
         m_TargetAssemblyTypeName: UI_GameModePopup, Assembly-CSharp
         m_MethodName: OnClickNormalButton
