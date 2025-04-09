@@ -187,6 +187,13 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlayGameOverSFX();
+
+        if (Managers.Instance.gameType == GameLevel.Infinite)
+        {
+            string typeKey = "InfiniteScore"; ;
+            int roundCnt = (round < PlayerPrefs.GetInt(typeKey) ? PlayerPrefs.GetInt(typeKey) : round);
+            PlayerPrefs.SetInt(typeKey, roundCnt);
+        }
     }
 
     public void GameClear()
@@ -224,8 +231,23 @@ public class GameManager : MonoBehaviour
 
         //
         if (PlayerPrefs.HasKey(typeKey))
-            score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
-        PlayerPrefs.SetFloat(typeKey, score);
+        {
+            if (typeKey == "ZombieScore")
+            {
+                int zombieCnt = (zombieCount < PlayerPrefs.GetInt(typeKey) ? PlayerPrefs.GetInt(typeKey) : zombieCount);
+                PlayerPrefs.SetInt(typeKey, zombieCnt);
+            }
+            else if (typeKey == "InfiniteScore")
+            {
+                int roundCnt = (round < PlayerPrefs.GetInt(typeKey) ? PlayerPrefs.GetInt(typeKey) : round);
+                PlayerPrefs.SetInt(typeKey, roundCnt);
+            }
+            else
+            {
+                score = (score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : score);
+                PlayerPrefs.SetFloat(typeKey, score);
+            }
+        }
     }
 
     public bool CanSelectCard()
