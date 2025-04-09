@@ -26,6 +26,11 @@ public class Card : MonoBehaviour
     {
         front.SetActive(false);
         back.SetActive(true);
+        // 좀비 모드일 경우 카드 자동 공개 루틴 실행
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            StartCoroutine(ShowAndHideZombieCard());
+        }
     }
 
     // Update is called once per frame
@@ -115,5 +120,21 @@ public class Card : MonoBehaviour
         {
             backImage.sprite = levelSprites[(int)level];
         }
+    }
+
+    IEnumerator ShowAndHideZombieCard()
+    {
+
+        yield return new WaitForSeconds(2f);
+        // 앞면 보여주기
+        front.SetActive(true);
+        back.SetActive(false);
+
+        yield return new WaitForSeconds(4f); // 4초간 보여줌
+
+        // 다시 닫기
+        anim.SetBool("isOpen", false);
+        front.SetActive(false);
+        back.SetActive(true);
     }
 }

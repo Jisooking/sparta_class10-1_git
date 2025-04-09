@@ -31,7 +31,10 @@ public class UI_MainScene : MonoBehaviour
 
     void Update()
     {
-        timeTxt.text = GameManager.Instance._Time.ToString("N2");
+        if(Managers.Instance.gameType == GameLevel.Zombie)
+            timeTxt.GetComponent<UI_Disable>().DisableUI();
+        else
+            timeTxt.text = GameManager.Instance._Time.ToString("N2");
         zombieCountText.text = GameManager.Instance.zombieCount.ToString();
     }
 
