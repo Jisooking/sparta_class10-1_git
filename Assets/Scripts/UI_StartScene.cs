@@ -23,6 +23,7 @@ public class UI_StartScene : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("æ»≥Á«œººø‰.");
         if (Managers.Instance.unlockNormal)
         {
             normalButton.interactable = true;
