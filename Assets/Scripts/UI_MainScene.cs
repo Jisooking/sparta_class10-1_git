@@ -34,14 +34,18 @@ public class UI_MainScene : MonoBehaviour
         {
             PopupRound();
         }
+
+        if (Managers.Instance.gameType == GameLevel.Zombie)
+            timeTxt.GetComponent<UI_Disable>().DisableUI();
     }
 
     void Update()
     {
         if (Managers.Instance.gameType == GameLevel.Zombie)
-            timeTxt.GetComponent<UI_Disable>().DisableUI();
-        else
-            timeTxt.text = GameManager.Instance._Time.ToString("N2");
+        {
+            return;
+        }
+        timeTxt.text = GameManager.Instance._Time.ToString("N2");
         roundTxt.text = GameManager.Instance._Round.ToString();
     }
 
