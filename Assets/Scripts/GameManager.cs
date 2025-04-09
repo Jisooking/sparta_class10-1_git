@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public event Action GameOverEvent;
     public event Action GameClearEvent;
+    public event Action CardMatchEvent;
 
     public Card firstCard;
     public Card secondCard;
@@ -113,7 +114,11 @@ public class GameManager : MonoBehaviour
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
-            time += 5.0f; //시간 추가
+            if (Managers.Instance.gameType == GameLevel.Infinite)
+            {
+                time += 5.0f; //시간 추가
+                CardMatchEvent.Invoke();
+            }
             AudioManager.Instance.PlayMatchSFX();
 
             firstCard.DestroyCard();

@@ -6,6 +6,8 @@ public class UI_MainScene : MonoBehaviour
     public Text timeTxt;
     public Text roundTxt;
 
+    public Text plusTimeText;
+
     public GameObject ui_SuccessPopup;
     public GameObject ui_FailPopup;
     public GameObject ui_DescriptionPopup;
@@ -16,6 +18,7 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.GameOverEvent += PopupGameOver;
         GameManager.Instance.GameClearEvent -= PopupGameClear;
         GameManager.Instance.GameClearEvent += PopupGameClear;
+        GameManager.Instance.CardMatchEvent += PopupPlusTime;
 
         ui_DescriptionPopup.SetActive(true);
 
@@ -44,5 +47,11 @@ public class UI_MainScene : MonoBehaviour
     void PopupRound()
     {
         roundTxt.gameObject.SetActive(true);
+    }
+
+    void PopupPlusTime()
+    {
+        plusTimeText.gameObject.SetActive(false);
+        plusTimeText.gameObject.SetActive(true);
     }
 }
