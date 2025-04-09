@@ -118,10 +118,7 @@ public class Card : MonoBehaviour
 
     public void SetLevelImage(GameLevel level)
     {
-        if ((int)level < levelSprites.Length)
-        {
-            backImage.sprite = levelSprites[(int)level];
-        }
+        backImage.sprite = levelSprites[(int)level];
     }
 
     IEnumerator ShowAndHideZombieCard()

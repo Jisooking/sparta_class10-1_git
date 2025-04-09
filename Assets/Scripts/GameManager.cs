@@ -250,6 +250,21 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetFloat(typeKey, score);
             }
         }
+        else
+        {
+            if (typeKey == "ZombieScore")
+            {
+                PlayerPrefs.SetInt(typeKey, zombieCount);
+            }
+            else if (typeKey == "InfiniteScore")
+            {
+                PlayerPrefs.SetInt(typeKey, round);
+            }
+            else
+            {
+                PlayerPrefs.SetFloat(typeKey, score);
+            }
+        }
     }
 
     public bool CanSelectCard()

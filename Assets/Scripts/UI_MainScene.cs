@@ -75,7 +75,7 @@ public class UI_MainScene : MonoBehaviour
                 break;
             case GameLevel.Infinite:
                 timeTxt.text = GameManager.Instance._Time.ToString("N2");
-                roundTxt.text = GameManager.Instance._Round.ToString();
+                roundTxt.text = $"{GameManager.Instance._Round} Round";
                 break;
             case GameLevel.Zombie:
                 break;
