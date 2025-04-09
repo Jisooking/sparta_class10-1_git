@@ -400,9 +400,9 @@ MonoBehaviour:
   timeTxt: {fileID: 1555897325}
   EndPanel: {fileID: 1922455395}
   SuccessPanel: {fileID: 1473113230}
-  hiddenPanel: {fileID: 0}
-  infinitePanel: {fileID: 0}
-  zombiePanel: {fileID: 0}
+  hiddenPanel: {fileID: 1371856136}
+  infinitePanel: {fileID: 2019623165}
+  zombiePanel: {fileID: 1898382578}
 --- !u!1 &197705117
 GameObject:
   m_ObjectHideFlags: 0
@@ -4059,7 +4059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1898382579
 RectTransform:
   m_ObjectHideFlags: 0

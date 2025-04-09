@@ -15,42 +15,43 @@ public class Board : MonoBehaviour
         switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
-                MakeEasyBoard();
+                MakeBoard(12);
                 break;
             case GameLevel.Normal:
-                MakeNormalBoard();
+                MakeBoard(16);
                 break;
             case GameLevel.Hard:
-                MakeHardBoard();
+                MakeBoard(20);
                 break;
             case GameLevel.Hidden:
-                MakeHiddenBoard();
+                MakeBoard(20);
                 break;
             case GameLevel.Infinite:
-                MakeInfiniteBoard();
+                MakeBoard(16);
                 break;
             case GameLevel.Zombie:
-                MakeZombieBoard();
+                MakeBoard(16);
                 break;
 
         }
     }
 
-    //���̵�-����: 6���� ī��
-    void MakeEasyBoard()
-    {
 
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
-        cards = new GameObject[arr.Length];
+    void MakeBoard(int boardSize)
+    {
+        int[] arr = new int[boardSize];
+        for (int i = 0; i < boardSize; i++)
+        {
+            arr[i] = i / 2;
+        }
 
         arr = arr.OrderBy(x => Random.Range(0f, 5f)).ToArray();
 
+        cards = new GameObject[boardSize];
+
         for (int i = 0; i < arr.Length; i++)
         {
-            //float x = (i % 4) * 1.4f - 2.1f;
-            //float y = (i / 4) * 1.4f - 3.0f;
             cards[i] = Instantiate(card, this.transform);
-            //go.transform.position = new Vector2(x, y);
             cards[i].GetComponent<Card>().Setting(arr[i]);
         }
 
@@ -65,125 +66,6 @@ public class Board : MonoBehaviour
         Invoke("StartGame", 1.9f);
     }
 
-    //���̵�-���: 8���� ī��
-    void MakeNormalBoard()
-    {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-        cards = new GameObject[arr.Length];
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            //float x = (i % 4) * 1.4f - 2.1f;
-            //float y = (i / 4) * 1.4f - 3.0f;
-            cards[i] = Instantiate(card, this.transform);
-            //go.transform.position = new Vector2(x, y);
-            cards[i].GetComponent<Card>().Setting(arr[i]);
-        }
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
-            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
-        }
-        GameManager.Instance.cardCount = arr.Length;
-    }
-
-    //���̵�-�ϵ�: 10���� ī��
-    void MakeHardBoard()
-    {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
-        cards = new GameObject[arr.Length];
-        arr = arr.OrderBy(x => Random.Range(0f, 14f)).ToArray();
-
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            //float x = (i % 4) * 1.4f - 2.1f;
-            //float y = (i / 4) * 1.4f - 3.0f;
-            cards[i] = Instantiate(card, this.transform);
-            //go.transform.position = new Vector2(x, y);
-            cards[i].GetComponent<Card>().Setting(arr[i]);
-        }
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.5f;
-            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
-        }
-        GameManager.Instance.cardCount = arr.Length;
-
-    }
-
-
-    void MakeHiddenBoard()
-    {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9 };
-        cards = new GameObject[arr.Length];
-        arr = arr.OrderBy(x => Random.Range(0f, 14f)).ToArray();
-
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            cards[i] = Instantiate(card, this.transform);
-            cards[i].GetComponent<Card>().Setting(arr[i]);
-        }
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.5f;
-            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
-        }
-        GameManager.Instance.cardCount = arr.Length;
-
-    }
-
-    void MakeInfiniteBoard()
-    {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-        cards = new GameObject[arr.Length];
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            cards[i] = Instantiate(card, this.transform);
-            cards[i].GetComponent<Card>().Setting(arr[i]);
-        }
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
-            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
-        }
-        GameManager.Instance.cardCount = arr.Length;
-    }
-    void MakeZombieBoard()
-    {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-        cards = new GameObject[arr.Length];
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            cards[i] = Instantiate(card, this.transform);
-            cards[i].GetComponent<Card>().Setting(arr[i]);
-        }
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
-            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
-        }
-        GameManager.Instance.cardCount = arr.Length;
-    }
 
 
     public void ShuffleCards() //카드 재배치, 무한 모드에서 사용
