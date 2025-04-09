@@ -10,34 +10,9 @@ public class Board : MonoBehaviour
 
     private GameObject[] cards; //카드를 배열을 통해 관리
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void InitBoard()
     {
-        //���� �ڵ�
-        /*
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-        for (int i = 0; i < 16; i++)
-        {
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3.0f;
-            GameObject go = Instantiate(card, this.transform);
-            go.transform.position = new Vector2(x, y);
-            go.GetComponent<Card>().Setting(arr[i]);
-        }
-
-        GameManager.Instance.cardCount = arr.Length;
-        */
-
-        //���̵��� ���� ���� ����
-        InitBoard(Managers.Instance.gameType);
-    }
-
-    void InitBoard(GameLevel type)
-    {
-        switch (type)
+        switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
                 MakeEasyBoard();
@@ -87,6 +62,7 @@ public class Board : MonoBehaviour
         }
 
         GameManager.Instance.cardCount = arr.Length;
+        Invoke("StartGame", 1.9f);
     }
 
     //���̵�-���: 8���� ī��
@@ -268,4 +244,10 @@ public class Board : MonoBehaviour
         transform.position = target; // 최종 위치 보정
 
     }
+
+    void StartGame() //게임 시작을 알리는 메서드
+    {
+        GameManager.Instance.GameStart();
+    }
+
 }
