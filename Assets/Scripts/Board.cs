@@ -10,6 +10,11 @@ public class Board : MonoBehaviour
 
     private GameObject[] cards; //카드를 배열을 통해 관리
 
+    private void Start()
+    {
+        InitBoard();
+    }
+
     public void InitBoard()
     {
         switch (Managers.Instance.gameType)
