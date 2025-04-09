@@ -31,20 +31,19 @@ public class UI_GameModePopup : MonoBehaviour
     public void OnClickEasyButton()
     {
         Managers.Instance.gameType = GameLevel.Easy;
-        LoadMainScene();
-
+        Invoke("LoadMainScene", 1.0f);
     }
 
     public void OnClickNormalButton()
     {
         Managers.Instance.gameType = GameLevel.Normal;
-        LoadMainScene();
+        Invoke("LoadMainScene", 1.0f);
     }
 
     public void OnClickHardButton()
     {
         Managers.Instance.gameType = GameLevel.Hard;
-        LoadMainScene();
+        Invoke("LoadMainScene", 1.0f);
     }
 
     void LoadMainScene()

@@ -104,6 +104,7 @@ public class Board : MonoBehaviour
 
     public void ActivateCards() //카드 전부 활성화, 좀비 모드에서 사용
     {
+        GameManager.Instance.cardCount = cards.Length;
         foreach (GameObject card in cards)
         {
             card.SetActive(true);

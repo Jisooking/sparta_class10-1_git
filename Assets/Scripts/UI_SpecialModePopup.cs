@@ -10,14 +10,13 @@ public class UI_SpecialModePopup : MonoBehaviour
     public void OnClickZombieButton()
     {
         Managers.Instance.gameType = GameLevel.Zombie;
-        LoadMainScene();
+        Invoke("LoadMainScene", 1.0f);
     }
 
     public void OnClickInfiniteButton()
     {
         Managers.Instance.gameType = GameLevel.Infinite;
-        LoadMainScene();
-
+        Invoke("LoadMainScene", 1.0f);
     }
 
     void LoadMainScene()
