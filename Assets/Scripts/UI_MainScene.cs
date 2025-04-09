@@ -17,7 +17,10 @@ public class UI_MainScene : MonoBehaviour
         GameManager.Instance.GameClearEvent -= PopupGameClear;
         GameManager.Instance.GameClearEvent += PopupGameClear;
 
+        ui_SuccessPopup.SetActive(false);
+        ui_FailPopup.SetActive(false);
         ui_DescriptionPopup.SetActive(true);
+        ui_PausePopup.SetActive(false);
     }
 
     void Update()
