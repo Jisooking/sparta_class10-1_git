@@ -1623,7 +1623,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 203150813}
         m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
-        m_MethodName: LoadSpeicalLevel
+        m_MethodName: OnClickSpecialModeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3021,8 +3021,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 203150813}
-        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
+      - m_Target: {fileID: 34480226}
+        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickInfiniteButton
         m_Mode: 1
         m_Arguments:
@@ -3775,8 +3775,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 203150813}
-        m_TargetAssemblyTypeName: UI_StartScene, Assembly-CSharp
+      - m_Target: {fileID: 34480226}
+        m_TargetAssemblyTypeName: UI_SpecialModePopup, Assembly-CSharp
         m_MethodName: OnClickZombieButton
         m_Mode: 1
         m_Arguments:
