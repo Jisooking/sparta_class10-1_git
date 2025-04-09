@@ -43,7 +43,7 @@ public class Board : MonoBehaviour
                 MakeBoard(20);
                 break;
             case GameLevel.Infinite:
-                MakeBoard(16);
+                MakeBoard(4);
                 break;
             case GameLevel.Zombie:
                 MakeBoard(16);
@@ -99,6 +99,7 @@ public class Board : MonoBehaviour
             float y = (i / 4) * 1.4f - yDistance;
             StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
         }
+        GameManager.Instance.cardCount = cards.Length;
     }
 
     public void ActivateCards() //카드 전부 활성화, 좀비 모드에서 사용
@@ -108,8 +109,6 @@ public class Board : MonoBehaviour
             card.SetActive(true);
         }
     }
-
-
 
 
     IEnumerator MoveRoutine(Transform transform, Vector2 target)
