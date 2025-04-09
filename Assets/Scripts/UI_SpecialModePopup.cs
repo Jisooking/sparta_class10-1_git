@@ -24,4 +24,8 @@ public class UI_SpecialModePopup : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void OnClickBackButton()
+    {
+        gameObject.SetActive(false);
+    }
 }
