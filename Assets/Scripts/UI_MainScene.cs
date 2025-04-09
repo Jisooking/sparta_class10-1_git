@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     public Text timeTxt;
-    public Text zombieCountText;
 
     public GameObject ui_Hp;
     public Text roundTxt;
@@ -16,6 +15,8 @@ public class UI_MainScene : MonoBehaviour
     public GameObject ui_DescriptionPopup;
     public GameObject ui_PausePopup;
     public GameObject ui_InfiniteModeClearPopup;
+
+    public Slider timeSlider;
 
     private void Start()
     {
@@ -29,22 +30,65 @@ public class UI_MainScene : MonoBehaviour
         ui_PausePopup.SetActive(false);
         ui_InfiniteModeClearPopup.SetActive(false);
 
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-            ui_Hp.SetActive(true);
-
-        if (Managers.Instance.gameType == GameLevel.Infinite)
+        switch (Managers.Instance.gameType)
         {
-            PopupRound();
+            case GameLevel.Hidden:
+                if (timeSlider != null)
+                {
+                    timeSlider.minValue = 0f;
+                    timeSlider.maxValue = 1f;
+                    timeSlider.value = 0f;
+                    timeSlider.gameObject.SetActive(true);
+                }
+                break;
+            case GameLevel.Infinite:
+                PopupRound();
+                break;
+            case GameLevel.Zombie:
+                timeTxt.gameObject.SetActive(false);
+                ui_Hp.SetActive(true);
+                break;
+            default:
+                if (timeSlider != null)
+                {
+                    timeSlider.minValue = 0f;
+                    timeSlider.maxValue = 1f;
+                    timeSlider.value = 0f;
+                    timeSlider.gameObject.SetActive(true);
+                }
+                break;
         }
     }
-
     void Update()
     {
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-            timeTxt.GetComponent<UI_Disable>().DisableUI();
-        else
-            timeTxt.text = GameManager.Instance._Time.ToString("N2");
-        roundTxt.text = GameManager.Instance._Round.ToString();
+
+        switch (Managers.Instance.gameType)
+        {
+            case GameLevel.Hidden:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+
+                if (timeSlider != null && GameManager.Instance.maxtime > 0)
+                {
+                    float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
+                    timeSlider.value = Mathf.Clamp01(ratio);
+                }
+                break;
+            case GameLevel.Infinite:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+                roundTxt.text = GameManager.Instance._Round.ToString();
+                break;
+            case GameLevel.Zombie:
+                break;
+            default:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+
+                if (timeSlider != null && GameManager.Instance.maxtime > 0)
+                {
+                    float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
+                    timeSlider.value = Mathf.Clamp01(ratio);
+                }
+                break;
+        }
     }
 
     void PopupGameOver()
@@ -64,12 +108,12 @@ public class UI_MainScene : MonoBehaviour
         ui_SuccessPopup.SetActive(true);
     }
 
-    void PopupRound() //무한모드 - 라운드 표시
+    void PopupRound()
     {
         roundTxt.gameObject.SetActive(true);
     }
 
-    void PopupPlusTime() //무한 모드 - 시간 추가 표시
+    void PopupPlusTime()
     {
         plusTimeText.gameObject.SetActive(false);
         plusTimeText.gameObject.SetActive(true);
@@ -80,3 +124,4 @@ public class UI_MainScene : MonoBehaviour
         ui_PausePopup.SetActive(true);
     }
 }
+

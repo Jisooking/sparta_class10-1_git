@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Board board;
     float time;
     int round;
+    public float maxtime = 0f;
+
     public float _Time
     {
         get { return time; }
@@ -46,7 +48,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-
     public event Action ZombieCountChanged;
     public int zombieCount;
 
@@ -62,21 +63,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver)
+        if (isGameOver || Managers.Instance.gameType == GameLevel.Zombie)
         {
             return;
         }
         time -= Time.deltaTime * timeScale;
-        if (Managers.Instance.gameType == GameLevel.Zombie)
-        {
-            if (zombieCount == 0)
-            {
-                GameOver();
-            }
-            return;
-        }
-
-        time -= Time.deltaTime;
 
         if (time <= 10.0f && !isMusicChanged)
         {
@@ -99,21 +90,28 @@ public class GameManager : MonoBehaviour
         {
             case GameLevel.Easy:
                 time = 40.0f;
+                maxtime = 40.0f;
                 break;
             case GameLevel.Normal:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Hard:
                 time = 90.0f;
+                maxtime = 90.0f;
                 break;
             case GameLevel.Hidden:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Infinite:
                 time = 60.0f;
+                maxtime = 60.0f;
                 break;
             case GameLevel.Zombie:
                 zombieCount = 8;
+                time = 60.0f;
+                maxtime = 60.0f;
                 break;
         }
     }
@@ -128,7 +126,7 @@ public class GameManager : MonoBehaviour
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
-            if (Managers.Instance.gameType == GameLevel.Infinite)
+            if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드
             {
                 time += 5.0f; //시간 추가
                 CardMatchEvent.Invoke();
@@ -143,7 +141,6 @@ public class GameManager : MonoBehaviour
                 if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
                 {
                     StartCoroutine(WaitAndShuffle()); //카드 재배치
-
                 }
                 else
                 {
@@ -160,6 +157,12 @@ public class GameManager : MonoBehaviour
             {
                 zombieCount--;
                 ZombieCountChanged.Invoke();
+                if (zombieCount == 0)
+                {
+                    GameOver();
+                    return;
+                }
+
                 StartCoroutine(WaitAndActivate());  //카드 전부 활성화
             }
         }
@@ -204,7 +207,7 @@ public class GameManager : MonoBehaviour
 
         float score = time;
         string typeKey = "";
-        //
+
         switch (Managers.Instance.gameType)
         {
             case GameLevel.Easy:
@@ -229,7 +232,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        //
         if (PlayerPrefs.HasKey(typeKey))
         {
             if (typeKey == "ZombieScore")
