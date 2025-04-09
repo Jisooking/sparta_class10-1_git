@@ -6,10 +6,13 @@ public class UI_StartScene : MonoBehaviour
 {
     public GameObject GameLevelTitle;
     public GameObject ui_ScorePopup;
+    public GameObject SpecialLevelTitle;
 
     public Button easyButton;
     public Button normalButton;
     public Button hardButton;
+    public Button ZombieButton;
+    public Button InfiniteButton;
 
     void Start()
     {
@@ -46,6 +49,11 @@ public class UI_StartScene : MonoBehaviour
         ui_ScorePopup.SetActive(true);
     }
 
+    public void LoadSpeicalLevel()
+    {
+        SpecialLevelTitle.SetActive(true);
+    }
+
     public void OnClickEasyButton()
     {
         Managers.Instance.gameType = GameLevel.Easy;
@@ -62,7 +70,17 @@ public class UI_StartScene : MonoBehaviour
         Managers.Instance.gameType = GameLevel.Hard;
         LoadMainScene();
     }
+    public void OnClickZombieButton()
+    {
+        Managers.Instance.gameType = GameLevel.Zombie;
+        LoadMainScene();
+    }
+    public void OnClickInfiniteButton()
+    {
+        Managers.Instance.gameType = GameLevel.Infinite;
+        LoadMainScene();
 
+    }
     void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");

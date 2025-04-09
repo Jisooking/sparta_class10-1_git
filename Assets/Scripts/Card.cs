@@ -12,12 +12,18 @@ public class Card : MonoBehaviour
     public Animator anim;
     public AudioClip clip;
     public AudioSource audioSource;
-    public bool setOpen;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    void OnEnable()
+    {
+        front.SetActive(false);
+        back.SetActive(true);
     }
 
     // Update is called once per frame
@@ -67,30 +73,24 @@ public class Card : MonoBehaviour
         frontimage.sprite = Resources.Load<Sprite>($"1jo{idx}");
     }
 
-    /*public void OpenCard()
-    {
-        {
-            audioSource.PlayOneShot(clip);
-            anim.SetBool("isOpen", true);
-
-
-            front.SetActive(true);
-            back.SetActive(false);
-            if (GameManager.Instance.firstCard == null)
-            {
-                GameManager.Instance.firstCard = this;
-            }
-            else
-            {
-                //GameManager.Instance.cardOpening = true;
-                GameManager.Instance.secondCard = this;
-                GameManager.Instance.Matched();
-            }
-        }
-    }*/
     public void CloseCard()
     {
         Invoke("CloseCardInvoke", 0.5f);
+    }
+
+    public void DestroyCard()
+    {
+        //무한 모드나 좀비모드의 경우, 카드 재활용 위해 비활성화
+        if (Managers.Instance.gameType == GameLevel.Infinite
+           || Managers.Instance.gameType == GameLevel.Zombie)
+        {
+            Invoke("DisableCardInvoke", 0.5f);
+
+        }
+        else
+        {
+            Destroy(gameObject, 0.5f);
+        }
     }
 
     public void CloseCardInvoke()
@@ -99,23 +99,11 @@ public class Card : MonoBehaviour
         front.SetActive(false);
         back.SetActive(true);
     }
-    public void DestroyCard()
+    public void DisableCardInvoke()
     {
-        Destroy(gameObject, 0.5f);
+        gameObject.SetActive(false);
+        front.SetActive(false);
+        back.SetActive(true);
     }
 
-
-    void OpenImage()
-    {
-        if (!setOpen)
-        {
-            front.SetActive(false);
-            back.SetActive(true);
-        }
-        else
-        {
-            front.SetActive(true);
-            back.SetActive(false);
-        }
-    }
 }
