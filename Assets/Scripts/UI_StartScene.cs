@@ -10,6 +10,8 @@ public class UI_StartScene : MonoBehaviour
     public Button easyButton;
     public Button normalButton;
     public Button hardButton;
+    public Button ZombieButton;
+    public Button InfiniteButton;
 
     void Start()
     {
@@ -62,7 +64,18 @@ public class UI_StartScene : MonoBehaviour
         Managers.Instance.gameType = GameLevel.Hard;
         LoadMainScene();
     }
+    public void OnClickZombieButton()
+    {
+        Managers.Instance.gameType = GameLevel.Zombie;
+        LoadMainScene();
 
+    }
+    public void OnClickInfiniteButton()
+    {
+        Managers.Instance.gameType = GameLevel.Infinite;
+        LoadMainScene();
+
+    }
     void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");
