@@ -7767,7 +7767,7 @@ MonoBehaviour:
   board: {fileID: 308537730}
   maxtime: 0
   cardCount: 0
-  cardOpening: 0
+  isGameOver: 0
   zombieCount: 0
 --- !u!4 &1734638038
 Transform:

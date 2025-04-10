@@ -41,7 +41,7 @@ public class Board : MonoBehaviour
                 MakeBoard(20);
                 break;
             case GameLevel.Infinite:
-                MakeBoard(4);
+                MakeBoard(16);
                 break;
             case GameLevel.Zombie:
                 MakeBoard(16);
