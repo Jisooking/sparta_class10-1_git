@@ -123,6 +123,7 @@ public class UI_MainScene : MonoBehaviour
     {
         GameManager.Instance.GameStop();
         ui_PausePopup.SetActive(true);
+        GameManager.Instance.GamePause();
     }
 }
 

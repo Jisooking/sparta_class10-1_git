@@ -5,7 +5,7 @@ public class CardFlip : MonoBehaviour
 {
     private AudioSource audioSource;
     public AudioClip clip;
-    public Animator anim;
+    Animator anim;
     public GameObject front;
     public GameObject back;
 
@@ -13,6 +13,8 @@ public class CardFlip : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+        card = GetComponent<Card>();
     }
 
     public void CardClick()
@@ -26,15 +28,19 @@ public class CardFlip : MonoBehaviour
 
     IEnumerator FlipCard()
     {
-        if (GameManager.Instance.firstCard == null)
+        if (GameManager.Instance.firstCard == card) //같은 카드 두번 클릭 방지
+        {
+            yield break;
+        }
+        if (GameManager.Instance.firstCard == null) //첫번째 카드 할당
         {
             GameManager.Instance.firstCard = card;
         }
         else
         {
-            GameManager.Instance.secondCard = card;
-
+            GameManager.Instance.secondCard = card; //두번째 카드 할당
         }
+
         audioSource.PlayOneShot(clip);
         anim.SetBool("isOpen", true);
 
@@ -45,8 +51,7 @@ public class CardFlip : MonoBehaviour
         back.SetActive(false);
         //카드가 완전히 뒤집힐 때까지 대기
 
-
-        if (GameManager.Instance.firstCard != null && GameManager.Instance.secondCard != null)
+        if (GameManager.Instance.secondCard == card) //두번째 카드인 경우만 매칭 시도
         {
             yield return new WaitForSeconds(0.5f);
             GameManager.Instance.Matched();

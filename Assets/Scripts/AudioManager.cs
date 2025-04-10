@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgmSource;
     public AudioSource sfxSource;
 
+    public AudioClip normalBGMClip;
     public AudioClip matchClip;
     public AudioClip failClip;
     public AudioClip gameOverClip;
@@ -40,8 +42,9 @@ public class AudioManager : MonoBehaviour
     public void PlayGameOverSFX() => PlaySFX(gameOverClip);
     public void PlayShuffleSFX() => PlaySFX(shuffleClip);
 
-    public void PlayBGM(AudioClip clip, bool loop = true)
+    void PlayBGM(AudioClip clip, bool loop = true)
     {
+        bgmSource.Stop();
         bgmSource.clip = clip;
         bgmSource.loop = loop;
         bgmSource.Play();
@@ -49,11 +52,30 @@ public class AudioManager : MonoBehaviour
 
     public void StopBGM() => bgmSource.Stop();
 
-    public void PlayHurryUpBGM()
+    public void PlayNormalBGM() //일반 BGM 재생
     {
-        PlayBGM(hurryUpClip);
+        if (!bgmSource.isPlaying)   //BGM이 이미 재생되고 있으면 그대로 유지
+            PlayBGM(normalBGMClip, true);
     }
 
+    public void PlayHurryUpBGM() //긴박한 BGM 재생
+    {
+        PlayBGM(hurryUpClip, false);
+    }
+
+    public void ControlBGM(bool play) //BGM을 퍼즈, 재생하는 메서드
+    {
+        if (play)
+        {
+            bgmSource.UnPause();
+        }
+        else
+        {
+            bgmSource.Pause();
+        }
+    }
+
+    //셔플 SFX 재생. 카드가 펼쳐지는 타이밍에 맞춰 두번 연속 재생
     public void PlayShuffleSound()
     {
         PlaySFX(shuffleClip);

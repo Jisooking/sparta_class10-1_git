@@ -9,10 +9,8 @@ public class Board : MonoBehaviour
     public GameObject card;
 
     private GameObject[] cards; //카드를 배열을 통해 관리
-
-
-    private float xDistance = 2.1f;
-    private float yDistance = 3.0f;
+    private float xDistance = 2.1f; //카드 배치에 쓰이는 x좌표값
+    private float yDistance = 3.0f; //카드 배치에 쓰이는 y좌표값
 
 
     void Start()
@@ -59,25 +57,31 @@ public class Board : MonoBehaviour
             arr[i] = i / 2;
         }
 
-        arr = arr.OrderBy(x => Random.Range(0f, 5f)).ToArray();
+        //arr = arr.OrderBy(x => Random.Range(0f, 5f)).ToArray();
+
+        for (int i = boardSize - 1; i > 0; i--) //Fisher-Yates Shuffle
+        {
+            int rand = Random.Range(0, i + 1);
+            (arr[i], arr[rand]) = (arr[rand], arr[i]);
+        }
 
         cards = new GameObject[boardSize];
 
         for (int i = 0; i < arr.Length; i++)
         {
-            cards[i] = Instantiate(card, this.transform);
-            cards[i].GetComponent<Card>().Setting(arr[i]);
+            cards[i] = Instantiate(card, this.transform);   //카드 생성
+            cards[i].GetComponent<Card>().Setting(arr[i]);  //카드 이미지 설정
         }
 
         for (int i = 0; i < arr.Length; i++)
         {
-            float x = (i % 4) * 1.4f - xDistance;
-            float y = (i / 4) * 1.4f - yDistance;
-            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y)));
+            float x = (i % 4) * 1.4f - xDistance;   //카드가 배치될 x좌표
+            float y = (i / 4) * 1.4f - yDistance;   //카드가 배치될 y좌표
+            StartCoroutine(MoveRoutine(cards[i].transform, new Vector2(x, y))); //카드 배치 시작
         }
 
         GameManager.Instance.cardCount = arr.Length;
-        Invoke("StartGame", 1.9f);
+        Invoke("StartGame", 1.9f); // 카드 배치연출 기다린 뒤 게임 시작
     }
 
 
@@ -91,7 +95,7 @@ public class Board : MonoBehaviour
             cards[rnd] = temp;
         }
 
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < cards.Length; i++)  //카드 위치를 처음으로 돌린 뒤, 다시 배치
         {
             cards[i].gameObject.SetActive(true);
             cards[i].transform.position = transform.position;
@@ -135,7 +139,7 @@ public class Board : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
+
         transform.position = target; // 최종 위치 보정
 
     }

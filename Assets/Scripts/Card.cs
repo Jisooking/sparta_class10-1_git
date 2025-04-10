@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
@@ -11,22 +12,25 @@ public class Card : MonoBehaviour
     public GameObject front;
     public GameObject back;
     public int idx = 0;
-    public Animator anim;
+
     public AudioClip clip;
-    public AudioSource audioSource;
+    AudioSource audioSource;
+    Animator anim;
     private bool hasShownZombieCard = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     void OnEnable()
     {
         front.SetActive(false);
         back.SetActive(true);
+
         // 좀비 모드일 경우 카드 자동 공개 루틴 실행
         if (Managers.Instance.gameType == GameLevel.Zombie && !hasShownZombieCard)
         {
@@ -38,7 +42,7 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Managers.Instance.gameType != GameLevel.Hidden)
         {
             return;
@@ -94,8 +98,8 @@ public class Card : MonoBehaviour
         if (Managers.Instance.gameType == GameLevel.Infinite
            || Managers.Instance.gameType == GameLevel.Zombie)
         {
-            Invoke("DisableCardInvoke", 0.5f);
 
+            Invoke("DisableCardInvoke", 0.5f);
         }
         else
         {
@@ -111,7 +115,9 @@ public class Card : MonoBehaviour
     }
     public void DisableCardInvoke()
     {
+
         gameObject.SetActive(false);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         front.SetActive(false);
         back.SetActive(true);
     }
@@ -132,7 +138,6 @@ public class Card : MonoBehaviour
         yield return new WaitForSeconds(4f); // 4초간 보여줌
 
         // 다시 닫기
-        anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
     }

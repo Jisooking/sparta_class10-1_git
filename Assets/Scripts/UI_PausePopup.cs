@@ -5,13 +5,14 @@ public class UI_PausePopup : MonoBehaviour
 {
     public void OnClickBackButton()
     {
-        GameManager.Instance.GameStart();
+        GameManager.Instance.GameContinue();
         gameObject.SetActive(false);
     }
 
     public void OnClickMainButton()
     {
         SceneManager.LoadScene("StartScene");
+        AudioManager.Instance.PlayNormalBGM();
     }
 
     public void OnClickExitButton()
