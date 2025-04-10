@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver || Managers.Instance.gameType == GameLevel.Zombie)
+        if (isGameOver)
         {
             return;
         }
@@ -248,8 +248,8 @@ public class GameManager : MonoBehaviour
         {
             if (typeKey == "ZombieScore")
             {
-                int zombieCnt = (zombieCount < PlayerPrefs.GetInt(typeKey) ? PlayerPrefs.GetInt(typeKey) : zombieCount);
-                PlayerPrefs.SetInt(typeKey, zombieCnt);
+                float zombieCnt = (zombieCount*score < PlayerPrefs.GetFloat(typeKey) ? PlayerPrefs.GetFloat(typeKey) : zombieCount*score);
+                PlayerPrefs.SetFloat(typeKey, zombieCnt);
             }
             else if (typeKey == "InfiniteScore")
             {
@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
         {
             if (typeKey == "ZombieScore")
             {
-                PlayerPrefs.SetInt(typeKey, zombieCount);
+                PlayerPrefs.SetFloat(typeKey, zombieCount*score);
             }
             else if (typeKey == "InfiniteScore")
             {

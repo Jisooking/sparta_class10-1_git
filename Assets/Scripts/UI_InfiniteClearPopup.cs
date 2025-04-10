@@ -8,7 +8,7 @@ public class UI_InfiniteClearPopup : MonoBehaviour
 
     void Start()
     {
-        maxRoundText.text = $"최대 라운드 횟수: {GameManager.Instance._Round}";
+        maxRoundText.text = $"마지막 Round: {GameManager.Instance._Round}";
     }
 
     public void OnClickContinueButton()

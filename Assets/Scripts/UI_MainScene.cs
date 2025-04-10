@@ -45,7 +45,7 @@ public class UI_MainScene : MonoBehaviour
                 PopupRound();
                 break;
             case GameLevel.Zombie:
-                timeTxt.gameObject.SetActive(false);
+                timeTxt.gameObject.SetActive(true);
                 ui_Hp.SetActive(true);
                 break;
             default:
@@ -78,6 +78,13 @@ public class UI_MainScene : MonoBehaviour
                 roundTxt.text = $"{GameManager.Instance._Round} Round";
                 break;
             case GameLevel.Zombie:
+                timeTxt.text = GameManager.Instance._Time.ToString("N2");
+
+                if (timeSlider != null && GameManager.Instance.maxtime > 0)
+                {
+                    float ratio = 1f - (GameManager.Instance._Time / GameManager.Instance.maxtime);
+                    timeSlider.value = Mathf.Clamp01(ratio);
+                }
                 break;
             default:
                 timeTxt.text = GameManager.Instance._Time.ToString("N2");
