@@ -8,7 +8,7 @@ public class UI_InfiniteClearPopup : MonoBehaviour
 
     void Start()
     {
-        maxRoundText.text = $"ÃÖ´ë ¶ó¿îµå È½¼ö: {GameManager.Instance._Round}";
+        maxRoundText.text = $"ìµœëŒ€ Round: {GameManager.Instance._Round}";
     }
 
     public void OnClickContinueButton()

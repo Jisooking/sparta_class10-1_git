@@ -267,6 +267,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //카드가 뒤집히고 있는 중인지, 카드를 선택할 수 있는 상황인지 판단
     public bool CanSelectCard()
     {
         return !cardOpening && secondCard == null;

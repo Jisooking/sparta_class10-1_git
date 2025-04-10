@@ -12,11 +12,11 @@ public class UI_ScorePopup : MonoBehaviour
 
     private void Start()
     {
-        easyScoreText.text = $"½¬¿ò: {PlayerPrefs.GetFloat("EasyScore")}";
-        normalScoreText.text = $"º¸Åë: {PlayerPrefs.GetFloat("NormalScore")}";
-        hardScoreText.text = $"¾î·Á¿ò: {PlayerPrefs.GetFloat("HardScore")}";
-        zombieModeScoreText.text = $"Á»ºñ ¸ðµå: {PlayerPrefs.GetInt("ZombieScore")}";
-        infiniteModeScoreText.text = $"¹«ÇÑ ¸ðµå: {PlayerPrefs.GetInt("InfiniteScore")}";
+        easyScoreText.text = $"ì‰¬ì›€: {PlayerPrefs.GetFloat("EasyScore")}";
+        normalScoreText.text = $"ë³´í†µ: {PlayerPrefs.GetFloat("NormalScore")}";
+        hardScoreText.text = $"ì–´ë ¤ì›€: {PlayerPrefs.GetFloat("HardScore")}";
+        zombieModeScoreText.text = $"ì¢€ë¹„ ëª¨ë“œ: {PlayerPrefs.GetInt("ZombieScore")}";
+        infiniteModeScoreText.text = $"ë¬´í•œ ëª¨ë“œ: {PlayerPrefs.GetInt("InfiniteScore")}";
         hiddenScoreText.text = $"???: {PlayerPrefs.GetFloat("HiddenScore")}";
     }
 

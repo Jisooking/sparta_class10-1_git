@@ -8,7 +8,7 @@ public class UI_DescriptionPopup : MonoBehaviour
 
     private void Start()
     {
-        //Æ¯º° ¸ğµåÀÇ °æ¿ì, ¼³¸í ÆĞ³Î ÆË¾÷
+        //ìŠ¤í˜ì…œ ëª¨ë“œì¼ ë•Œ ê²Œì„ íƒ€ì…ì— ë”°ë¼ Panel ë‹¤ë¥´ê²Œ ë³´ì—¬ ì£¼ê¸°
         if (Managers.Instance.gameType == GameLevel.Hidden)
         {
             hiddenPanel.SetActive(true);

@@ -10,6 +10,7 @@ public class UI_GameModePopup : MonoBehaviour
 
     void Start()
     {
+        //난이도 활성화 유무에 따라 버튼 클릭 활성화/비활성화
         if (Managers.Instance.unlockNormal)
         {
             normalButton.interactable = true;
@@ -50,6 +51,8 @@ public class UI_GameModePopup : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+
+    //돌아가기 버튼
     public void OnClickBackButton()
     {
         gameObject.SetActive(false);
