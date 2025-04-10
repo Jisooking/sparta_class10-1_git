@@ -122,6 +122,7 @@ public class UI_MainScene : MonoBehaviour
     public void OnClickPauseButton()
     {
         ui_PausePopup.SetActive(true);
+        GameManager.Instance.GamePause();
     }
 }
 

@@ -161,10 +161,8 @@ public class GameManager : MonoBehaviour
                 {
                     GameOver();
                     return;
-
                 }
                 StartCoroutine(WaitAndActivate());  //카드 전부 활성화
-
             }
         }
 
@@ -176,6 +174,19 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         isGameOver = false;
+        AudioManager.Instance.PlayNormalBGM(); ;
+    }
+
+    public void GamePause()
+    {
+        Time.timeScale = 0.0f;
+        AudioManager.Instance.ControlBGM(false);
+    }
+
+    public void GameContinue()
+    {
+        AudioManager.Instance.ControlBGM(true);
+        Time.timeScale = 1.0f;
     }
 
     public void GameStop()
