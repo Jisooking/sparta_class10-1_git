@@ -11,5 +11,6 @@ public class UI_ImageFlip : MonoBehaviour
     public void ImageFlip()
     {
         anim.SetTrigger("OnFlip");
+        AudioManager.Instance.PlayImageFLipSFX();
     }
 }
