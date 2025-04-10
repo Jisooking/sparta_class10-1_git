@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip gameOverClip;
     public AudioClip hurryUpClip;
     public AudioClip shuffleClip;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
@@ -42,6 +41,8 @@ public class AudioManager : MonoBehaviour
     public void PlayGameOverSFX() => PlaySFX(gameOverClip);
     public void PlayShuffleSFX() => PlaySFX(shuffleClip);
 
+    public void StopBGM() => bgmSource.Stop();
+
     void PlayBGM(AudioClip clip, bool loop = true)
     {
         bgmSource.Stop();
@@ -50,20 +51,22 @@ public class AudioManager : MonoBehaviour
         bgmSource.Play();
     }
 
-    public void StopBGM() => bgmSource.Stop();
-
-    public void PlayNormalBGM() //일반 BGM 재생
+    //일반 BGM 재생
+    public void PlayNormalBGM() 
     {
-        if (!bgmSource.isPlaying)   //BGM이 이미 재생되고 있으면 그대로 유지
+        //BGM이 이미 재생되고 있으면 그대로 유지
+        if (!bgmSource.isPlaying)   
             PlayBGM(normalBGMClip, true);
     }
 
-    public void PlayHurryUpBGM() //긴박한 BGM 재생
+    //긴박한 BGM 재생
+    public void PlayHurryUpBGM() 
     {
         PlayBGM(hurryUpClip, false);
     }
 
-    public void ControlBGM(bool play) //BGM을 퍼즈, 재생하는 메서드
+    //BGM을 퍼즈, 재생하는 메서드
+    public void ControlBGM(bool play) 
     {
         if (play)
         {

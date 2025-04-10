@@ -8,39 +8,51 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public event Action GameOverEvent;
-    public event Action GameClearEvent;
-    public event Action CardMatchEvent;
-
-    public Card firstCard;
-    public Card secondCard;
-
-    public Board board;
-    float time;
-    int round;
     public float maxtime = 0f;
-
+    float time;
     public float _Time
     {
         get { return time; }
         set { time = value; }
     }
 
+    int round;
     public int _Round
     {
         get { return round; }
         set { round = value; }
+
     }
 
+    public Card firstCard;
+    public Card secondCard;
+
+    public Board board;
+
+    //총 카드 개수
     public int cardCount;
 
-    private float timeScale = 1.0f; //시간 가속 - 무한 모드에서 사용
+    //무한 모드 - 시간 가속을 위해 사용
+    private float timeScale = 1.0f; 
 
+    //카드 오픈 중인지 확인하는 변수
     private bool cardOpening;
 
+    //게임 진행 중인지 확인하는 변수
     public bool isGameOver;
 
+    //음악이 변경됐는지 확인하는 변수
     bool isMusicChanged = false;
+
+    //좀비 모드 - 뒤집기 횟수를 확인하는 변수
+    public int zombieCount;
+
+    //이벤트 
+    public event Action ZombieCountChanged;
+    public event Action GameOverEvent;
+    public event Action GameClearEvent;
+    public event Action CardMatchEvent;
+
     private void Awake()
     {
         if (Instance == null)
@@ -48,38 +60,43 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
     }
-    public event Action ZombieCountChanged;
-    public int zombieCount;
 
     void Start()
     {
-        Time.timeScale = 1.0f;
-        timeScale = 1.0f;
         Application.targetFrameRate = 60;
+
+        Time.timeScale = 1.0f;
+
         isGameOver = true;
+
+        timeScale = 1.0f;
         round = 1;
+
         firstCard = null;
         secondCard = null;
         cardOpening = false;
+
         Init();
     }
 
     void Update()
     {
+        //Game이 진행 중이고, 좀비 모드가 아닐 경우에만 시간이 흐르도록 설정
         if (isGameOver || Managers.Instance.gameType == GameLevel.Zombie)
         {
             return;
         }
         time -= Time.deltaTime * timeScale;
 
+        //시간이 10초 이하 남았을 때, 음악이 변경되지 않았을 경우 BGM 멈추고 긴급한 BGM으로 교체
         if (time <= 10.0f && !isMusicChanged)
         {
             AudioManager.Instance.StopBGM();
             AudioManager.Instance.PlayHurryUpBGM();
             isMusicChanged = true;
-
         }
 
+        //시간이 0초가 되었을 때 GameOver
         if (time <= 0.0f)
         {
             time = 0.0f;
@@ -113,36 +130,46 @@ public class GameManager : MonoBehaviour
                 break;
             case GameLevel.Zombie:
                 zombieCount = 8;
-                time = 60.0f;
-                maxtime = 60.0f;
                 break;
         }
     }
 
-    public void Matched() //카드 매칭 확인
+    //카드 매칭 확인
+    public void Matched() 
     {
         if (firstCard == null || secondCard == null)
         {
             return;
         }
+        //카드 열리는 중
         cardOpening = true;
-        if (firstCard.idx == secondCard.idx)    //매칭 성공
+        //매칭 성공
+        if (firstCard.idx == secondCard.idx)    
         {
-            if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드
+            //무한 모드 - 5초 증가
+            if (Managers.Instance.gameType == GameLevel.Infinite) 
             {
-                time += 5.0f; //시간 추가
+                //시간 추가
+                time += 5.0f; 
                 CardMatchEvent.Invoke();
             }
+            //매칭 SFX 실행
             AudioManager.Instance.PlayMatchSFX();
+
+            //카드 삭제
             firstCard.DestroyCard();
             secondCard.DestroyCard();
 
+            //남은 카드 개수 줄이기
             cardCount -= 2;
-            if (cardCount == 0) //카드 매칭 전부 성공
+            //카드 매칭 전부 성공
+            if (cardCount == 0) 
             {
-                if (Managers.Instance.gameType == GameLevel.Infinite) //무한 모드인 경우
+                //무한 모드인 경우
+                if (Managers.Instance.gameType == GameLevel.Infinite)
                 {
-                    StartCoroutine(WaitAndShuffle()); //카드 재배치
+                    //카드 재배치
+                    StartCoroutine(WaitAndShuffle()); 
                 }
                 else
                 {
@@ -150,46 +177,56 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        else    //매칭 실패
+        //매칭 실패
+        else
         {
             AudioManager.Instance.PlayFailSFX();
             firstCard.CloseCard();
             secondCard.CloseCard();
-            if (Managers.Instance.gameType == GameLevel.Zombie) //좀비 모드인 경우
+            //좀비 모드인 경우 남은 뒤집기 횟수 줄이기
+            if (Managers.Instance.gameType == GameLevel.Zombie) 
             {
                 zombieCount--;
+                //UI_Hp에서 hp가 줄어드는 함수 실행
                 ZombieCountChanged.Invoke();
+                //남은 뒤집기 횟수가 0이면 Game Over
                 if (zombieCount == 0)
                 {
                     GameOver();
                     return;
                 }
-                StartCoroutine(WaitAndActivate());  //카드 전부 활성화
+                //좀비 모드 - 매칭 실패 시 카드 전부 활성화
+                StartCoroutine(WaitAndActivate());  
             }
         }
 
-        Invoke("AfterMatched", 0.5f); //0.5초 뒤, 카드 뒤집기 가능
+        //0.5초 뒤, 카드 뒤집기 가능
+        Invoke("AfterMatched", 0.5f);
     }
 
-    public void GameStart() //게임 시작
+    //게임 시작
+    public void GameStart() 
     {
         isGameOver = false;
         AudioManager.Instance.PlayNormalBGM(); ;
     }
 
-    public void GamePause() //게임 퍼즈
+    //게임 퍼즈
+    public void GamePause() 
     {
         Time.timeScale = 0.0f;
         AudioManager.Instance.ControlBGM(false);
     }
 
-    public void GameContinue()  //퍼즈 해제
+    //퍼즈 해제
+    public void GameContinue()  
     {
         Time.timeScale = 1.0f;
         AudioManager.Instance.ControlBGM(true);
     }
 
-    public void GameStop()  //게임 멈춤
+    //게임 멈춤
+    public void GameStop()  
     {
         isGameOver = true;
     }
@@ -198,11 +235,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         isGameOver = true;
+        //UI_MainScene > GameOver ui popup 함수 호출
         GameOverEvent.Invoke();
 
+        //BGM 멈추기
         AudioManager.Instance.StopBGM();
+        //GameOver SFX 실행
         AudioManager.Instance.PlayGameOverSFX();
 
+        //무한 모드의 경우 GameOver==GameClear이기 때문에 점수 저장 필요함
         if (Managers.Instance.gameType == GameLevel.Infinite)
         {
             string typeKey = "InfiniteScore"; ;
@@ -213,10 +254,15 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
-        GameClearEvent.Invoke();
-        AudioManager.Instance.StopBGM();
         Time.timeScale = 0.0f;
+        isGameOver = true;
+        //UI_MainScene > GameClear ui popup 함수 호출
+        GameClearEvent.Invoke();
+        
+        //BGM 멈추기
+        AudioManager.Instance.StopBGM();
 
+        //난이도, 모드마다 Score 저장
         float score = time;
         string typeKey = "";
 
@@ -285,7 +331,8 @@ public class GameManager : MonoBehaviour
         return !cardOpening && secondCard == null;
     }
 
-    void AfterMatched() //매칭 후, 다시 카드 뒤집기 가능한 상태로 돌아감
+    //매칭 후, 다시 카드 뒤집기 가능한 상태로 돌아감
+    void AfterMatched() 
     {
         firstCard = null;
         secondCard = null;
@@ -294,15 +341,19 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitAndShuffle()
     {
-        yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
+        //카드 비활성화까지 대기
+        yield return new WaitForSeconds(0.6f); 
         board.ShuffleCards();
-        round += 1; // 라운드 + 1
-        timeScale *= 1.2f;  //시간 점점 빠르게
+        //라운드 + 1
+        round += 1;
+        //라운드가 증가할수록 시간 좀 더 빠르게 설정
+        timeScale *= 1.2f; 
     }
 
     IEnumerator WaitAndActivate()
     {
-        yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
+        //카드 비활성화까지 대기
+        yield return new WaitForSeconds(0.6f); 
         board.ActivateCards();
     }
 }
