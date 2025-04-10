@@ -5,7 +5,7 @@ public class CardFlip : MonoBehaviour
 {
     private AudioSource audioSource;
     public AudioClip clip;
-    public Animator anim;
+    Animator anim;
     public GameObject front;
     public GameObject back;
 
@@ -13,6 +13,7 @@ public class CardFlip : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     public void CardClick()

@@ -161,9 +161,10 @@ public class GameManager : MonoBehaviour
                 {
                     GameOver();
                     return;
-                }
 
+                }
                 StartCoroutine(WaitAndActivate());  //카드 전부 활성화
+
             }
         }
 
