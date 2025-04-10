@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private float timeScale = 1.0f; //시간 가속 - 무한 모드에서 사용
 
-    public bool cardOpening = false;
+    private bool cardOpening;
 
     public bool isGameOver { get; private set; }
 
@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         isGameOver = true;
         round = 1;
+        firstCard = null;
+        secondCard = null;
+        cardOpening = false;
         Init();
     }
 
@@ -116,13 +119,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Matched()
+    public void Matched() //카드 매칭 확인
     {
         if (firstCard == null || secondCard == null)
         {
             return;
         }
-
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
@@ -166,30 +168,28 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        firstCard = null;
-        secondCard = null;
-        cardOpening = false;
+        Invoke("AfterMatched", 0.5f); //0.5초 뒤, 카드 뒤집기 가능
     }
 
-    public void GameStart()
+    public void GameStart() //게임 시작
     {
         isGameOver = false;
         AudioManager.Instance.PlayNormalBGM(); ;
     }
 
-    public void GamePause()
+    public void GamePause() //게임 퍼즈
     {
         Time.timeScale = 0.0f;
         AudioManager.Instance.ControlBGM(false);
     }
 
-    public void GameContinue()
+    public void GameContinue()  //퍼즈 해제
     {
         AudioManager.Instance.ControlBGM(true);
         Time.timeScale = 1.0f;
     }
 
-    public void GameStop()
+    public void GameStop()  //게임 멈춤
     {
         isGameOver = true;
     }
@@ -279,9 +279,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool CanSelectCard()
+    public bool CanSelectCard() //카드를 뒤집을 수 있는 상태인지 알려줌
     {
         return !cardOpening && secondCard == null;
+    }
+
+    void AfterMatched() //매칭 후, 다시 카드 뒤집기 가능한 상태로 돌아감
+    {
+        firstCard = null;
+        secondCard = null;
+        cardOpening = false;
     }
 
     IEnumerator WaitAndShuffle()

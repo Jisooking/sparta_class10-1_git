@@ -4644,6 +4644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1502956215}
   sfxSource: {fileID: 1502956216}
+  normalBGMClip: {fileID: 8300000, guid: 14c6115f036884e4480b14724f1896b1, type: 3}
   matchClip: {fileID: 8300000, guid: de0f107987a8c3f4bbaa98bd4bde5000, type: 3}
   failClip: {fileID: 8300000, guid: 3c037856d16e4424f94792d9ac3d15d8, type: 3}
   gameOverClip: {fileID: 8300000, guid: 29bfa6d22fa63e54694065edc6c0589b, type: 3}

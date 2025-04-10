@@ -75,6 +75,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //셔플 SFX 재생. 카드가 펼쳐지는 타이밍에 맞춰 두번 연속 재생
     public void PlayShuffleSound()
     {
         PlaySFX(shuffleClip);
