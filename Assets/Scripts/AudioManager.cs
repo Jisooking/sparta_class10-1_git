@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip normalBGMClip;
     public AudioClip matchClip;
     public AudioClip failClip;
+    public AudioClip imageFlipClip;
     public AudioClip gameOverClip;
     public AudioClip hurryUpClip;
     public AudioClip shuffleClip;
@@ -41,6 +42,7 @@ public class AudioManager : MonoBehaviour
     public void PlayFailSFX() => PlaySFX(failClip);
     public void PlayGameOverSFX() => PlaySFX(gameOverClip);
     public void PlayShuffleSFX() => PlaySFX(shuffleClip);
+    public void PlayImageFLipSFX() => PlaySFX(imageFlipClip);
 
     void PlayBGM(AudioClip clip, bool loop = true)
     {

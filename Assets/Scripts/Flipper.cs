@@ -26,6 +26,7 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
         CheckCollision();
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -45,6 +46,7 @@ public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 flipper.SendMessage("GotoHiddenStage", SendMessageOptions.DontRequireReceiver);
             }
         }
+
     }
 
     bool RectOverlaps(RectTransform a, RectTransform b)
