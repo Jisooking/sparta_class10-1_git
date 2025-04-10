@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private bool cardOpening;
 
-    public bool isGameOver { get; private set; }
+    public bool isGameOver;
 
     bool isMusicChanged = false;
     private void Awake()

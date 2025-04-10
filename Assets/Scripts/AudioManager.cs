@@ -52,13 +52,13 @@ public class AudioManager : MonoBehaviour
 
     public void StopBGM() => bgmSource.Stop();
 
-    public void PlayNormalBGM()
+    public void PlayNormalBGM() //일반 BGM 재생
     {
-        if (!bgmSource.isPlaying)
+        if (!bgmSource.isPlaying)   //BGM이 이미 재생되고 있으면 그대로 유지
             PlayBGM(normalBGMClip, true);
     }
 
-    public void PlayHurryUpBGM()
+    public void PlayHurryUpBGM() //긴박한 BGM 재생
     {
         PlayBGM(hurryUpClip, false);
     }
