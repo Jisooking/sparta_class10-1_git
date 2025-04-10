@@ -185,8 +185,8 @@ public class GameManager : MonoBehaviour
 
     public void GameContinue()  //퍼즈 해제
     {
-        AudioManager.Instance.ControlBGM(true);
         Time.timeScale = 1.0f;
+        AudioManager.Instance.ControlBGM(true);
     }
 
     public void GameStop()  //게임 멈춤
