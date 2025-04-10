@@ -6,13 +6,14 @@ public class UI_PausePopup : MonoBehaviour
     //돌아가기 버튼 클릭 시 다시 게임 시간 흐르도록 GameStart 함수 실행
     public void OnClickBackButton()
     {
-        GameManager.Instance.GameStart();
+        GameManager.Instance.GameContinue();
         gameObject.SetActive(false);
     }
 
     public void OnClickMainButton()
     {
         SceneManager.LoadScene("StartScene");
+        AudioManager.Instance.PlayNormalBGM();
     }
 
     public void OnClickExitButton()

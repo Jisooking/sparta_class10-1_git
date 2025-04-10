@@ -11,6 +11,7 @@ public class UI_Button : MonoBehaviour
     public void OnClickMainButton()
     {
         SceneManager.LoadScene("StartScene");
+        AudioManager.Instance.PlayNormalBGM();
     }
 
     public void OnClickExitButton()

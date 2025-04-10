@@ -64,7 +64,13 @@ public class Board : MonoBehaviour
             arr[i] = i / 2;
         }
 
-        arr = arr.OrderBy(x => Random.Range(0f, 5f)).ToArray();
+        //arr = arr.OrderBy(x => Random.Range(0f, 5f)).ToArray();
+
+        for (int i = boardSize - 1; i > 0; i--)
+        {
+            int rand = Random.Range(0, i + 1);
+            (arr[i], arr[rand]) = (arr[rand], arr[i]);
+        }
 
         //카드가 처음 생성될 때 중앙에서 원래 자리로 퍼져나가는 모습을 연출하기 위해 cards 배열에 저장
         cards = new GameObject[boardSize];
@@ -156,7 +162,6 @@ public class Board : MonoBehaviour
 
         //최종 위치 보정
         transform.position = target; 
-
     }
 
     //게임 시작을 알리는 메서드

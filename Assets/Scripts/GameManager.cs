@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour
 
     private float timeScale = 1.0f; //시간 가속 - 무한 모드에서 사용
 
-    public bool cardOpening = false;
+    private bool cardOpening;
 
-    public bool isGameOver { get; private set; }
+    public bool isGameOver;
 
     bool isMusicChanged = false;
     private void Awake()
@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         isGameOver = true;
         round = 1;
+        firstCard = null;
+        secondCard = null;
+        cardOpening = false;
         Init();
     }
 
@@ -116,13 +119,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Matched()
+    public void Matched() //카드 매칭 확인
     {
         if (firstCard == null || secondCard == null)
         {
             return;
         }
-
         cardOpening = true;
         if (firstCard.idx == secondCard.idx)    //매칭 성공
         {
@@ -162,22 +164,32 @@ public class GameManager : MonoBehaviour
                     GameOver();
                     return;
                 }
-
                 StartCoroutine(WaitAndActivate());  //카드 전부 활성화
             }
         }
 
-        firstCard = null;
-        secondCard = null;
-        cardOpening = false;
+        Invoke("AfterMatched", 0.5f); //0.5초 뒤, 카드 뒤집기 가능
     }
 
-    public void GameStart()
+    public void GameStart() //게임 시작
     {
         isGameOver = false;
+        AudioManager.Instance.PlayNormalBGM(); ;
     }
 
-    public void GameStop()
+    public void GamePause() //게임 퍼즈
+    {
+        Time.timeScale = 0.0f;
+        AudioManager.Instance.ControlBGM(false);
+    }
+
+    public void GameContinue()  //퍼즈 해제
+    {
+        Time.timeScale = 1.0f;
+        AudioManager.Instance.ControlBGM(true);
+    }
+
+    public void GameStop()  //게임 멈춤
     {
         isGameOver = true;
     }
@@ -273,6 +285,13 @@ public class GameManager : MonoBehaviour
         return !cardOpening && secondCard == null;
     }
 
+    void AfterMatched() //매칭 후, 다시 카드 뒤집기 가능한 상태로 돌아감
+    {
+        firstCard = null;
+        secondCard = null;
+        cardOpening = false;
+    }
+
     IEnumerator WaitAndShuffle()
     {
         yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기
@@ -280,6 +299,7 @@ public class GameManager : MonoBehaviour
         round += 1; // 라운드 + 1
         timeScale *= 1.2f;  //시간 점점 빠르게
     }
+
     IEnumerator WaitAndActivate()
     {
         yield return new WaitForSeconds(0.6f); // 카드 비활성화까지 대기

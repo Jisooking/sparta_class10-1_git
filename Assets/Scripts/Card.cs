@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
@@ -25,9 +26,10 @@ public class Card : MonoBehaviour
     //좀비 모드일 때 첫 4초 보여 줬는지 확인하기 위한 변수
     private bool hasShownZombieCard = false;
 
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -35,6 +37,7 @@ public class Card : MonoBehaviour
         //처음에 뒤집힌 채로 나타내기
         front.SetActive(false);
         back.SetActive(true);
+
         //좀비 모드일 경우 카드 자동 공개 루틴 실행
         if (Managers.Instance.gameType == GameLevel.Zombie && !hasShownZombieCard)
         {
@@ -105,8 +108,8 @@ public class Card : MonoBehaviour
         if (Managers.Instance.gameType == GameLevel.Infinite
            || Managers.Instance.gameType == GameLevel.Zombie)
         {
-            Invoke("DisableCardInvoke", 0.5f);
 
+            Invoke("DisableCardInvoke", 0.5f);
         }
         else
         {
@@ -126,6 +129,7 @@ public class Card : MonoBehaviour
     public void DisableCardInvoke()
     {
         gameObject.SetActive(false);
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         front.SetActive(false);
         back.SetActive(true);
     }

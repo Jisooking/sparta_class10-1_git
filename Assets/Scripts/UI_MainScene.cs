@@ -148,8 +148,8 @@ public class UI_MainScene : MonoBehaviour
     //Pause UI 활성화, 게임 시간 흐르지 않게 GameStop 함수 실행
     public void OnClickPauseButton()
     {
-        GameManager.Instance.GameStop();
         ui_PausePopup.SetActive(true);
+        GameManager.Instance.GamePause();
     }
 }
 
