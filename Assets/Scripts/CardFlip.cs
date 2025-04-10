@@ -14,6 +14,7 @@ public class CardFlip : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        card = GetComponent<Card>();
     }
 
     public void CardClick()
@@ -31,7 +32,7 @@ public class CardFlip : MonoBehaviour
         {
             GameManager.Instance.firstCard = card;
         }
-        else
+        else if (GameManager.Instance.firstCard != card)
         {
             GameManager.Instance.secondCard = card;
 
